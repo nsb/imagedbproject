@@ -1,0 +1,4 @@
+DATABASE_ENGINE = '' # variants: sqlite3, mysql, postgresql_psycopg2
+DATABASE_NAME = ''
+DATABASE_USER = ''
+DATABASE_PASSWORD = ''

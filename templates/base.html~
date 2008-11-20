@@ -1,0 +1,19 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>photologue</title>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css">
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/base/base-min.css">
+  {% block css %}
+  <link rel="stylesheet" href="/static/css/custom.css" type="text/css" media="screen, projection" />
+  {% endblock %}
+</head>
+<body>
+{% block page %}{% endblock page %}
+<script type="text/javascript" charset="utf-8" src="/static/js/jquery.js"></script>
+{% block javascript %}
+<script type="text/javascript" charset="utf-8" src="/static/js/custom.js"></script>
+{% endblock %}
+</body>
+</html>
+ 
