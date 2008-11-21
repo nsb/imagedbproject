@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/(.*)', admin.site.root),
 
-    (r'^photologue/', include('photologue.urls')),
+    (r'^', include('photologue.urls')),
 )
 
 if settings.DEBUG:
