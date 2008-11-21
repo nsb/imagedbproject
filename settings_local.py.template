@@ -2,3 +2,11 @@ DATABASE_ENGINE = '' # variants: sqlite3, mysql, postgresql_psycopg2
 DATABASE_NAME = ''
 DATABASE_USER = ''
 DATABASE_PASSWORD = ''
+
+ADMINS = ()
+
+EMAIL_HOST = ''
+EMAIL_HOST_USER=''
+EMAIL_HOST_PASSWORD=''
+DEFAULT_FROM_EMAIL = ''
+SERVER_EMAIL = ''
