@@ -1,10 +1,24 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>photologue</title>
+  <title>{% block title %}Nectar image database{% endblock title %}</title>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css">
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/base/base-min.css">
+  <link rel="stylesheet" href="/static/css/custom.css" type="text/css" media="screen, projection" />
 </head>
 <body>
-{% block content %}{% endblock content %}
+<div id="doc3" class="yui-t5">
+  <div id="hd">
+  {% include "head.html" %}
+  </div>
+  <div id="bd">
+  {% block content %}{% endblock content %}
+  </div>
+  <div id="ft">
+  {% include "footer.html" %}
+  </div>
+</div>
 </body>
 </html>
  

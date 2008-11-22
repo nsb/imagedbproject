@@ -93,7 +93,11 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'tagging',
     'photologue',
+    'imagedb',
 )
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
 
 try:
     from settings_local import *

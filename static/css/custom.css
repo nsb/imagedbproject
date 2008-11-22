@@ -1,0 +1,35 @@
+#doc3 {margin:auto;}
+#hd {
+  background: #fcfcfc url(/static/img/header_bg.png) 0 100% repeat-x;
+  padding: 0 10px;
+  border-bottom: 3px solid #ddd;
+}
+#bd {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#ft {
+ border-top: solid 1px #EEEEEE;
+ text-align: center;
+}
+#breadcrumbs {
+  padding: 1em 0;
+}
+/* FORMS */
+form {
+  background: #F3F3F3;
+  padding: 4px 0 4px 0;
+}
+form table {
+  border-collapse: collapse;
+  width: auto;
+  margin: 0px;
+}
+form td {
+  border: none;
+  padding: 0px 10px 0px 5px;
+}
+select {
+  margin: 0;
+  padding: 0;
+}
