@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<div class="yui-ge">
+  <div class="yui-u first">
+    <h1>Nectar image database</h1>
+  </div>
+  <div class="yui-u">
+    {% if user.is_authenticated %}
+    <div>
+      signed in as <strong>{{ user.username }}</strong> | <a href="{% url auth_logout %}">{% trans "logout" %}</a>
+    </div>
+    {% else %}
+      <a href="{% url auth_login %}">{% trans "login" %}</a>
+    {% endif %}
+  </div>
+</div>

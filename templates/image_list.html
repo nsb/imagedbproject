@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Photos</h2>
+
+{% if form %}
+<form method="get" action="{% url image-filter 1 %}">
+
+<table>
+    <tr>
+{% for field in form %}
+  {% if not field.is_hidden %}
+      <td><strong>{{ field.label }}</strong> <span class="small quiet">{{ field.help_text }}</span></td>
+  {% endif %}
+{% endfor %}
+      <td></td>
+    </tr>
+    <tr>
+{% for field in form %}
+  {% if not field.is_hidden %}
+    <td>{{ field }}</td>
+  {% endif %}
+{% endfor %}
+    <td><button type="submit" class="button positive">
+      <img src="/static/images/tick.png" alt=""/> Search
+    </button></td>
+  </tr>
+</table>
+{% for field in form %}
+  {% if field.is_hidden %}
+    <div>{{ field }}</div>
+  {% endif %}
+{% endfor %}
+
+</form>
+
+
+
+
+{% endif %}
+
+{% for image in image_list %}
+<a href="{{ image.get_absolute_url }}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}"/></a>
+{% endfor %}
+
+{% if is_paginated %}
+<div id="page_controls">
+    <p>{% if has_previous %}<a href="{% url image-list previous %}">Previous</a> | {% endif %} page {{ page }} of {{ pages }} {% if has_next %}| <a href="{% url image-list next %}">Next</a>{% endif %}</p>
+</div>
+{% endif %}
+
+{% endblock content %}

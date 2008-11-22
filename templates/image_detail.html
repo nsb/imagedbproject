@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} | {{ image.title }}{% endblock title %}
+
+{% block content %}
+<div id="breadcrumbs">
+<a href="{% url image-list %}">Home</a> -> <strong>{{ image.title }}</strong>
+</div>
+<div>
+  <a href="{{ image.image.url }}"><img src="{{ image.get_display_url }}" alt="{{ image.title }}"/></a>
+    {% if image.caption %}<p>{{ image.caption }}</p>{% endif %}
+</div>
+{% endblock content %}
