@@ -34,11 +34,9 @@
 
 </form>
 
-
-
-
 {% endif %}
 
+{% if image_list %}
 {% for image in image_list %}
 <a href="{{ image.get_absolute_url }}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}"/></a>
 {% endfor %}
@@ -47,6 +45,10 @@
 <div id="page_controls">
     <p>{% if has_previous %}<a href="{% url image-list previous %}">Previous</a> | {% endif %} page {{ page }} of {{ pages }} {% if has_next %}| <a href="{% url image-list next %}">Next</a>{% endif %}</p>
 </div>
+{% endif %}
+
+{% else %}
+No photos found.
 {% endif %}
 
 {% endblock content %}

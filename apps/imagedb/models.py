@@ -25,6 +25,12 @@ except ImportError:
 class Area(models.Model):
     name = models.CharField(max_length=255)
 
+    class Meta:
+        ordering = ['name']
+        verbose_name = _("Geographical area")
+        verbose_name_plural = _("Geographical areas")
+
+
     def __unicode__(self):
         return self.name
 
@@ -41,8 +47,8 @@ class Image(ImageModel):
     class Meta:
         ordering = ['-date_added']
         get_latest_by = 'date_added'
-        verbose_name = _("photo")
-        verbose_name_plural = _("photos")
+        verbose_name = _("image")
+        verbose_name_plural = _("images")
 
     def __unicode__(self):
         return self.title
