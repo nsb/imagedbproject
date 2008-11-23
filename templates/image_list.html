@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block content %}
-<h2>Photos</h2>
+<h2>{% trans "Photos" %}</h2>
 
 <form method="get" action="{% url image-filter 1 %}">
 {% include "form.html" %}
@@ -14,12 +16,12 @@
 
 {% if is_paginated %}
 <div id="page_controls">
-    <p>{% if has_previous %}<a href="{% url image-list previous %}">Previous</a> | {% endif %} page {{ page }} of {{ pages }} {% if has_next %}| <a href="{% url image-list next %}">Next</a>{% endif %}</p>
+    <p>{% if has_previous %}<a href="{% url image-list previous %}">{% trans "Previous" %}</a> | {% endif %} page {{ page }} of {{ pages }} {% if has_next %}| <a href="{% url image-list next %}">{% trans "Next" %}</a>{% endif %}</p>
 </div>
 {% endif %}
 
 {% else %}
-No photos found.
+{% trans "No photos found." %}
 {% endif %}
 
 {% endblock content %}
