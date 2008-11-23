@@ -6,11 +6,11 @@ from django.contrib.sites.models import Site
 from tagging.models import Tag, TaggedItem
 from photologue.models import *
 
-from models import Area, Image
+from models import Area, Motif, TimeOfDay, Image
 
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_taken', 'date_added', 'is_public', 'tags', 'view_count', 'admin_thumbnail')
-    list_filter = ['date_added', 'is_public']
+    list_filter = ['date_added', 'is_public', 'area', 'motif', 'time_of_day',]
     list_per_page = 10
     prepopulated_fields = {'title_slug': ('title',)}
     fieldsets = (
@@ -18,16 +18,13 @@ class ImageAdmin(admin.ModelAdmin):
             'fields': ('image', 'title', 'title_slug')
         }),
         ('Categories', {
-            'fields': ('area',)
+            'fields': ('area', 'motif', 'time_of_day',)
         }),
         ('Options', {
             'classes': ('collapse',),
             'fields': ('is_public', 'tags')
         }),
     )
-
-class AreaAdmin(admin.ModelAdmin):
-    pass
 
 class PhotoSizeAdmin(admin.ModelAdmin):
     list_display = ('name', 'width', 'height', 'crop', 'pre_cache', 'increment_count')
@@ -55,5 +52,7 @@ admin.site.unregister(Group)
 admin.site.unregister(Site)
 
 admin.site.register(Image, ImageAdmin)
-admin.site.register(Area, AreaAdmin)
+admin.site.register(Area)
+admin.site.register(Motif)
+admin.site.register(TimeOfDay)
 admin.site.register(PhotoSize, PhotoSizeAdmin)

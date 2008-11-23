@@ -5,4 +5,4 @@ from models import Image
 class ImageFilterForm(ModelForm):
     class Meta:
         model = Image
-        fields = ('area',)
+        fields = ('area', 'motif',)

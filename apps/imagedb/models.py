@@ -37,6 +37,16 @@ class Area(Category):
         verbose_name = _("Geographical area")
         verbose_name_plural = _("Geographical areas")
 
+class Motif(Category):
+    class Meta:
+        verbose_name = _("Image motif")
+        verbose_name_plural = _("Image motifs")
+
+class TimeOfDay(Category):
+    class Meta:
+        verbose_name = _("Time of day")
+        verbose_name_plural = _("Times of day")
+
 class Image(ImageModel):
     title = models.CharField(_('title'), max_length=100, unique=True)
     title_slug = models.SlugField(_('slug'), unique=True,
@@ -46,6 +56,8 @@ class Image(ImageModel):
     is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public photographs will be displayed in the default views.'))
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
     area = models.ForeignKey(Area, null=True, blank=True)
+    motif = models.ForeignKey(Motif, null=True, blank=True)
+    time_of_day = models.ForeignKey(TimeOfDay, null=True, blank=True)
 
     class Meta:
         ordering = ['-date_added']

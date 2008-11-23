@@ -26,13 +26,17 @@ def filter(request, page=1):
     form = ImageFilterForm(request.GET)
     if form.is_valid():
         area = form.cleaned_data['area']
-        queryset = Image.objects.filter(is_public=True)
+        motif = form.cleaned_data['motif']
+        qs = Image.objects.filter(is_public=True)
 
         if area:
-            queryset = queryset.filter(area=area)
+            qs = qs.filter(area=area)
+
+        if motif:
+            qs = qs.filter(motif=motif)
 
         return object_list(request,
-                           queryset=queryset,
+                           queryset=qs,
                            template_name = 'image_list.html',
                            template_object_name='image',
                            page=page,
