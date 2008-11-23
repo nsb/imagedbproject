@@ -12,10 +12,10 @@ class ImageAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_taken', 'date_added', 'is_public', 'tags', 'view_count', 'admin_thumbnail')
     list_filter = ['date_added', 'is_public', 'area', 'motif', 'time_of_day',]
     list_per_page = 10
-    prepopulated_fields = {'title_slug': ('title',)}
+    #prepopulated_fields = {'title_slug': ('title',)}
     fieldsets = (
         (None, {
-            'fields': ('image', 'title', 'title_slug')
+            'fields': ('image',)
         }),
         ('Categories', {
             'fields': ('area', 'motif', 'time_of_day',)

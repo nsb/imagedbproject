@@ -26,11 +26,11 @@ except ImportError:
 
 class Image(ImageModel):
     title = models.CharField(_('title'), max_length=100, unique=True)
-    title_slug = models.SlugField(_('slug'), unique=True,
-                                  help_text=('A "slug" is a unique URL-friendly title for an object.'))
     caption = models.TextField(_('caption'), blank=True)
     date_added = models.DateTimeField(_('date added'), default=datetime.now, editable=False)
-    is_public = models.BooleanField(_('is public'), default=True, help_text=_('Public photographs will be displayed in the default views.'))
+    is_public = models.BooleanField(_('is public'),
+                                    default=True,
+                                    help_text=_('Public photographs will be displayed in the default views.'))
     tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
     area = models.ForeignKey(Area, null=True, blank=True)
     motif = models.ForeignKey(Motif, null=True, blank=True)
@@ -49,9 +49,9 @@ class Image(ImageModel):
         return self.__unicode__()
 
     def save(self, *args, **kwargs):
-        if self.title_slug is None:
-            self.title_slug = slugify(self.title)
+
+        self.title = str(Image.objects.count() + 1)
         super(Image, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('image-detail', args=[self.title_slug])
+        return reverse('image-detail', args=[self.id])

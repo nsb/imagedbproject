@@ -53,12 +53,10 @@ def filter(request, page=1):
 
 @login_required
 @require_http_methods(["GET"])
-def detail(request, slug):
+def detail(request, image_id):
     return object_detail(request,
                          queryset=Image.objects.filter(is_public=True),
                          template_name = 'image_detail.html',
                          template_object_name = 'image',
-                         slug_field='title_slug',
-                         slug=slug,
-                         extra_context={})
+                         object_id = image_id)
  
