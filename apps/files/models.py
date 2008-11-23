@@ -34,7 +34,19 @@ class Image(ImageModel):
 
     def save(self, *args, **kwargs):
 
-        self.title = str(Image.objects.count() + 1)
+        categories = {'area':self.area, 'motif':self.motif, 'time_of_day':self.time_of_day}
+        ids = [str(categories[category].id) if categories[category] else '0' for category in categories]
+        new_id = ''.join(ids)
+        num_objects = Image.objects.filter(**categories).count()
+        index = 1
+        try:
+            while(True):
+                new_title = new_id + str(num_objects + index)
+                Image.objects.get(title=new_title)
+                index += 1
+        except Image.DoesNotExist:
+            self.title = new_title
+
         super(Image, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
