@@ -1,0 +1,113 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-11-23 03:41+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: apps/categories/models.py:16
+msgid "Geographical area"
+msgstr "Geografisk område"
+
+#: apps/categories/models.py:17
+msgid "Geographical areas"
+msgstr "Geografiske områder"
+
+#: apps/categories/models.py:21
+msgid "Image motif"
+msgstr "Billedmotiv"
+
+#: apps/categories/models.py:22
+msgid "Image motifs"
+msgstr "Billedmotiver"
+
+#: apps/categories/models.py:26
+msgid "Time of day"
+msgstr "Tidspunkt på dagen"
+
+#: apps/categories/models.py:27
+msgid "Times of day"
+msgstr "Tidspunkter på dagen"
+
+#: apps/imagedb/models.py:16
+msgid "Separate tags with spaces, put quotes around multiple-word tags."
+msgstr ""
+
+#: apps/imagedb/models.py:25
+msgid "Django-tagging was not found, tags will be treated as plain text."
+msgstr ""
+
+#: apps/imagedb/models.py:28
+msgid "title"
+msgstr "titel"
+
+#: apps/imagedb/models.py:29
+msgid "slug"
+msgstr "slug"
+
+#: apps/imagedb/models.py:31
+msgid "caption"
+msgstr "beskrivelse"
+
+#: apps/imagedb/models.py:32
+msgid "date added"
+msgstr "dato tilføjet"
+
+#: apps/imagedb/models.py:33
+msgid "is public"
+msgstr "er offentlig"
+
+#: apps/imagedb/models.py:33
+msgid "Public photographs will be displayed in the default views."
+msgstr "Offentligt fotografier vil blive vist i standard views"
+
+#: apps/imagedb/models.py:34
+msgid "tags"
+msgstr ""
+
+#: apps/imagedb/models.py:42
+msgid "photo"
+msgstr "foto"
+
+#: apps/imagedb/models.py:43 templates/image_list.html:6
+msgid "Photos"
+msgstr "Fotos"
+
+#: templates/head.html:5
+msgid "Image database"
+msgstr "Billed database"
+
+#: templates/head.html:10
+msgid "logout"
+msgstr "log ud"
+
+#: templates/head.html:13
+msgid "login"
+msgstr "log ind"
+
+#: templates/image_list.html:19
+msgid "Previous"
+msgstr "Forrige"
+
+#: templates/image_list.html:19
+msgid "Next"
+msgstr "Næste"
+
+#: templates/image_list.html:24
+msgid "No photos found."
+msgstr "Ingen fotos fundet."
+
+#: templates/admin/base_site.html:4 templates/admin/base_site.html.py:7
+msgid "Nectar administration"
+msgstr "Nectar administration"
