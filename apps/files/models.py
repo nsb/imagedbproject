@@ -9,21 +9,6 @@ from photologue.models import ImageModel
 
 from categories.models import Area, Motif, TimeOfDay
 
-# attempt to load the django-tagging TagField from default location,
-# otherwise we substitude a dummy TagField.
-try:
-    from tagging.fields import TagField
-    tagfield_help_text = _('Separate tags with spaces, put quotes around multiple-word tags.')
-except ImportError:
-    class TagField(models.CharField):
-        def __init__(self, **kwargs):
-            default_kwargs = {'max_length': 255, 'blank': True}
-            default_kwargs.update(kwargs)
-            super(TagField, self).__init__(**default_kwargs)
-        def get_internal_type(self):
-            return 'CharField'
-    tagfield_help_text = _('Django-tagging was not found, tags will be treated as plain text.')
-
 class Image(ImageModel):
     title = models.CharField(_('title'), max_length=100, unique=True)
     caption = models.TextField(_('caption'), blank=True)
@@ -31,7 +16,6 @@ class Image(ImageModel):
     is_public = models.BooleanField(_('is public'),
                                     default=True,
                                     help_text=_('Public photographs will be displayed in the default views.'))
-    tags = TagField(help_text=tagfield_help_text, verbose_name=_('tags'))
     area = models.ForeignKey(Area, null=True, blank=True)
     motif = models.ForeignKey(Motif, null=True, blank=True)
     time_of_day = models.ForeignKey(TimeOfDay, null=True, blank=True)
