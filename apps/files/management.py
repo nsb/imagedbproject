@@ -4,24 +4,20 @@ from photologue import models as photologue_models
 from photologue.models import PhotoSize
 
 def init_photologue(*args, **kwargs):
-    try:
-        admin_thumbnail = PhotoSize.objects.get(name='admin_thumbnail')
-    except PhotoSize.DoesNotExist:
-        admin_thumbnail = \
-            PhotoSize.objects.create(name='admin_thumbnail',
-                                     width=100,
-                                     height=75,
-                                     crop=True,
-                                     pre_cache=True)
 
-    try:
-        thumbnail = PhotoSize.objects.get(name='thumbnail')
-    except PhotoSize.DoesNotExist:
-        thumbnail = PhotoSize.objects.create(name='thumbnail', width=200)
+    default_photo_sizes = (
+        {'name':'admin_thumbnail', 'width':100, 'height':75, 'crop':True, 'pre_cache':True},
+        {'name':'thumbnail', 'width':200},
+        {'name':'display', 'width':800, 'increment_count':True},
+        {'name':'small', 'width':400},
+        {'name':'medium', 'width':800},
+        {'name':'large', 'width':1200},
+    )
 
-    try:
-        display = PhotoSize.objects.get(name='display')
-    except PhotoSize.DoesNotExist:
-        display = PhotoSize.objects.create(name='display', width=800, increment_count=True)
+    for ps in default_photo_sizes:
+        try:
+            PhotoSize.objects.get(name=ps['name'])
+        except PhotoSize.DoesNotExist:
+            PhotoSize.objects.create(**ps)
 
 signals.post_syncdb.connect(init_photologue, sender=photologue_models)

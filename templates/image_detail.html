@@ -1,11 +1,19 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}{{ block.super }} | {{ image.title }}{% endblock title %}
 
 {% block content %}
 <div id="breadcrumbs">
-<a href="{% url image-list %}">Home</a> -> <strong>{{ image.title }}</strong>
+<a href="{% url image-list %}">{% trans "Home" %}</a> -> <strong>{{ image.title }}</strong>
 </div>
+<ul id="photo_size" class="small quiet">
+<li><strong>{% trans "download:" %}</strong></li>
+<li><a href="{{ image.get_small_url }}">{% trans "small" %}</a></li>
+<li><a href="{{ image.get_medium_url }}">{% trans "medium" %}</a></li>
+<li><a href="{{ image.get_large_url }}">{% trans "large" %}</a></li>
+<li><a href="{{ image.image.url }}">{% trans "original" %}</a></li>
+</ul>
 <div>
   <a href="{{ image.image.url }}"><img src="{{ image.get_display_url }}" alt="{{ image.title }}"/></a>
     {% if image.caption %}<p>{{ image.caption }}</p>{% endif %}
