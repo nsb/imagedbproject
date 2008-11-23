@@ -8,13 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-23 03:41+0100\n"
+"POT-Creation-Date: 2008-11-23 14:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: apps/categories/models.py:5
+msgid "name"
+msgstr ""
 
 #: apps/categories/models.py:16
 msgid "Geographical area"
@@ -40,53 +44,45 @@ msgstr "Tidspunkt på dagen"
 msgid "Times of day"
 msgstr "Tidspunkter på dagen"
 
-#: apps/imagedb/models.py:16
-msgid "Separate tags with spaces, put quotes around multiple-word tags."
-msgstr ""
-
-#: apps/imagedb/models.py:25
-msgid "Django-tagging was not found, tags will be treated as plain text."
-msgstr ""
-
-#: apps/imagedb/models.py:28
+#: apps/files/models.py:13
 msgid "title"
 msgstr "titel"
 
-#: apps/imagedb/models.py:29
-msgid "slug"
-msgstr "slug"
-
-#: apps/imagedb/models.py:31
+#: apps/files/models.py:14
 msgid "caption"
 msgstr "beskrivelse"
 
-#: apps/imagedb/models.py:32
+#: apps/files/models.py:15
 msgid "date added"
 msgstr "dato tilføjet"
 
-#: apps/imagedb/models.py:33
+#: apps/files/models.py:16
 msgid "is public"
 msgstr "er offentlig"
 
-#: apps/imagedb/models.py:33
+#: apps/files/models.py:18
 msgid "Public photographs will be displayed in the default views."
-msgstr "Offentligt fotografier vil blive vist i standard views"
+msgstr "Offentlige fotografier vil blive vist i standard views"
 
-#: apps/imagedb/models.py:34
-msgid "tags"
-msgstr ""
-
-#: apps/imagedb/models.py:42
+#: apps/files/models.py:26
 msgid "photo"
 msgstr "foto"
 
-#: apps/imagedb/models.py:43 templates/image_list.html:6
+#: apps/files/models.py:27 templates/image_list.html:6
 msgid "Photos"
 msgstr "Fotos"
 
+#: templates/form.html:18
+msgid "Search"
+msgstr "Søg"
+
 #: templates/head.html:5
 msgid "Image database"
-msgstr "Billed database"
+msgstr "Billeddatabase"
+
+#: templates/head.html:10
+msgid "signed in as"
+msgstr "logget ind som"
 
 #: templates/head.html:10
 msgid "logout"
@@ -95,6 +91,30 @@ msgstr "log ud"
 #: templates/head.html:13
 msgid "login"
 msgstr "log ind"
+
+#: templates/image_detail.html:8
+msgid "Home"
+msgstr "Hjem"
+
+#: templates/image_detail.html:11
+msgid "download:"
+msgstr "download:"
+
+#: templates/image_detail.html:12
+msgid "small"
+msgstr "lille"
+
+#: templates/image_detail.html:13
+msgid "medium"
+msgstr "medium"
+
+#: templates/image_detail.html:14
+msgid "large"
+msgstr "stor"
+
+#: templates/image_detail.html:15
+msgid "original"
+msgstr "oprindelig"
 
 #: templates/image_list.html:19
 msgid "Previous"
