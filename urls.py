@@ -44,7 +44,7 @@ urlpatterns = patterns('',
         auth_views.password_reset_done,
         name='auth_password_reset_done'),
 
-    (r'^', include('imagedb.urls')),
+    (r'^', include('image_management.urls')),
 )
 
 if settings.DEBUG:

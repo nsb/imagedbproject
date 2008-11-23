@@ -94,7 +94,7 @@ INSTALLED_APPS = (
     'tagging',
     'photologue',
     'categories',
-    'imagedb',
+    'image_management',
 )
 
 LOGIN_URL = '/login/'
