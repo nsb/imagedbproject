@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('image_management.views',
+urlpatterns = patterns('files.views',
 
     (r'^$', 'list', {}, 'image-list'),
     (r'^page(?P<page>[0-9]+)/$', 'list', {}, 'image-list'),
