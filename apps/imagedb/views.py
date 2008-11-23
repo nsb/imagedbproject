@@ -27,6 +27,7 @@ def filter(request, page=1):
     if form.is_valid():
         area = form.cleaned_data['area']
         motif = form.cleaned_data['motif']
+        time_of_day = form.cleaned_data['time_of_day']
         qs = Image.objects.filter(is_public=True)
 
         if area:
@@ -34,6 +35,9 @@ def filter(request, page=1):
 
         if motif:
             qs = qs.filter(motif=motif)
+
+        if time_of_day:
+            qs = qs.filter(time_of_day=time_of_day)
 
         return object_list(request,
                            queryset=qs,
