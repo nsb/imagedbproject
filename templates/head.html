@@ -6,7 +6,7 @@
   </div>
   <div class="yui-u">
     {% if user.is_authenticated %}
-    <div class="small quiet">
+    <div id="user_box" class="small quiet">
       {% trans "signed in as" %} <strong>{{ user.username }}</strong> | <a href="{% url auth_logout %}">{% trans "logout" %}</a>
     </div>
     {% else %}
