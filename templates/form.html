@@ -15,9 +15,7 @@
     <td>{{ field }}</td>
   {% endif %}
 {% endfor %}
-    <td><button type="submit" class="button positive">
-      <img src="/static/images/tick.png" alt=""/> Search
-    </button></td>
+    <td><input type="submit" value="{% trans "Search" %}"></td>
   </tr>
 </table>
 {% for field in form %}
