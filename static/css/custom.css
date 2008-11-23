@@ -26,9 +26,8 @@ form table {
   width: auto;
   margin: 0px;
 }
-form td {
+form th, form td {
   border: none;
-  padding: 0px 10px 0px 5px;
 }
 select {
   margin: 0;
