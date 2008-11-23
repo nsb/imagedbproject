@@ -7,6 +7,8 @@ from django.template.defaultfilters import slugify
 
 from photologue.models import ImageModel
 
+from categories.models import Area, Motif, TimeOfDay
+
 # attempt to load the django-tagging TagField from default location,
 # otherwise we substitude a dummy TagField.
 try:
@@ -21,31 +23,6 @@ except ImportError:
         def get_internal_type(self):
             return 'CharField'
     tagfield_help_text = _('Django-tagging was not found, tags will be treated as plain text.')
-
-class Category(models.Model):
-    name = models.CharField(max_length=255)
-
-    class Meta:
-        abstract = True
-        ordering = ['name']
-
-    def __unicode__(self):
-        return self.name
-
-class Area(Category):
-    class Meta:
-        verbose_name = _("Geographical area")
-        verbose_name_plural = _("Geographical areas")
-
-class Motif(Category):
-    class Meta:
-        verbose_name = _("Image motif")
-        verbose_name_plural = _("Image motifs")
-
-class TimeOfDay(Category):
-    class Meta:
-        verbose_name = _("Time of day")
-        verbose_name_plural = _("Times of day")
 
 class Image(ImageModel):
     title = models.CharField(_('title'), max_length=100, unique=True)

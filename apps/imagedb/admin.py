@@ -52,7 +52,4 @@ admin.site.unregister(Group)
 admin.site.unregister(Site)
 
 admin.site.register(Image, ImageAdmin)
-admin.site.register(Area)
-admin.site.register(Motif)
-admin.site.register(TimeOfDay)
 admin.site.register(PhotoSize, PhotoSizeAdmin)

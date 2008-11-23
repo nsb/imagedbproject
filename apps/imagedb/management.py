@@ -17,7 +17,7 @@ def init_photologue(*args, **kwargs):
     try:
         thumbnail = PhotoSize.objects.get(name='thumbnail')
     except PhotoSize.DoesNotExist:
-        thumbnail = PhotoSize.objects.create(name='thumbnail', width=100, height=75)
+        thumbnail = PhotoSize.objects.create(name='thumbnail', width=200)
 
     try:
         display = PhotoSize.objects.get(name='display')

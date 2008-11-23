@@ -93,6 +93,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'tagging',
     'photologue',
+    'categories',
     'imagedb',
 )
 
