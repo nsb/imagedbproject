@@ -22,6 +22,6 @@ def init_photologue(*args, **kwargs):
     try:
         display = PhotoSize.objects.get(name='display')
     except PhotoSize.DoesNotExist:
-        display = PhotoSize.objects.create(name='display', width=400, increment_count=True)
+        display = PhotoSize.objects.create(name='display', width=800, increment_count=True)
 
 signals.post_syncdb.connect(init_photologue, sender=photologue_models)

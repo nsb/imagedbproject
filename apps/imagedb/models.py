@@ -22,17 +22,20 @@ except ImportError:
             return 'CharField'
     tagfield_help_text = _('Django-tagging was not found, tags will be treated as plain text.')
 
-class Area(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=255)
 
     class Meta:
+        abstract = True
         ordering = ['name']
-        verbose_name = _("Geographical area")
-        verbose_name_plural = _("Geographical areas")
-
 
     def __unicode__(self):
         return self.name
+
+class Area(Category):
+    class Meta:
+        verbose_name = _("Geographical area")
+        verbose_name_plural = _("Geographical areas")
 
 class Image(ImageModel):
     title = models.CharField(_('title'), max_length=100, unique=True)
@@ -47,8 +50,8 @@ class Image(ImageModel):
     class Meta:
         ordering = ['-date_added']
         get_latest_by = 'date_added'
-        verbose_name = _("image")
-        verbose_name_plural = _("images")
+        verbose_name = _("photo")
+        verbose_name_plural = _("Photos")
 
     def __unicode__(self):
         return self.title
