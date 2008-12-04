@@ -16,9 +16,21 @@ class Image(ImageModel):
     is_public = models.BooleanField(_('is public'),
                                     default=True,
                                     help_text=_('Public photographs will be displayed in the default views.'))
-    area = models.ForeignKey(Area, null=True, blank=True)
-    motif = models.ForeignKey(Motif, null=True, blank=True)
-    time_of_day = models.ForeignKey(TimeOfDay, null=True, blank=True)
+    areas = models.ManyToManyField(Area,
+                                   null=True,
+                                   blank=True,
+                                   related_name='area_images',
+                                   verbose_name=_('areas'))
+    motifs = models.ManyToManyField(Motif,
+                                    null=True,
+                                    blank=True,
+                                    related_name='motif_images',
+                                    verbose_name=_('motifs'))
+    times_of_day = models.ManyToManyField(TimeOfDay,
+                                          null=True,
+                                          blank=True,
+                                          related_name='time_of_day_images',
+                                          verbose_name=_('times of day'))
 
     class Meta:
         ordering = ['-date_added']

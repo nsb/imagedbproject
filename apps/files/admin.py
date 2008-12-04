@@ -5,18 +5,19 @@ from django.contrib.sites.models import Site
 
 from photologue.models import *
 
-from models import Area, Motif, TimeOfDay, Image
+from models import Image
 
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_taken', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
-    list_filter = ['date_added', 'is_public', 'area', 'motif', 'time_of_day',]
+    list_filter = ['date_added', 'is_public', 'areas', 'motifs', 'times_of_day',]
     list_per_page = 10
+    filter_horizontal = ('areas', 'motifs', 'times_of_day',)
     fieldsets = (
         (None, {
             'fields': ('image',)
         }),
         ('Categories', {
-            'fields': ('area', 'motif', 'time_of_day',)
+            'fields': ('areas', 'motifs', 'times_of_day',)
         }),
         ('Options', {
             'fields': ('is_public',)
