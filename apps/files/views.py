@@ -25,19 +25,19 @@ def list(request, page=1):
 def filter(request, page=1):
     form = ImageFilterForm(request.GET)
     if form.is_valid():
-        area = form.cleaned_data['area']
-        motif = form.cleaned_data['motif']
-        time_of_day = form.cleaned_data['time_of_day']
+        area = form.cleaned_data['areas']
+        motif = form.cleaned_data['motifs']
+        time_of_day = form.cleaned_data['times_of_day']
         qs = Image.objects.filter(is_public=True)
 
         if area:
-            qs = qs.filter(area=area)
+            qs = qs.filter(areas=area)
 
         if motif:
-            qs = qs.filter(motif=motif)
+            qs = qs.filter(motifs=motif)
 
         if time_of_day:
-            qs = qs.filter(time_of_day=time_of_day)
+            qs = qs.filter(times_of_day=time_of_day)
 
         return object_list(request,
                            queryset=qs,
