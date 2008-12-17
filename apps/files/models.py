@@ -43,19 +43,10 @@ class Image(ImageModel):
 
     def save(self, *args, **kwargs):
 
-        #categories = {'area':self.areas, 'motif':self.motifs, 'time_of_day':self.times_of_day}
-        #ids = [str(categories[category].id) if categories[category] else '0' for category in categories]
-        #new_id = ''.join(ids)
-        #num_objects = Image.objects.filter(**categories).count()
-        #index = 1
-        #try:
-            #while(True):
-                #new_title = new_id + str(num_objects + index)
-                #Image.objects.get(title=new_title)
-                #index += 1
-        #except Image.DoesNotExist:
-            #self.title = new_title
-        self.title = 'hejsa'
+        categories = (self.areas, self.motifs, self.times_of_day)
+
+        self.title = \
+            '.'.join([''.join([str(val.id) for val in category.all()]) if category.count() > 0 else '0' for category in categories])
 
         super(Image, self).save(*args, **kwargs)
 
