@@ -46,7 +46,7 @@ class Image(ImageModel):
         categories = (self.areas, self.motifs, self.times_of_day)
 
         self.title = \
-            '.'.join([''.join([str(val.id) for val in category.all()]) if category.count() > 0 else '0' for category in categories])
+            '.'.join([''.join([str(val.id) for val in category.all()]) if category.count() else '0' for category in categories])
 
         super(Image, self).save(*args, **kwargs)
 
