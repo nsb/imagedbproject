@@ -5,9 +5,9 @@ from django.contrib.sites.models import Site
 
 from photologue.models import *
 
-from models import Image
+from models import MyPhoto
 
-class ImageAdmin(admin.ModelAdmin):
+class MyPhotoAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_taken', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
     list_filter = ['date_added', 'is_public', 'areas', 'motifs', 'times_of_day',]
     list_per_page = 10
@@ -47,5 +47,5 @@ admin.site.unregister(Watermark)
 admin.site.unregister(Group)
 admin.site.unregister(Site)
 
-admin.site.register(Image, ImageAdmin)
+admin.site.register(MyPhoto, MyPhotoAdmin)
 admin.site.register(PhotoSize, PhotoSizeAdmin)

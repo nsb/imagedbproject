@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.core.servers.basehttp import FileWrapper
 from django.shortcuts import get_object_or_404
 
-from models import Image
+from models import MyPhoto
 from forms import ImageFilterForm
 
 @login_required
@@ -18,7 +18,7 @@ def list(request, page=1):
     form = ImageFilterForm()
 
     return object_list(request,
-                       queryset=Image.objects.filter(is_public=True),
+                       queryset=MyPhoto.objects.filter(is_public=True),
                        template_name = 'image_list.html',
                        template_object_name='image',
                        page=page,
@@ -33,7 +33,7 @@ def filter(request, page=1):
         area = form.cleaned_data['areas']
         motif = form.cleaned_data['motifs']
         time_of_day = form.cleaned_data['times_of_day']
-        qs = Image.objects.filter(is_public=True)
+        qs = MyPhoto.objects.filter(is_public=True)
 
         if area:
             qs = qs.filter(areas=area)
@@ -58,7 +58,7 @@ def filter(request, page=1):
 @require_http_methods(["GET"])
 def detail(request, image_id):
     return object_detail(request,
-                         queryset=Image.objects.filter(is_public=True),
+                         queryset=MyPhoto.objects.filter(is_public=True),
                          template_name = 'image_detail.html',
                          template_object_name = 'image',
                          object_id = image_id)
@@ -71,9 +71,7 @@ def send_file(request, image_id, size):
     iterator for chunks of 8KB.                                                 
     """
 
-    image = get_object_or_404(Image, pk=image_id)
-
-    print size
+    image = get_object_or_404(MyPhoto, pk=image_id)
 
     filenames = \
         {'small':image.get_small_filename(),
