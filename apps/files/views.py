@@ -73,14 +73,22 @@ def send_file(request, image_id, size):
 
     image = get_object_or_404(Image, pk=image_id)
 
+    print size
+
+    filenames = \
+        {'small':image.get_small_filename(),
+         'medium':image.get_medium_filename(),
+         'large':image.get_large_filename(),
+         'original':image.image_filename()}
+
     #photosize = PhotoSizeCache().sizes.get(size)
     #if not image.size_exists(photosize):
         #self.create_size(photosize)
 
-    filename = image.get_medium_filename()
+    filename = filenames[size]
     wrapper = FileWrapper(file(filename))
     response = HttpResponse(wrapper, content_type='image/jpeg')
     response['Content-Length'] = os.path.getsize(filename)
-    response['Content-Disposition'] = 'attachment; filename=%s' % image._get_filename_for_size('medium')
+    response['Content-Disposition'] = 'attachment; filename=%s' % image._get_filename_for_size(size)
     return response
 
