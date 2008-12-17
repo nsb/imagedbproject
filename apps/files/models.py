@@ -94,16 +94,5 @@ class MyPhoto(ImageModel):
                 os.unlink(im_filename)
             raise e
 
-
-    def save(self, *args, **kwargs):
-
-        #categories = (self.areas, self.motifs, self.times_of_day)
-
-        #self.title = \
-            #'.'.join([''.join([str(val.id) for val in category.all()]) if category.count() else '0' for category in categories])
-
-        self.title = str(datetime.now())
-        super(MyPhoto, self).save(*args, **kwargs)
-
     def get_absolute_url(self):
         return reverse('image-detail', args=[self.id])

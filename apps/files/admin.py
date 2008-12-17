@@ -1,5 +1,6 @@
-from django.contrib import admin
+from datetime import datetime
 
+from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.sites.models import Site
 
@@ -24,6 +25,19 @@ class MyPhotoAdmin(admin.ModelAdmin):
             'fields': ('is_public',)
         }),
     )
+
+    def save_model(self, request, obj, form, change):
+        """
+        Given a model instance save it to the database.
+        """
+
+        categories = ('areas', 'motifs', 'times_of_day')
+
+        if form.is_valid():
+            obj.title = \
+                '.'.join([''.join([str(val.id) for val in form.cleaned_data[category]]) if form.cleaned_data[category] else '0' for category in categories])
+
+        obj.save()
 
 class PhotoSizeAdmin(admin.ModelAdmin):
     list_display = ('name', 'width', 'height', 'crop', 'pre_cache', 'increment_count')
