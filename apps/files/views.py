@@ -1,7 +1,12 @@
+import os
+
 from django.views.generic.list_detail import object_list, object_detail
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.http import HttpResponseBadRequest
+from django.http import HttpResponse
+from django.core.servers.basehttp import FileWrapper
+from django.shortcuts import get_object_or_404
 
 from models import Image
 from forms import ImageFilterForm
@@ -49,8 +54,6 @@ def filter(request, page=1):
     else:
         return HttpResonseBadRequest(form.errors)
 
-
-
 @login_required
 @require_http_methods(["GET"])
 def detail(request, image_id):
@@ -59,4 +62,25 @@ def detail(request, image_id):
                          template_name = 'image_detail.html',
                          template_object_name = 'image',
                          object_id = image_id)
- 
+
+@login_required
+def send_file(request, image_id, size):
+    """                                                                         
+    Send a file through Django without loading the whole file into              
+    memory at once. The FileWrapper will turn the file object into an           
+    iterator for chunks of 8KB.                                                 
+    """
+
+    image = get_object_or_404(Image, pk=image_id)
+
+    #photosize = PhotoSizeCache().sizes.get(size)
+    #if not image.size_exists(photosize):
+        #self.create_size(photosize)
+
+    filename = image.get_medium_filename()
+    wrapper = FileWrapper(file(filename))
+    response = HttpResponse(wrapper, content_type='image/jpeg')
+    response['Content-Length'] = os.path.getsize(filename)
+    response['Content-Disposition'] = 'attachment; filename=%s' % image._get_filename_for_size('medium')
+    return response
+
