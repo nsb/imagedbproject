@@ -77,11 +77,7 @@ def send_file(request, image_id, size):
         {'small':image.get_small_filename(),
          'medium':image.get_medium_filename(),
          'large':image.get_large_filename(),
-         'original':image.image_filename()}
-
-    #photosize = PhotoSizeCache().sizes.get(size)
-    #if not image.size_exists(photosize):
-        #self.create_size(photosize)
+         'original':image.image.path}
 
     filename = filenames[size]
     wrapper = FileWrapper(file(filename))
