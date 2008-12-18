@@ -119,5 +119,8 @@ class Image(ImageModel):
                 os.unlink(im_filename)
             raise e
 
+    def get_original_size(self):
+        return PILImage.open(self.image.path).size
+
     def get_absolute_url(self):
         return reverse('image-detail', args=[self.id])

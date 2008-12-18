@@ -9,10 +9,10 @@
 </div>
 <ul id="photo_size" class="small quiet">
 <li><strong>{% trans "download:" %}</strong></li>
-<li><a href="{% url image-download image.id "small" %}">{% trans "small" %}</a></li>
-<li><a href="{% url image-download image.id "medium" %}">{% trans "medium" %}</a></li>
-<li><a href="{% url image-download image.id "large" %}">{% trans "large" %}</a></li>
-<li><a href="{% url image-download image.id "original" %}">{% trans "original" %}</a></li>
+<li><a href="{% url image-download image.id "small" %}">{% trans "small" %} {{ image.get_small_size }}</a></li>
+<li><a href="{% url image-download image.id "medium" %}">{% trans "medium" %} {{ image.get_medium_size }}</a></li>
+<li><a href="{% url image-download image.id "large" %}">{% trans "large" %} {{ image.get_large_size }}</a></li>
+<li><a href="{% url image-download image.id "original" %}">{% trans "original" %} {{ image.get_original_size }}</a></li>
 </ul>
 <div>
   <img src="{{ image.get_display_url }}" alt="{{ image.title }}"/>
