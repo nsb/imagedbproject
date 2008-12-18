@@ -11,17 +11,37 @@ class Category(models.Model):
     def __unicode__(self):
         return self.name
 
-class Area(Category):
+class Location(Category):
     class Meta:
-        verbose_name = _("Geographical area")
-        verbose_name_plural = _("Geographical areas")
+        verbose_name = _("Location")
+        verbose_name_plural = _("Locations")
 
-class Motif(Category):
+class Installation(Category):
     class Meta:
-        verbose_name = _("Image motif")
-        verbose_name_plural = _("Image motifs")
+        verbose_name = _("Installation & Vessel")
+        verbose_name_plural = _("Installations & Vessels")
 
-class TimeOfDay(Category):
+class People(Category):
     class Meta:
-        verbose_name = _("Time of day")
-        verbose_name_plural = _("Times of day")
+        verbose_name = _("Person")
+        verbose_name_plural = _("People")
+
+class HSE(Category):
+    class Meta:
+        verbose_name = _("HSE")
+        verbose_name_plural = _("HSE")
+
+class Event(Category):
+    class Meta:
+        verbose_name = _("Event")
+        verbose_name_plural = _("Events")
+
+class Graphics(Category):
+    class Meta:
+        verbose_name = _("Graphics")
+        verbose_name_plural = _("Graphics")
+
+class Communications(Category):
+    class Meta:
+        verbose_name = _("Communications")
+        verbose_name_plural = _("Communications")

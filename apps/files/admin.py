@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.sites.models import Site
@@ -10,16 +8,16 @@ from models import Image
 
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_taken', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
-    list_filter = ['date_added', 'is_public', 'areas', 'motifs', 'times_of_day',]
+    list_filter = ['date_added', 'is_public', 'locations', 'installations', 'people', 'hse', 'events', 'graphics', 'communications',]
     list_per_page = 10
     save_on_top = True
-    filter_horizontal = ('areas', 'motifs', 'times_of_day',)
+    filter_horizontal = ('locations', 'installations', 'people', 'hse', 'events', 'graphics', 'communications',)
     fieldsets = (
         (None, {
             'fields': ('image',)
         }),
         ('Categories', {
-            'fields': ('areas', 'motifs', 'times_of_day',)
+            'fields': ('locations', 'installations', 'people', 'hse', 'events', 'graphics', 'communications',)
         }),
         ('Options', {
             'fields': ('is_public',)
@@ -31,7 +29,7 @@ class ImageAdmin(admin.ModelAdmin):
         Given a model instance save it to the database.
         """
 
-        categories = ('areas', 'motifs', 'times_of_day')
+        categories = self.fieldsets[1][1]['fields']
 
         if form.is_valid():
             obj.title = \

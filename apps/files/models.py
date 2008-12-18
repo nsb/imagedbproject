@@ -17,27 +17,51 @@ from django.template.defaultfilters import slugify
 
 from photologue.models import ImageModel
 
-from categories.models import Area, Motif, TimeOfDay
+from categories.models import Location, Installation, People, HSE, Event, Graphics, Communications
 
 class Image(ImageModel):
     title = models.CharField(_('title'), max_length=100, unique=True)
     caption = models.TextField(_('caption'), blank=True)
     date_added = models.DateTimeField(_('date added'), default=datetime.now, editable=False)
-    is_public = models.BooleanField(_('is public'),
-                                    default=True,
-                                    help_text=_('Public photographs will be displayed in the default views.'))
-    areas = models.ManyToManyField(Area,
-                                   null=True,
-                                   blank=True,
-                                   verbose_name=_('areas'))
-    motifs = models.ManyToManyField(Motif,
-                                    null=True,
-                                    blank=True,
-                                    verbose_name=_('motifs'))
-    times_of_day = models.ManyToManyField(TimeOfDay,
-                                          null=True,
-                                          blank=True,
-                                          verbose_name=_('times of day'))
+    is_public = models.BooleanField(
+        _('is public'),
+        default=True,
+        help_text=_('Public photographs will be displayed in the default views.'))
+    locations = models.ManyToManyField(
+        Location,
+        null=True,
+        blank=True,
+        verbose_name=_('Locations'))
+    installations = models.ManyToManyField(
+        Installation,
+        null=True,
+        blank=True,
+        verbose_name=_('Installations & Vessels'))
+    people = models.ManyToManyField(
+        People,
+        null=True,
+        blank=True,
+        verbose_name=_('times of day'))
+    hse = models.ManyToManyField(
+        HSE,
+        null=True,
+        blank=True,
+        verbose_name=_('HSE'))
+    events = models.ManyToManyField(
+        Event,
+        null=True,
+        blank=True,
+        verbose_name=_('Events'))
+    graphics = models.ManyToManyField(
+        Graphics,
+        null=True,
+        blank=True,
+        verbose_name=_('Graphics'))
+    communications = models.ManyToManyField(
+        Communications,
+        null=True,
+        blank=True,
+        verbose_name=_('areas'))
 
     class Meta:
         ordering = ['-date_added']
