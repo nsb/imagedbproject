@@ -15,7 +15,7 @@
 <li><a href="{% url image-download image.id "original" %}">{% trans "original" %}</a></li>
 </ul>
 <div>
-  <a href="{{ image.image.url }}"><img src="{{ image.get_display_url }}" alt="{{ image.title }}"/></a>
-    {% if image.caption %}<p>{{ image.caption }}</p>{% endif %}
+  <img src="{{ image.get_display_url }}" alt="{{ image.title }}"/>
+  {% if image.caption %}<p>{{ image.caption }}</p>{% endif %}
 </div>
 {% endblock content %}
