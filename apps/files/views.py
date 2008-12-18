@@ -32,8 +32,8 @@ def list(request, page=1):
 def filter(request, page=1):
     form = ImageFilterForm(request.GET)
     if form.is_valid():
-        qs = Image.objects.filter(is_public=True)
-        qs = qs.filter(**form.cleaned_data)
+        lookup_args = dict((key, value) for (key, value) in form.cleaned_data.items() if value)
+        qs = Image.objects.filter(is_public=True, **lookup_args)
 
         return object_list(request,
                            queryset=qs,

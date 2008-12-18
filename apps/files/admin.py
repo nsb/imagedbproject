@@ -35,6 +35,14 @@ class ImageAdmin(admin.ModelAdmin):
             obj.title = \
                 '.'.join([''.join([str(val.id) for val in form.cleaned_data[category]]) if form.cleaned_data[category] else '0' for category in categories])
 
+        lookup_args = \
+            dict(('%s__id__in' % key, [value.id for value in values]) if values else (key, None) \
+                for (key, values) in form.cleaned_data.items() if key in categories)
+        c = Image.objects.filter(**lookup_args).count()
+        obj.title += '.%d' % c
+
+        # TODO: check title exists before saving
+
         obj.save()
 
 class PhotoSizeAdmin(admin.ModelAdmin):
