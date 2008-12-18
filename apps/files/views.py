@@ -8,6 +8,8 @@ from django.http import HttpResponse
 from django.core.servers.basehttp import FileWrapper
 from django.shortcuts import get_object_or_404
 
+from photologue.models import PhotoSizeCache
+
 from models import MyPhoto
 from forms import ImageFilterForm
 
@@ -78,6 +80,10 @@ def send_file(request, image_id, size):
          'medium':image.get_medium_filename(),
          'large':image.get_large_filename(),
          'original':image.image.path}
+
+    photosize = PhotoSizeCache().sizes.get(size)
+    if not image.size_exists(photosize):
+        image.create_size(photosize)
 
     filename = filenames[size]
     wrapper = FileWrapper(file(filename))
