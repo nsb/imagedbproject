@@ -2,12 +2,13 @@ import os
 from datetime import datetime
 
 try:
-    import Image
+    import Image as PILImage
 except ImportError:
     try:
-        from PIL import Image
+        from PIL import Image as PILImage
     except ImportError:
-        raise ImportError('Imagedb was unable to import the Python Imaging Library. Please confirm it`s installed and available on your current Python path.')
+        raise ImportError('Imagedb was unable to import the Python Imaging Library. \
+            Please confirm it`s installed and available on your current Python path.')
 
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
@@ -18,7 +19,7 @@ from photologue.models import ImageModel
 
 from categories.models import Area, Motif, TimeOfDay
 
-class MyPhoto(ImageModel):
+class Image(ImageModel):
     title = models.CharField(_('title'), max_length=100, unique=True)
     caption = models.TextField(_('caption'), blank=True)
     date_added = models.DateTimeField(_('date added'), default=datetime.now, editable=False)
@@ -57,7 +58,7 @@ class MyPhoto(ImageModel):
         if not os.path.isdir(self.cache_path()):
             os.makedirs(self.cache_path())
         try:
-            im = Image.open(self.image.path)
+            im = PILImage.open(self.image.path)
         except IOError:
             return
         # Apply effect if found

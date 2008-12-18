@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 
-from models import MyPhoto
+from models import Image
 from categories.models import Area, Motif, TimeOfDay
 
 class ImageFilterForm(ModelForm):
@@ -10,5 +10,5 @@ class ImageFilterForm(ModelForm):
     times_of_day = forms.ModelChoiceField(queryset=TimeOfDay.objects.all(), label='Time of day', required=False)
 
     class Meta:
-        model = MyPhoto
+        model = Image
         fields = ('areas', 'motifs', 'times_of_day',)
