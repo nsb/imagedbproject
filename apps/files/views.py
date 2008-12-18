@@ -1,4 +1,4 @@
-import os
+import os, mimetypes
 
 from django.views.generic.list_detail import object_list, object_detail
 from django.contrib.auth.decorators import login_required
@@ -86,8 +86,10 @@ def send_file(request, image_id, size):
         image.create_size(photosize)
 
     filename = filenames[size]
+    mimetype, encoding = mimetypes.guess_type(filename)
+
     wrapper = FileWrapper(file(filename))
-    response = HttpResponse(wrapper, content_type='image/jpeg')
+    response = HttpResponse(wrapper, content_type=mimetype or 'image/jpeg')
     response['Content-Length'] = os.path.getsize(filename)
     response['Content-Disposition'] = 'attachment; filename=%s' % image._get_filename_for_size(size)
     return response
