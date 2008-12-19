@@ -65,16 +65,16 @@ def send_file(request, image_id, size):
     image = get_object_or_404(Image, pk=image_id)
 
     filenames = \
-        {'small':image.get_small_filename(),
-         'medium':image.get_medium_filename(),
-         'large':image.get_large_filename(),
-         'original':image.image.path}
+        {'small':image.get_small_filename,
+         'medium':image.get_medium_filename,
+         'large':image.get_large_filename,
+         'original': lambda: image.image.path}
 
     photosize = PhotoSizeCache().sizes.get(size)
-    if not image.size_exists(photosize):
+    if photosize and not image.size_exists(photosize):
         image.create_size(photosize)
 
-    filename = filenames[size]
+    filename = filenames[size]()
     mimetype, encoding = mimetypes.guess_type(filename)
 
     wrapper = FileWrapper(file(filename))
