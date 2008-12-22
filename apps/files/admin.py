@@ -11,7 +11,7 @@ class ImageAdmin(admin.ModelAdmin):
     list_filter = ['date_added', 'is_public', 'locations', 'installations', 'people', 'hse', 'events', 'graphics', 'communications',]
     list_per_page = 10
     save_on_top = True
-    filter_horizontal = ('locations', 'installations', 'people', 'hse', 'events', 'graphics', 'communications',)
+    #filter_horizontal = ('locations', 'installations', 'people', 'hse', 'events', 'graphics', 'communications',)
     fieldsets = (
         (None, {
             'fields': ('image',)
@@ -28,22 +28,39 @@ class ImageAdmin(admin.ModelAdmin):
         """
         Given a model instance save it to the database.
         """
-
         categories = self.fieldsets[1][1]['fields']
 
         if form.is_valid():
-            obj.title = \
+            title = \
                 '.'.join([''.join([str(val.id) for val in form.cleaned_data[category]]) if form.cleaned_data[category] else '0' for category in categories])
 
         lookup_args = \
-            dict(('%s__id__in' % key, [value.id for value in values]) if values else (key, None) \
+            (('%s' % key, [value for value in values]) if values else (key, None) \
                 for (key, values) in form.cleaned_data.items() if key in categories)
-        c = Image.objects.filter(**lookup_args).count()
-        obj.title += '.%d' % c
 
-        # TODO: check title exists before saving
+        if change and not form.has_changed():
+            obj.save()
+        else:
+            qs = Image.objects.all()
+            for key, val in lookup_args:
+                if val:
+                    for v in val:
+                        qs = qs.filter(**{key:v})
+                else:
+                    qs = qs.filter(**{key:val})
+            c = qs.distinct().count()
 
-        obj.save()
+            # check if title exists before saving
+            while(True):
+                new_title = '%s.%d' % (title, c or 1)
+                try:
+                    im = Image.objects.get(title=new_title)
+                    c += 1
+                except Image.DoesNotExist:
+                    break
+
+            obj.title = new_title
+            obj.save()
 
 class PhotoSizeAdmin(admin.ModelAdmin):
     list_display = ('name', 'width', 'height', 'crop', 'pre_cache', 'increment_count')
