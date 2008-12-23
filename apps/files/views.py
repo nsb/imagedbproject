@@ -65,25 +65,21 @@ def send_file(request, image_id, size):
     image = get_object_or_404(Image, pk=image_id)
 
     filenames = \
-        {'admin_thumbnail':(image.get_admin_thumbnail_filename, False),
-         'thumbnail':(image.get_thumbnail_filename, False),
-         'display':(image.get_display_filename, False),
-         'small':(image.get_small_filename, True),
-         'medium':(image.get_medium_filename, True),
-         'large':(image.get_large_filename, True),
-         'original':(lambda: image.image.path, True)}
+        {'small':image.get_small_filename,
+         'medium':image.get_medium_filename,
+         'large':image.get_large_filename,
+         'original': lambda: image.image.path}
 
     photosize = PhotoSizeCache().sizes.get(size)
     if photosize and not image.size_exists(photosize):
         image.create_size(photosize)
 
-    filename = filenames[size][0]()
+    filename = filenames[size]()
     mimetype, encoding = mimetypes.guess_type(filename)
 
     wrapper = FileWrapper(file(filename))
     response = HttpResponse(wrapper, content_type=mimetype or 'image/jpeg')
     response['Content-Length'] = os.path.getsize(filename)
-    if filenames[size][1]:
-        response['Content-Disposition'] = 'attachment; filename=%s' % image._get_filename_for_size(size)
+    response['Content-Disposition'] = 'attachment; filename=%s' % image._get_filename_for_size(size)
     return response
 
