@@ -14,8 +14,11 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
+from django.db import models
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
 
-from photologue.models import ImageModel
+from photologue.models import ImageModel, get_storage_path
 
 from categories.models import Location, Installation, People, HSE, Event, Graphics, Communications
 
@@ -69,12 +72,30 @@ class Image(ImageModel):
         verbose_name = _("photo")
         verbose_name_plural = _("Photos")
 
+    def __init__(self, *args, **kwargs):
+        super(Image, self).__init__(*args, **kwargs)
+        fs = FileSystemStorage(location='/home/niels/imagedb_upload')
+        self.image.storage = fs
+
+
     def __unicode__(self):
         return self.title
 
     def __str__(self):
         return self.__unicode__()
 
+    #def cache_path(self, size):
+        #if size in ('admin_thumbnail', 'thumbnail'):
+            #return os.path.join(settings.MEDIA_ROOT, 'photologue', 'photos', 'cache')
+        #else:
+            #return os.path.join(os.path.dirname(self.image.path), "cache")
+        ##return os.path.join('/home/niels/programming/imagedb/static/photologue/photos', "cache")
+
+    def get_imagedb_filename(self, size):
+        if size in ('admin_thumbnail', 'thumbnail'):
+            return os.path.join(settings.MEDIA_ROOT, 'photologue', 'photos', 'cache', self._get_filename_for_size(size))
+        else:
+            return getattr(self, "get_%s_filename" % size)()
 
     def create_size(self, photosize):
         if self.size_exists(photosize):
@@ -102,7 +123,7 @@ class Image(ImageModel):
         elif photosize.effect is not None:
             im = photosize.effect.post_process(im)
         # Save file
-        im_filename = getattr(self, "get_%s_filename" % photosize.name)()
+        im_filename = self.get_imagedb_filename(photosize.name)
         try:
             if im.format != 'JPEG':
                 try:
