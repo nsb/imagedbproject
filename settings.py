@@ -99,6 +99,8 @@ INSTALLED_APPS = (
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
+PHOTOLOGUE_MAXBLOCK = 1024 * 1024
+
 try:
     from settings_local import *
 except ImportError:

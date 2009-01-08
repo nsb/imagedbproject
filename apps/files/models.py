@@ -75,7 +75,6 @@ class Image(ImageModel):
     def __str__(self):
         return self.__unicode__()
 
-
     def create_size(self, photosize):
         if self.size_exists(photosize):
             return
@@ -113,7 +112,8 @@ class Image(ImageModel):
                     return
                 except KeyError:
                     pass
-            im.save(im_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
+            else:
+                im.save(im_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
         except IOError, e:
             if os.path.isfile(im_filename):
                 os.unlink(im_filename)
