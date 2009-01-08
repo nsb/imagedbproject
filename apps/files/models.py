@@ -122,5 +122,24 @@ class Image(ImageModel):
     def get_original_size(self):
         return PILImage.open(self.image.path).size
 
+    def get_original_filename(self):
+        return self.image.path
+
+    def get_file_size(self, size):
+        im_filename = getattr(self, "get_%s_filename" % size)()
+        return  os.path.getsize(im_filename)
+
+    def get_small_file_size(self):
+        return self.get_file_size('small')
+
+    def get_medium_file_size(self):
+        return self.get_file_size('medium')
+
+    def get_large_file_size(self):
+        return self.get_file_size('medium')
+
+    def get_original_file_size(self):
+        return self.get_file_size('original')
+       
     def get_absolute_url(self):
         return reverse('image-detail', args=[self.id])
