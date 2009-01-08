@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load humanize %}
 
 {% block content %}
 <h2>{% trans "Photos" %}</h2>
@@ -13,6 +14,12 @@
 {% for image in image_list %}
 <a href="{{ image.get_absolute_url }}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}"/></a>
 {% endfor %}
+
+{% with image_list.count as photo_count %}
+{% blocktrans with photo_count|apnumber as count and photo_count|pluralize as plur%}
+Found {{ count }} photo{{ plur }}.
+{% endblocktrans %}
+{% endwith %}
 
 {% if is_paginated %}
 <div id="page_controls">
