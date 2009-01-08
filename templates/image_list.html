@@ -15,11 +15,13 @@
 <a href="{{ image.get_absolute_url }}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}"/></a>
 {% endfor %}
 
+<div class="small quiet">
 {% with image_list.count as photo_count %}
 {% blocktrans with photo_count|apnumber as count and photo_count|pluralize as plur%}
-Found {{ count }} photo{{ plur }}.
+found {{ count }} photo{{ plur }}.
 {% endblocktrans %}
 {% endwith %}
+</div>
 
 {% if is_paginated %}
 <div id="page_controls">
