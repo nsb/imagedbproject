@@ -9,7 +9,7 @@ class Category(models.Model):
         ordering = ['name']
 
     def __unicode__(self):
-        return self.name
+        return u'%s (%d)' % (self.name, self.image_set.count())
 
 class Location(Category):
     class Meta:
