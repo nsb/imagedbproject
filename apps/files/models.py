@@ -136,7 +136,7 @@ class Image(ImageModel):
         return self.get_file_size('medium')
 
     def get_large_file_size(self):
-        return self.get_file_size('medium')
+        return self.get_file_size('large')
 
     def get_original_file_size(self):
         return self.get_file_size('original')
