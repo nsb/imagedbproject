@@ -99,7 +99,13 @@ INSTALLED_APPS = (
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
+#PHOTOLOGUE_DIR = 'kjamcpl34heu6hawq23szhu8g'
 PHOTOLOGUE_MAXBLOCK = 1024 * 1024
+
+from utils import get_image_path
+
+PHOTOLOGUE_PATH = get_image_path
+
 
 try:
     from settings_local import *
