@@ -12,7 +12,7 @@
 
 {% if image_list %}
 {% for image in image_list %}
-<a href="{{ image.get_absolute_url }}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}"></a>
+<a href="{{ image.get_absolute_url }}"><img class="corner iradius16" src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}"></a>
 {% endfor %}
 
 <div class="small quiet">
