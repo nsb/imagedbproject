@@ -60,7 +60,8 @@ class MultipartPostHandler(urllib2.BaseHandler):
             v_files = []
             v_vars = []
             try:
-                 for(key, value) in data.items():
+                 #for(key, value) in data.items():
+                 for(key, value) in data:
                      if type(value) == file:
                          v_files.append((key, value))
                      else:

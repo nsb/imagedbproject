@@ -11,22 +11,21 @@ URL = 'http://imagedb.ciboe.webfactional.com/'
 ADMIN_PATH = '/admin/files/image/add/'
 LOGIN_PATH = '/login/'
 
-category_mapping = {'A':'location', 'B':'events', 'C':'graphics'}
+category_mapping = {'A':'locations', 'B':'events', 'C':'graphics'}
 
 def handle_file(opener, dirname, name):
-
-#<QueryDict: {u'is_public': [u'on'], u'_save': [u'Save'], u'locations': [u'1', u'2']}> <MultiValueDict: {u'image': [<InMemoryUploadedFile: VOR10298.jpg (image/jpeg)>]}>
 
     categories = re.findall(r'[A-Z][0-9]{2}',dirname)
     image = os.path.join(dirname, name)
 
-    params = { "username" : USER, "password" : PASSWORD, 'is_public': 'on', '_save': 'Save',
-             "image" : open(image, "rb") }
-    f = opener.open(urlparse.urljoin(URL, ADMIN_PATH), params)
-    #print f.read()
+    print 'uploading image %s with categories %s...' % (name, categories),
 
-    #c = [(category_mapping[category[0]], [int(category[1:3])]) for category in categories]
-    #data.update(dict(c))
+    params = [('is_public', 'on'), ('_save', 'Save'), ("image", open(image, "rb")) ]
+    params += [(category_mapping[category[0]], str(int(category[1:3]))) for category in categories]
+    f = opener.open(urlparse.urljoin(URL, ADMIN_PATH), params)
+    f.close()
+
+    print 'done'    
 
 def visit(arg, dirname, names):
     # handle each file 
@@ -60,7 +59,6 @@ def main():
 
     # do login
     params = urllib.urlencode(dict(username=user, password=password))
-    #f = opener.open('http://imagedb.ciboe.webfactional.com/login/', params)
     f = opener.open(urlparse.urljoin(url, LOGIN_PATH), params)
     data = f.read()
     f.close()
