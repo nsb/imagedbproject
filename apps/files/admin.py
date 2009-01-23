@@ -1,3 +1,5 @@
+# Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
+
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.sites.models import Site

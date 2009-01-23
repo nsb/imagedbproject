@@ -1,3 +1,5 @@
+# Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
+
 import os, re
 from optparse import OptionParser
 import urllib, urllib2, urlparse

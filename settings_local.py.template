@@ -1,3 +1,5 @@
+# Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
+
 DATABASE_ENGINE = '' # variants: sqlite3, mysql, postgresql_psycopg2
 DATABASE_NAME = ''
 DATABASE_USER = ''

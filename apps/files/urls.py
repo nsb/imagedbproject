@@ -1,3 +1,5 @@
+# Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
+
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('files.views',

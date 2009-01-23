@@ -1,3 +1,5 @@
+# Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
+
 import os, mimetypes
 
 from django.views.generic.list_detail import object_list, object_detail
