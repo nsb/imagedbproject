@@ -1,7 +1,7 @@
 import os, re
 from optparse import OptionParser
 import urllib, urllib2, urlparse
-import MultipartPostHandler, urllib2, cookielib
+import MultipartPostHandler, urllib2
 
 PATH = '.'
 USER = 'niels'
