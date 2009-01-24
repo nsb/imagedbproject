@@ -7,13 +7,27 @@ from models import Image
 from categories.models import Location, Installation, People, HSE, Event, Graphics, Communications
 
 class ImageFilterForm(ModelForm):
-    locations = forms.ModelChoiceField(queryset=Location.objects.all(), label='Locations', required=False)
-    installations = forms.ModelChoiceField(queryset=Installation.objects.all(), label='Installations & Vessels', required=False)
-    people = forms.ModelChoiceField(queryset=People.objects.all(), label='People', required=False)
-    hse = forms.ModelChoiceField(queryset=HSE.objects.all(), label='HSE', required=False)
-    events = forms.ModelChoiceField(queryset=Event.objects.all(), label='Events', required=False)
-    graphics = forms.ModelChoiceField(queryset=Graphics.objects.all(), label='Graphics', required=False)
-    communications = forms.ModelChoiceField(queryset=Communications.objects.all(), label='Communications', required=False)
+    locations = forms.ChoiceField(label='Locations', required=False)
+    installations = forms.ChoiceField(label='Installations & Vessels', required=False)
+    people = forms.ChoiceField(label='People', required=False)
+    hse = forms.ChoiceField(label='HSE', required=False)
+    events = forms.ChoiceField(label='Events', required=False)
+    graphics = forms.ChoiceField(label='Graphics', required=False)
+    communications = forms.ChoiceField(label='Communications', required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(ImageFilterForm, self).__init__(*args, **kwargs)
+
+        _choices = lambda x: [('','')] + ([('all','All')] if x.count() else []) + \
+            [(item.name, '%s (%d)' % (item.name, item.image_set.count())) for item in x]
+
+        self.fields['locations'].choices = _choices(Location.objects.all())
+        self.fields['installations'].choices = _choices(Installation.objects.all())
+        self.fields['people'].choices = _choices(People.objects.all())
+        self.fields['hse'].choices = _choices(HSE.objects.all())
+        self.fields['events'].choices = _choices(Event.objects.all())
+        self.fields['graphics'].choices = _choices(Graphics.objects.all())
+        self.fields['communications'].choices = _choices(Communications.objects.all())
 
     class Meta:
         model = Image

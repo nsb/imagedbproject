@@ -9,6 +9,7 @@ from django.http import HttpResponseBadRequest
 from django.http import HttpResponse
 from django.core.servers.basehttp import FileWrapper
 from django.shortcuts import get_object_or_404
+from django.db.models import Q
 
 from photologue.models import PhotoSizeCache
 
@@ -34,8 +35,24 @@ def list(request, page=1):
 def filter(request, page=1):
     form = ImageFilterForm(request.GET)
     if form.is_valid():
-        lookup_args = dict((key, value) for (key, value) in form.cleaned_data.items() if value)
-        qs = Image.objects.filter(is_public=True, **lookup_args)
+
+        lookup_args={}
+        qs = Image.objects.filter(is_public=True)
+        for (key, value) in form.cleaned_data.items():
+            if value:
+                if value == 'all':
+                    pass
+                    # ugly hack to get content type, should be fixed
+                    model = getattr(Image.objects.get(pk=1), key).model
+
+                    q_object = Q()
+                    for value in model.objects.values('name'):
+                        q_object = q_object | Q(**{'%s__name' % key: value['name']})
+                    qs = qs.filter(q_object).distinct()
+                else:
+                    lookup_args.update({'%s__name' % key: value})
+
+        qs = qs.filter(**lookup_args)
 
         return object_list(request,
                            queryset=qs,
