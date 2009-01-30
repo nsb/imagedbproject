@@ -9,10 +9,16 @@
 </div>
 <ul id="photo_size" class="small quiet">
 <li><strong>{% trans "download:" %}</strong></li>
-<li><a href="{% url image-download image.id "small" %}">[{{ image.get_small_size }}</a> {{ image.get_small_file_size|filesizeformat }}]</li>
-<li><a href="{% url image-download image.id "medium" %}">[{{ image.get_medium_size }}</a> {{ image.get_medium_file_size|filesizeformat }}]</li>
-<li><a href="{% url image-download image.id "large" %}">[{{ image.get_large_size }}</a> {{ image.get_large_file_size|filesizeformat }}]</li>
-<li><a href="{% url image-download image.id "original" %}">[{% trans "original" %} {{ image.get_original_size }}</a> {{ image.get_original_file_size|filesizeformat }}]</li>
+<li><a href="{% url image-download image.id "small" %}">[{{ image.get_small_size }}]</a> {{ image.get_small_file_size|filesizeformat }}]</li>
+<li><a href="{% url image-download image.id "medium" %}">[{{ image.get_medium_size }}]</a> {{ image.get_medium_file_size|filesizeformat }}</li>
+<li><a href="{% url image-download image.id "large" %}">[{{ image.get_large_size }}]</a> {{ image.get_large_file_size|filesizeformat }}</li>
+<li>
+{% if image.epsfile %}
+<a href="{% url image-download image.id "eps" %}">[{% trans "original" %}]</a> {{ image.get_eps_file_size|filesizeformat }}
+{% else %}
+<a href="{% url image-download image.id "original" %}">[{% trans "original" %} {{ image.get_original_size }}]</a> {{ image.get_original_file_size|filesizeformat }}
+{% endif %}
+</li>
 </ul>
 <div>
   <img src="{{ image.get_display_url }}" alt="{{ image.title }}">

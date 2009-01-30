@@ -87,11 +87,13 @@ def send_file(request, image_id, size):
         {'small':image.get_small_filename,
          'medium':image.get_medium_filename,
          'large':image.get_large_filename,
-         'original': lambda: image.image.path}
+         'original': lambda: image.image.path,
+         'eps': lambda: image.epsfile.path,}
 
-    photosize = PhotoSizeCache().sizes.get(size)
-    if photosize and not image.size_exists(photosize):
-        image.create_size(photosize)
+    if not size in ['eps', 'original']:
+        photosize = PhotoSizeCache().sizes.get(size)
+        if photosize and not image.size_exists(photosize):
+            image.create_size(photosize)
 
     filename = filenames[size]()
     mimetype, encoding = mimetypes.guess_type(filename)
@@ -99,6 +101,6 @@ def send_file(request, image_id, size):
     wrapper = FileWrapper(file(filename))
     response = HttpResponse(wrapper, content_type=mimetype or 'image/jpeg')
     response['Content-Length'] = os.path.getsize(filename)
-    response['Content-Disposition'] = 'attachment; filename=%s' % image._get_filename_for_size(size)
+    response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename)
     return response
 
