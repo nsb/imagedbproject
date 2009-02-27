@@ -17,33 +17,40 @@ class Location(Category):
     class Meta:
         verbose_name = _("Location")
         verbose_name_plural = _("Locations")
+        ordering = ['name']
 
 class Installation(Category):
     class Meta:
         verbose_name = _("Installation & Vessel")
         verbose_name_plural = _("Installations & Vessels")
+        ordering = ['name']
 
 class People(Category):
     class Meta:
         verbose_name = _("Person")
         verbose_name_plural = _("People")
+        ordering = ['name']
 
 class HSE(Category):
     class Meta:
         verbose_name = _("HSE")
         verbose_name_plural = _("HSE")
+        ordering = ['name']
 
 class Event(Category):
     class Meta:
         verbose_name = _("Event")
         verbose_name_plural = _("Events")
+        ordering = ['name']
 
 class Graphics(Category):
     class Meta:
         verbose_name = _("Graphics")
         verbose_name_plural = _("Graphics")
+        ordering = ['name']
 
 class Communications(Category):
     class Meta:
         verbose_name = _("Communications")
         verbose_name_plural = _("Communications")
+        ordering = ['name']

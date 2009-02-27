@@ -9,7 +9,7 @@ PATH = '.'
 USER = 'niels'
 PASSWORD = 'niels'
 #URL = 'http://localhost:8000/'
-URL = 'http://imagedb.ciboe.webfactional.com/'
+URL = 'http://imagedb.ciboe.dk/'
 ADMIN_PATH = '/admin/files/image/add/'
 LOGIN_PATH = '/login/'
 
@@ -25,6 +25,7 @@ def handle_file(opener, dirname, name):
     params = [('is_public', 'on'), ('_save', 'Save'), ("image", open(image, "rb")) ]
     params += [(category_mapping[category[0]], str(int(category[1:3]))) for category in categories]
     f = opener.open(urlparse.urljoin(URL, ADMIN_PATH), params)
+    data = f.read()
     f.close()
 
     print 'done'    
