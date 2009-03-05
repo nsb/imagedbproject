@@ -20,6 +20,7 @@ from django.template.defaultfilters import slugify
 from photologue.models import ImageModel
 
 from categories.models import Location, Installation, People, HSE, Event, Graphics, Communications
+from rounded_corners import round_image
 
 class Image(ImageModel):
     title = models.CharField(_('title'), max_length=100, unique=True)
@@ -106,6 +107,10 @@ class Image(ImageModel):
             im = self.effect.post_process(im)
         elif photosize.effect is not None:
             im = photosize.effect.post_process(im)
+        # round corners on thumbnails
+        if photosize.name == 'thumbnail':
+            im = round_image(im, {}, 10)
+
         # Save file
         im_filename = getattr(self, "get_%s_filename" % photosize.name)()
         try:
@@ -120,6 +125,7 @@ class Image(ImageModel):
                     pass
             else:
                 im.save(im_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
+
         except IOError, e:
             if os.path.isfile(im_filename):
                 os.unlink(im_filename)
