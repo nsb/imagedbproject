@@ -1,7 +1,7 @@
 # Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
 
 from django.contrib import admin
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import User, Group
 from django.contrib.sites.models import Site
 
 from photologue.models import *
@@ -75,6 +75,21 @@ class PhotoSizeAdmin(admin.ModelAdmin):
         }),
     )
 
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff',)
+    list_filter = ['is_staff', 'is_superuser',] 
+    fieldsets = (
+        (None, {
+            'fields': ('username', 'password',)
+        }),
+        ('Personal info', {
+            'fields': ('first_name', 'last_name', 'email',)
+        }),
+        ('Permissions', {
+            'fields': ('is_staff', 'is_active', 'is_superuser',)
+        }),
+    )
+
 admin.site.unregister(Gallery)
 admin.site.unregister(GalleryUpload)
 admin.site.unregister(Photo)
@@ -82,8 +97,10 @@ admin.site.unregister(PhotoEffect)
 admin.site.unregister(PhotoSize)
 admin.site.unregister(Watermark)
 
+admin.site.unregister(User)
 admin.site.unregister(Group)
 admin.site.unregister(Site)
 
+admin.site.register(User, UserAdmin)
 admin.site.register(Image, ImageAdmin)
 admin.site.register(PhotoSize, PhotoSizeAdmin)
