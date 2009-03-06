@@ -3,6 +3,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User, Group
 from django.contrib.sites.models import Site
+from django.contrib.auth.admin import UserAdmin
 
 from photologue.models import *
 
@@ -75,7 +76,7 @@ class PhotoSizeAdmin(admin.ModelAdmin):
         }),
     )
 
-class UserAdmin(admin.ModelAdmin):
+class UserAdmin(UserAdmin):
     list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff',)
     list_filter = ['is_staff', 'is_superuser',] 
     fieldsets = (
