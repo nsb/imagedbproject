@@ -68,9 +68,9 @@ select {
   width: 6em;
 }
 select option {
+  border-top: white solid 2px;
   background: #38c2d4;
 }
-
 input[type="submit"] {
   color: white;
   background: #012f63;
