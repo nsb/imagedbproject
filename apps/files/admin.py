@@ -23,7 +23,7 @@ class ImageAdmin(admin.ModelAdmin):
             'fields': ('locations', 'installations', 'people', 'hse', 'events', 'graphics', 'communications',)
         }),
         ('Options', {
-            'fields': ('is_public', 'epsfile',)
+            'fields': ('is_public',)
         }),
     )
 

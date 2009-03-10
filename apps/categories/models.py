@@ -19,6 +19,12 @@ class Location(Category):
         verbose_name_plural = _("Locations")
         ordering = ['name']
 
+class Field(Category):
+    class Meta:
+        verbose_name = _("Field")
+        verbose_name_plural = _("Fields")
+        ordering = ['name']
+
 class Installation(Category):
     class Meta:
         verbose_name = _("Installation & Vessel")
@@ -53,4 +59,10 @@ class Communications(Category):
     class Meta:
         verbose_name = _("Communications")
         verbose_name_plural = _("Communications")
+        ordering = ['name']
+
+class Archive(Category):
+    class Meta:
+        verbose_name = _("Archive")
+        verbose_name_plural = _("Archives")
         ordering = ['name']

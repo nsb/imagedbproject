@@ -19,7 +19,7 @@ from django.template.defaultfilters import slugify
 
 from photologue.models import ImageModel
 
-from categories.models import Location, Installation, People, HSE, Event, Graphics, Communications
+from categories.models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive
 from rounded_corners import round_image
 
 class Image(ImageModel):
@@ -35,6 +35,11 @@ class Image(ImageModel):
         null=True,
         blank=True,
         verbose_name=_('Locations'))
+    fields = models.ManyToManyField(
+        Field,
+        null=True,
+        blank=True,
+        verbose_name=_('Fields'))
     installations = models.ManyToManyField(
         Installation,
         null=True,
@@ -65,10 +70,11 @@ class Image(ImageModel):
         null=True,
         blank=True,
         verbose_name=_('areas'))
-    epsfile = models.FileField(upload_to='eps',
+    archives = models.ManyToManyField(
+        Archive,
         null=True,
         blank=True,
-        verbose_name=_('EPS'), help_text=_('EPS files goes here.'))
+        verbose_name=_('archives'))
 
     class Meta:
         ordering = ['-date_added']
@@ -137,9 +143,6 @@ class Image(ImageModel):
     def get_original_filename(self):
         return self.image.path
 
-    def get_eps_filename(self):
-        return self.epsfile.path
-
     def get_file_size(self, size):
         im_filename = getattr(self, "get_%s_filename" % size)()
         return  os.path.getsize(im_filename)
@@ -155,9 +158,6 @@ class Image(ImageModel):
 
     def get_original_file_size(self):
         return self.get_file_size('original')
-
-    def get_eps_file_size(self):
-        return self.get_file_size('eps')
        
     def get_absolute_url(self):
         return reverse('image-detail', args=[self.id])

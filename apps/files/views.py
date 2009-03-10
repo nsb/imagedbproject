@@ -87,10 +87,9 @@ def send_file(request, image_id, size):
         {'small':image.get_small_filename,
          'medium':image.get_medium_filename,
          'large':image.get_large_filename,
-         'original': lambda: image.image.path,
-         'eps': lambda: image.epsfile.path,}
+         'original': lambda: image.image.path,}
 
-    if not size in ['eps', 'original']:
+    if not size in ['original']:
         photosize = PhotoSizeCache().sizes.get(size)
         if photosize and not image.size_exists(photosize):
             image.create_size(photosize)
