@@ -4,14 +4,17 @@
 <html>
 <head>
   <title>{% block title %}{% trans "Image database" %}{% endblock title %}</title>
-  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css">
-  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/base/base-min.css">
+  <link rel="stylesheet" href="/static/css/blueprint/screen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/static/css/blueprint/print.css" type="text/css" media="print">
+  <!--[if IE]><link rel="stylesheet" href="/static/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
   <link rel="stylesheet" href="/static/css/custom.css" type="text/css" media="screen, projection" >
 </head>
-<body>
-<div id="doc3" class="yui-t5">
+<body class="{% block section %}{% endblock section %}">
+<div id="page">
+  <div id="innerpage">
+  {% block page %}{% endblock page %}
   <div id="hd">
-  {% include "head.html" %}
+  {% block head %}{% endblock head %}
   </div>
   <div id="bd">
   {% block content %}{% endblock content %}
@@ -19,7 +22,7 @@
   <div id="ft">
   {% include "footer.html" %}
   </div>
+  </div>
 </div>
 </body>
 </html>
- 

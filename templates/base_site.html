@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {% include "head.html" %}
+{% endblock head %}
+
+{% block content %}
+<div id="indented_content">{% block indented_content %}{% endblock indented_content %}</div>
+{% endblock content %}

@@ -1,11 +1,12 @@
-{% extends "base.html" %}
+{% extends "base_front.html" %}
 
-{% block content %}
-<h1>login</h1>
+{% block login %}{% endblock login %}
+
+{% block boxcontent %}
 <form method="post" action="">
 <table>
 {{ form }}
 <tr><td><input type="submit" value="login"></td></tr>
 </table>
 </form>
-{% endblock content %}
+{% endblock boxcontent %}

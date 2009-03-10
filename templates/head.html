@@ -1,18 +1,18 @@
 {% load i18n %}
 
-<div class="yui-ge">
-  <div class="yui-u first">
-    <h1><a href="{% url image-list %}">{% trans "Nectar image database" %}</a></h1>
+<div>
+  <div>
+  <a href="{% url image-list %}"><img id="logo" src="/static/img/logo.gif"></a>
   </div>
-  <div class="yui-u">
-    {% if user.is_authenticated %}
-    <div id="user_box" class="small quiet">
-      {% trans "signed in as" %} <strong>{{ user.username }}</strong> | 
-      {% if user.is_staff %}<a href="/admin/">admin</a> |{% endif %}
-       <a href="{% url auth_logout %}">{% trans "logout" %}</a>
-    </div>
-    {% else %}
-      <a href="{% url auth_login %}">{% trans "login" %}</a>
-    {% endif %}
+  <div>
+  <span id="user_box" class="small quiet">
+  {% if user.is_authenticated %}
+    {% trans "signed in as" %} <strong>{{ user.username }}</strong> | 
+    {% if user.is_staff %}<a href="/admin/">admin</a> |{% endif %}
+     <a href="{% url auth_logout %}">{% trans "logout" %}</a>
+  {% else %}
+    {% block login %}<a href="{% url auth_login %}">{% trans "login" %}</a>{% endblock login %}
+  {% endif %}
+  </span>
   </div>
 </div>

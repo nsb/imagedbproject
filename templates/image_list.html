@@ -1,11 +1,9 @@
-{% extends "base.html" %}
+{% extends "base_site.html" %}
 
 {% load i18n %}
 {% load humanize %}
 
-{% block content %}
-<h2>{% trans "Photos" %}</h2>
-
+{% block indented_content %}
 <form class="round" method="get" action="{% url image-filter 1 %}">
 {% include "form.html" %}
 </form>
@@ -14,14 +12,6 @@
 {% for image in image_list %}
 <a href="{{ image.get_absolute_url }}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}"></a>
 {% endfor %}
-
-<div class="small quiet">
-{% with image_list.count as photo_count %}
-{% blocktrans with photo_count|apnumber as count and photo_count|pluralize as plur%}
-found {{ count }} photo{{ plur }}.
-{% endblocktrans %}
-{% endwith %}
-</div>
 
 {% if is_paginated %}
 <div id="page_controls">
@@ -33,4 +23,4 @@ found {{ count }} photo{{ plur }}.
 {% trans "No photos found." %}
 {% endif %}
 
-{% endblock content %}
+{% endblock indented_content %}
