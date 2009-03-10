@@ -60,12 +60,16 @@ form {
 }
 form table {
   width: 100%;
-  margin: 0px;
+  margin: 0;
+  padding: 0;
+}
+form td {
+  padding: 0 5px 0 0;
 }
 select {
   margin: 0;
   padding: 0;
-  width: 6em;
+  width: 7em;
 }
 select option {
   border-top: white solid 2px;
