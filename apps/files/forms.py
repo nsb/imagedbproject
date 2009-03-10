@@ -14,7 +14,7 @@ class ImageFilterForm(ModelForm):
     hse = forms.ChoiceField(label='HSE', required=False)
     events = forms.ChoiceField(label='Events', required=False)
     graphics = forms.ChoiceField(label='Graphics', required=False)
-    communications = forms.ChoiceField(label='Communications', required=False)
+    communications = forms.ChoiceField(label='Communications use only', required=False)
     archives = forms.ChoiceField(label='Archives', required=False)
 
     def __init__(self, *args, **kwargs):

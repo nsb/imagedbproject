@@ -14,9 +14,9 @@
 {% endfor %}
 
 {% if is_paginated %}
-<div id="page_controls">
-    <p>{% if has_previous %}<a href="{% url image-list previous %}">{% trans "Previous" %}</a> | {% endif %} page {{ page }} of {{ pages }} {% if has_next %}| <a href="{% url image-list next %}">{% trans "Next" %}</a>{% endif %}</p>
-</div>
+<span id="page_controls">
+    {% if has_previous %}<a href="{% url image-list previous %}"><img src="/static/img/pil_tilbage.gif"></a> {% endif %} {% if has_next %} <a href="{% url image-list next %}"><img src="/static/img/pil_frem.gif"></a>{% endif %}
+</span>
 {% endif %}
 
 {% else %}
