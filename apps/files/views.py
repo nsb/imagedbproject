@@ -27,7 +27,7 @@ def list(request, page=1):
                        template_name = 'image_list.html',
                        template_object_name='image',
                        page=page,
-                       paginate_by=2,
+                       paginate_by=10,
                        extra_context={'form':form})
 
 @login_required
