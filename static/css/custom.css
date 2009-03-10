@@ -14,8 +14,6 @@ body {
   float: left;
   margin-top: 15px;
 }
-#hd #logo {
-}
 #hd #user_box {
   position: absolute;
   right: 425px;
@@ -68,4 +66,8 @@ select {
   margin: 0;
   padding: 0;
   width: 6em;
+}
+input[type="submit"] {
+  color: white;
+  background: #012f63;
 }
