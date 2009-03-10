@@ -1,9 +1,9 @@
-{% extends "base.html" %}
+{% extends "base_site.html" %}
 {% load i18n %}
 
 {% block title %}{{ block.super }} | {{ image.title }}{% endblock title %}
 
-{% block content %}
+{% block indented_content %}
 <div id="breadcrumbs">
 <a href="{% url image-list %}">{% trans "Home" %}</a> -> <strong>{{ image.title }}</strong>
 </div>
@@ -24,4 +24,4 @@
   <img src="{{ image.get_display_url }}" alt="{{ image.title }}">
   {% if image.caption %}<p>{{ image.caption }}</p>{% endif %}
 </div>
-{% endblock content %}
+{% endblock indented_content %}
