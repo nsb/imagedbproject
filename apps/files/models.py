@@ -2,6 +2,7 @@
 
 import os
 from datetime import datetime
+import urllib
 
 try:
     import Image as PILImage
@@ -17,7 +18,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 
-from photologue.models import ImageModel
+from photologue.models import ImageModel, PhotoSizeCache
 
 from categories.models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive
 from rounded_corners import round_image
@@ -92,8 +93,18 @@ class Image(ImageModel):
         size = getattr(size, 'name', size)
         base, ext = os.path.splitext(self.image_filename())
         if not size in ['small', 'medium', 'large']:
+            # rename to jpg, to ensure webserver sends correct content type
             ext = '.jpg'
         return ''.join([base, '_', size, ext])
+
+    def _get_SIZE_url(self, size):
+        photosize = PhotoSizeCache().sizes.get(size)
+        if not self.size_exists(photosize):
+            self.create_size(photosize)
+        if photosize.increment_count:
+            self.increment_count()
+        return urllib.pathname2url(
+            '/'.join([self.cache_url(), self._get_filename_for_size(photosize.name)]))
 
     def create_size(self, photosize):
         if self.size_exists(photosize):
