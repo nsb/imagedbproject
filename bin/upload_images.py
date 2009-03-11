@@ -8,12 +8,20 @@ import MultipartPostHandler, urllib2
 PATH = '.'
 USER = 'niels'
 PASSWORD = 'niels'
-#URL = 'http://localhost:8000/'
-URL = 'http://imagedb.ciboe.dk/'
+URL = 'http://localhost:8000/'
+#URL = 'http://imagedb.ciboe.dk/'
 ADMIN_PATH = '/admin/files/image/add/'
 LOGIN_PATH = '/login/'
 
-category_mapping = {'A':'locations', 'B':'events', 'C':'graphics'}
+category_mapping = {
+    'A':'locations',
+    'B':'fields',
+    'C':'installations',
+    'D':'people',
+    'E':'hse',
+    'F':'events',
+    'G':'communcations',
+    'H':'archives',}
 
 def handle_file(opener, dirname, name):
 
@@ -31,10 +39,13 @@ def handle_file(opener, dirname, name):
     print 'done'    
 
 def visit(arg, dirname, names):
-    # handle each file 
-    for name in names:
-        if os.path.isfile(os.path.join(dirname, name)):
-            handle_file(arg, dirname, name)
+    # handle each file
+    for index, name in enumerate(names):
+        if name.startswith('.'):
+            del names[index]
+        else:
+            if os.path.isfile(os.path.join(dirname, name)):
+                handle_file(arg, dirname, name)
 
 def main():
     # options
