@@ -105,7 +105,7 @@ PHOTOLOGUE_MAXBLOCK = 1024 * 1024
 
 from utils import get_image_path
 
-PHOTOLOGUE_PATH = get_image_path
+#PHOTOLOGUE_PATH = get_image_path
 
 
 try:

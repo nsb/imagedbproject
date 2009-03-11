@@ -88,6 +88,13 @@ class Image(ImageModel):
     def __str__(self):
         return self.__unicode__()
 
+    def _get_filename_for_size(self, size):
+        size = getattr(size, 'name', size)
+        base, ext = os.path.splitext(self.image_filename())
+        if not size in ['small', 'medium', 'large']:
+            ext = '.jpg'
+        return ''.join([base, '_', size, ext])
+
     def create_size(self, photosize):
         if self.size_exists(photosize):
             return
@@ -122,6 +129,9 @@ class Image(ImageModel):
         try:
             if im.format != 'JPEG':
                 try:
+                    base, ext = os.path.splitext(im_filename)
+                    im_filename = ''.join([base, '.jpg'])
+
                     if photosize.name not in ('small', 'medium', 'large'):
                         im.save(im_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
                     else:
