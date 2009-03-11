@@ -140,10 +140,9 @@ class Image(ImageModel):
         try:
             if im.format != 'JPEG':
                 try:
-                    base, ext = os.path.splitext(im_filename)
-                    im_filename = ''.join([base, '.jpg'])
-
                     if photosize.name not in ('small', 'medium', 'large'):
+                        base, ext = os.path.splitext(im_filename)
+                        im_filename = ''.join([base, '.jpg'])
                         im.save(im_filename, 'JPEG', quality=int(photosize.quality))
                     else:
                         im.save(im_filename)
