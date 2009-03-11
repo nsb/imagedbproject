@@ -141,6 +141,7 @@ class Image(ImageModel):
             if im.format != 'JPEG':
                 try:
                     if photosize.name not in ('small', 'medium', 'large'):
+                        im.convert("RGB") # convert to RGB for internet explorer
                         base, ext = os.path.splitext(im_filename)
                         im_filename = ''.join([base, '.jpg'])
                         im.save(im_filename, 'JPEG', quality=int(photosize.quality))
