@@ -144,7 +144,7 @@ class Image(ImageModel):
                     im_filename = ''.join([base, '.jpg'])
 
                     if photosize.name not in ('small', 'medium', 'large'):
-                        im.save(im_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
+                        im.save(im_filename, 'JPEG', quality=int(photosize.quality))
                     else:
                         im.save(im_filename)
                     return
