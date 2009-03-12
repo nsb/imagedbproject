@@ -107,10 +107,9 @@ def create_category_values(app, created_models, verbosity, **kwargs):
     HSE.objects.get_or_create(name="Health & Safety")
 
     # events
-    Event.objects.get_or_create(name="Conferences & Exhibitions")
-    Event.objects.get_or_create(name="")
-    Event.objects.get_or_create(name="GeoCenter Møns Klint, DK")
-    Event.objects.get_or_create(name="Official Visits")
+    Event.objects.get_or_create(id=1, name="Conferences & Exhibitions")
+    Event.objects.get_or_create(id=3, name="GeoCenter Møns Klint, DK")
+    Event.objects.get_or_create(id=4, name="Official Visits")
 
     # graphics
     Graphics.objects.get_or_create(name="Environment")
@@ -132,20 +131,7 @@ def create_category_values(app, created_models, verbosity, **kwargs):
     Communications.objects.get_or_create(name="Employee Events")
 
     # archive
-    Archive.objects.get_or_create(id=1, name="")
     Archive.objects.get_or_create(id=2, name="Colombia")
-    Archive.objects.get_or_create(id=3, name="")
-    Archive.objects.get_or_create(id=4, name="")
-    Archive.objects.get_or_create(id=5, name="")
-    Archive.objects.get_or_create(id=6, name="")
-    Archive.objects.get_or_create(id=7, name="")
-    Archive.objects.get_or_create(id=8, name="")
-    Archive.objects.get_or_create(id=9, name="")
-    Archive.objects.get_or_create(id=10, name="")
-    Archive.objects.get_or_create(id=11, name="")
-    Archive.objects.get_or_create(id=12, name="")
-    Archive.objects.get_or_create(id=13, name="")
-    Archive.objects.get_or_create(id=14, name="")
     Archive.objects.get_or_create(id=15, name="Suriname")
 
 signals.post_syncdb.connect(create_category_values, sender=models)
