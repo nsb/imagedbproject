@@ -35,7 +35,7 @@ body.nonauth {
 .centerbox {
   margin: auto;
   width: 250px;
-  padding: 155px;
+  padding: 250px;
 }
 #page {
   background: white;
@@ -47,7 +47,7 @@ body.nonauth {
   background: url(/static/img/draabe.gif) no-repeat 0% 100%;
 }
 .nonauth #logo {
-  margin-left: 180px;
+  margin-left: 225px;
   padding-bottom: 10px;
 }
 #blueline {
