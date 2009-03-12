@@ -49,14 +49,17 @@ select.testExpand {
 
       .mousedown(function(){
         $(this).addClass('testExpand');
+        $(this).removeClass('testNormal');
       })
 
       .change(function(){
         $(this).addClass('testNormal');
+        $(this).removeClass('testExpand');
       })
 
       .blur(function(){
         $(this).addClass('testNormal');
+        $(this).removeClass('testExpand');
       })
   });
 </script>
