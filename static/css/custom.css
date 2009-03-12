@@ -55,6 +55,7 @@ body.nonauth {
   height: 5px;
   width: 100%;
   background-color: #012f63;
+  color: #012f63;
 }
 /* FORMS */
 form {
