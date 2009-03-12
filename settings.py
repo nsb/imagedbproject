@@ -107,6 +107,7 @@ from utils import get_image_path
 
 #PHOTOLOGUE_PATH = get_image_path
 
+PAGINATE_BY=25
 
 try:
     from settings_local import *

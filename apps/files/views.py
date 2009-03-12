@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from django.core.servers.basehttp import FileWrapper
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
+from django.conf import settings
 
 from photologue.models import PhotoSizeCache
 
@@ -27,7 +28,7 @@ def list(request, page=1):
                        template_name = 'image_list.html',
                        template_object_name='image',
                        page=page,
-                       paginate_by=25,
+                       paginate_by=getattr(settings, 'PAGINATE_BY', 25),
                        extra_context={'form':form})
 
 @login_required
@@ -59,7 +60,7 @@ def filter(request, page=1):
                            template_name = 'image_list.html',
                            template_object_name='image',
                            page=page,
-                           paginate_by=10,
+                           paginate_by=getattr(settings, 'PAGINATE_BY', 25),
                            extra_context={'form':form})
     else:
         return HttpResonseBadRequest(form.errors)
