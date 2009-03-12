@@ -2,7 +2,6 @@
 
 import os
 from datetime import datetime
-import urllib
 
 try:
     import Image as PILImage
@@ -97,15 +96,6 @@ class Image(ImageModel):
             ext = '.jpg'
         return ''.join([base, '_', size, ext])
 
-    def _get_SIZE_url(self, size):
-        photosize = PhotoSizeCache().sizes.get(size)
-        if not self.size_exists(photosize):
-            self.create_size(photosize)
-        if photosize.increment_count:
-            self.increment_count()
-        return urllib.pathname2url(
-            '/'.join([self.cache_url(), self._get_filename_for_size(photosize.name)]))
-
     def create_size(self, photosize):
         if self.size_exists(photosize):
             return
@@ -141,10 +131,11 @@ class Image(ImageModel):
             if im.format != 'JPEG':
                 try:
                     if photosize.name not in ('small', 'medium', 'large'):
-                        im = im.convert("RGB") # convert to RGB for internet explorer
+                        # some images may have CMYK color encoding, so convert to RGB
+                        im = im.convert("RGB")
                         base, ext = os.path.splitext(im_filename)
                         im_filename = ''.join([base, '.jpg'])
-                        im.save(im_filename, 'JPEG', quality=int(photosize.quality))
+                        im.save(im_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
                     else:
                         im.save(im_filename)
                     return
