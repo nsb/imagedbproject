@@ -12,7 +12,7 @@
     <tr>
 {% for field in form %}
   {% if not field.is_hidden %}
-    <td>{{ field }}</td>
+    <td><div id="selectContainer">{{ field }}</div></td>
   {% endif %}
 {% endfor %}
     <td><input type="submit" value="{% trans "Search" %}"></td>
