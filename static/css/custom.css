@@ -1,4 +1,4 @@
-body {
+body.nonauth {
   background-color: #EEEEEE;
 }
 .round {
