@@ -9,7 +9,7 @@ def init_photologue(*args, **kwargs):
 
     default_photo_sizes = (
         {'name':'admin_thumbnail', 'width':100, 'height':75, 'crop':True, 'pre_cache':True},
-        {'name':'thumbnail', 'width':200, 'height':200, 'crop':True},
+        {'name':'thumbnail', 'width':100, 'height':100, 'crop':True},
         {'name':'display', 'width':800, 'increment_count':True},
         {'name':'small', 'width':400},
         {'name':'medium', 'width':800},
