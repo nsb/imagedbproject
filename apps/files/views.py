@@ -5,8 +5,7 @@ import os, mimetypes
 from django.views.generic.list_detail import object_list, object_detail
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
-from django.http import HttpResponseBadRequest
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.core.servers.basehttp import FileWrapper
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
