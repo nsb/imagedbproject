@@ -74,6 +74,7 @@ select {
   margin: 0;
   padding: 0;
   width: 6em;
+  background: white;
 }
 select option {
   border-top: white solid 2px;
