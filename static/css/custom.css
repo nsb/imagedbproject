@@ -10,9 +10,7 @@ body.nonauth {
   -webkit-border-radius: 5px
 }
 #hd {
-/*   padding: 0 20px; */
   height: 63px;
-/*   background: transparent url(/static/img/image_datab_top.gif) no-repeat right; */
 }
 #hd #logo {
   float: left;
