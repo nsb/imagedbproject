@@ -4,7 +4,7 @@
     <tr>
 {% for field in form %}
   {% if not field.is_hidden %}
-      <td><strong>{{ field.label }}</strong> <span class="small quiet">{{ field.help_text }}</span></td>
+      <td><label>{{ field.label }}</label></td>
   {% endif %}
 {% endfor %}
       <td></td>
