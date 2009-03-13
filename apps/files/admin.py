@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User, Group
 from django.contrib.sites.models import Site
 from django.contrib.auth.admin import UserAdmin
+from django.core.exceptions import PermissionDenied
 
 from photologue.models import *
 
@@ -67,13 +68,19 @@ class PhotoSizeAdmin(admin.ModelAdmin):
     list_display = ('name', 'width', 'height', 'crop', 'pre_cache', 'increment_count')
     fieldsets = (
         (None, {
-            'fields': ('name', 'width', 'height', 'quality')
+            'fields': ('width', 'height', 'quality')
         }),
         ('Options', {
             'classes': ('collapse',),
             'fields': ('upscale', 'crop', 'pre_cache', 'increment_count')
         }),
     )
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 class UserAdmin(UserAdmin):
     list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff',)
