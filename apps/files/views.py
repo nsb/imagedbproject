@@ -62,7 +62,7 @@ def filter(request, page=1):
                            paginate_by=getattr(settings, 'PAGINATE_BY', 25),
                            extra_context={'form':form, 'query':request.GET.urlencode()})
     else:
-        return HttpResonseBadRequest(form.errors)
+        return HttpResponseBadRequest(form.errors)
 
 @login_required
 @require_http_methods(["GET"])
