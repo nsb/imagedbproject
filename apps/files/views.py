@@ -61,7 +61,7 @@ def filter(request, page=1):
                            template_object_name='image',
                            page=page,
                            paginate_by=getattr(settings, 'PAGINATE_BY', 25),
-                           extra_context={'form':form})
+                           extra_context={'form':form, 'query':request.GET.urlencode()})
     else:
         return HttpResonseBadRequest(form.errors)
 
