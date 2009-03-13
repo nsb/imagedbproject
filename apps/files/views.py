@@ -15,13 +15,13 @@ from django.conf import settings
 from photologue.models import PhotoSizeCache
 
 from models import Image
-from forms import ImageFilterForm
+from forms import imagefilterform_factory
 
 @login_required
 @require_http_methods(["GET"])
 def list(request, page=1):
 
-    form = ImageFilterForm()
+    form = imagefilterform_factory(request)()
 
     return object_list(request,
                        queryset=Image.objects.filter(is_public=True),
@@ -34,7 +34,7 @@ def list(request, page=1):
 @login_required
 @require_http_methods(["GET"])
 def filter(request, page=1):
-    form = ImageFilterForm(request.GET)
+    form = imagefilterform_factory(request)(request.GET)
     if form.is_valid():
 
         lookup_args={}
