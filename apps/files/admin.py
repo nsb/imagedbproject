@@ -4,7 +4,6 @@ from django.contrib import admin
 from django.contrib.auth.models import User, Group
 from django.contrib.sites.models import Site
 from django.contrib.auth.admin import UserAdmin
-from django.core.exceptions import PermissionDenied
 
 from photologue.models import *
 
