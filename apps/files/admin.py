@@ -11,16 +11,15 @@ from models import Image
 
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_taken', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
-    list_filter = ['date_added', 'is_public', 'locations', 'installations', 'people', 'hse', 'events', 'graphics', 'communications',]
+    list_filter = ['date_added', 'is_public', 'locations', 'fields', 'installations', 'people', 'hse', 'events', 'graphics', 'communications', 'archives',]
     list_per_page = 10
     save_on_top = True
-    #filter_horizontal = ('locations', 'installations', 'people', 'hse', 'events', 'graphics', 'communications',)
     fieldsets = (
         (None, {
             'fields': ('image',)
         }),
         ('Categories', {
-            'fields': ('locations', 'installations', 'people', 'hse', 'events', 'graphics', 'communications',)
+            'fields': ('locations', 'fields', 'installations', 'people', 'hse', 'events', 'graphics', 'communications', 'archives',)
         }),
         ('Options', {
             'fields': ('is_public',)
