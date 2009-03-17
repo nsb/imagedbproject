@@ -26,44 +26,5 @@
 </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
 
-<!--[if IE]>
-<style type="text/css">
-
-.selectContainer {
-    /* may need to adjust slightly for IE6, I don't have it here to test. */
-    width: 7em;  
-    overflow: hidden;
-}
-select.testNormal { 
-    width: 6em; 
-}
-select.testExpand { 
-    width: 16em; 
-}
-</style>
-
-<script>
-  $(function() {
-
-    $("select")
-
-      .mousedown(function(){
-        $(this).addClass('testExpand');
-        $(this).removeClass('testNormal');
-      })
-
-      .change(function(){
-        $(this).addClass('testNormal');
-        $(this).removeClass('testExpand');
-      })
-
-      .blur(function(){
-        $(this).addClass('testNormal');
-        $(this).removeClass('testExpand');
-      })
-  });
-</script>
-<![endif]-->
-
 </body>
 </html>
