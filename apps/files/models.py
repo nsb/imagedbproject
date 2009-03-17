@@ -2,6 +2,8 @@
 
 import os
 from datetime import datetime
+import subprocess
+import tempfile
 
 try:
     import Image as PILImage
@@ -16,6 +18,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
+from django.conf import settings
 
 from photologue.models import ImageModel, PhotoSizeCache
 
@@ -101,10 +104,29 @@ class Image(ImageModel):
             return
         if not os.path.isdir(self.cache_path()):
             os.makedirs(self.cache_path())
+
+        should_convert = lambda s : s.name not in ('small', 'medium', 'large')
+
+        # some images may have CMYK color encoding, so convert to RGB
+        # we use tifficc from littlecms utils because pil color space conversion
+        # does not give pretty results
+
+        retcode = -1
+        if should_convert(photosize):
+            input_profile = '%s/iccprofiles/CoatedFOGRA27.icc' % settings.PROJECT_ROOT
+            output_profile = '%s/iccprofiles/AdobeRGB1998.icc' % settings.PROJECT_ROOT
+            outputfile = tempfile.NamedTemporaryFile()
+
+            # THIS MAY BE UNSAFE !!! better to use shell = False
+            retcode = subprocess.call(
+                'tifficc -i "%s" -o "%s" "%s" "%s"' % \
+                    (input_profile, output_profile, self.image.path, outputfile.name) , shell=True)
+
         try:
-            im = PILImage.open(self.image.path)
+            im = PILImage.open(outputfile.name if retcode == 0 else self.image.path)
         except IOError:
             return
+
         # Apply effect if found
         if self.effect is not None:
             im = self.effect.pre_process(im)
@@ -128,21 +150,16 @@ class Image(ImageModel):
         # Save file
         im_filename = getattr(self, "get_%s_filename" % photosize.name)()
         try:
-            if im.format != 'JPEG':
-                try:
-                    if photosize.name not in ('small', 'medium', 'large'):
-                        # some images may have CMYK color encoding, so convert to RGB
-                        im = im.convert("RGB")
-                        base, ext = os.path.splitext(im_filename)
-                        im_filename = ''.join([base, '.jpg'])
-                        im.save(im_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
-                    else:
-                        im.save(im_filename)
-                    return
-                except KeyError:
-                    pass
-            else:
+            if im.format != 'JPEG' and should_convert(photosize):
+
+                # save as jpeg
+                base, ext = os.path.splitext(im_filename)
+                im_filename = ''.join([base, '.jpg'])
+
                 im.save(im_filename, 'JPEG', quality=int(photosize.quality), optimize=True)
+                return
+            else:
+                im.save(im_filename)
 
         except IOError, e:
             if os.path.isfile(im_filename):
