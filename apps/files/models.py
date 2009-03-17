@@ -100,7 +100,6 @@ class Image(ImageModel):
         return ''.join([base, '_', size, ext])
 
     def create_size(self, photosize):
-        print photosize
         if self.size_exists(photosize):
             return
         if not os.path.isdir(self.cache_path()):
