@@ -76,12 +76,12 @@ form td {
 select {
   margin: 0;
   padding: 0;
-  width: 6em;
+/*   width: 6em; */
   background: white;
 }
 select option {
   border-top: white solid 2px;
-  background: #38c2d4;
+/*   background: #38c2d4; */
 }
 input[type="submit"] {
   color: white;

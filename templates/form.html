@@ -1,25 +1,30 @@
 {% load i18n %}
 
 <table>
-    <tr>
-{% for field in form %}
+{% for fieldset in form.fieldsets %}
+  <tr>
+  {% for field in fieldset %}
   {% if not field.is_hidden %}
-      <td><label>{{ field.label }}</label></td>
+    <td><label>{{ field.label }}</label> <span class="small quiet">{{ field.help_text }}</span></td>
   {% endif %}
-{% endfor %}
-      <td></td>
-    </tr>
-    <tr>
-{% for field in form %}
-  {% if not field.is_hidden %}
-    <td><div class="selectContainer">{{ field }}</div></td>
-  {% endif %}
-{% endfor %}
-    <td><input type="submit" value="{% trans "Search" %}"></td>
+  {% endfor %}
+  <td></td>
   </tr>
+  <tr>
+  {% for field in fieldset %}
+  {% if not field.is_hidden %}
+  <td>{{ field }}</td>
+  {% endif %}
+  {% endfor %}
+  {% if forloop.first %}
+  <td><input type="submit" value="Search"> {% if reset_url %}<a href="{{ reset_url }}">reset</a>{% endif %}</td>
+  {% endif %}
+  </tr>
+{% endfor %}
 </table>
+
 {% for field in form %}
   {% if field.is_hidden %}
-    <div>{{ field }}</div>
+    {{ field }}
   {% endif %}
 {% endfor %}

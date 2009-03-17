@@ -1,8 +1,19 @@
 # Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
 
 from django import forms
+from django.forms.forms import BoundField
 
 from categories.models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive
+
+class Fieldset(object):
+    def __init__(self, form, name=None, fields=(), description=None):
+        self.form = form
+        self.name, self.fields = name, fields
+        self.description = description
+
+    def __iter__(self):
+        for name in self.fields:
+            yield BoundField(self.form, self.form.fields[name], name)
 
 def imagefilterform_factory(request):
 
@@ -16,8 +27,13 @@ def imagefilterform_factory(request):
         graphics = forms.ChoiceField(label='Graphics', required=False)
 
         def __init__(self, *args, **kwargs):
+            self.fieldsets = []
             super(ImageFilterForm, self).__init__(*args, **kwargs)
 
+            self.fieldsets.append(
+                Fieldset(self, name='', fields=('locations', 'fields', 'installations', 'people',)))
+            self.fieldsets.append(Fieldset(self, name='', fields=('hse', 'events', 'graphics',)))
+        
             _choices = lambda x: [('','')] + ([('all','All')] if x.count() else []) + \
                 [(item.name, '%s (%d)' % (item.name, item.image_set.count())) for item in x]
 
