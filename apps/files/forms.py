@@ -29,10 +29,6 @@ def imagefilterform_factory(request):
         def __init__(self, *args, **kwargs):
             self.fieldsets = []
             super(ImageFilterForm, self).__init__(*args, **kwargs)
-
-            self.fieldsets.append(
-                Fieldset(self, name='', fields=('locations', 'fields', 'installations', 'people',)))
-            self.fieldsets.append(Fieldset(self, name='', fields=('hse', 'events', 'graphics',)))
         
             _choices = lambda x: [('','')] + ([('all','All')] if x.count() else []) + \
                 [(item.name, '%s (%d)' % (item.name, item.image_set.count())) for item in x]
@@ -53,5 +49,10 @@ def imagefilterform_factory(request):
 
                 self.fields['communications'].choices = _choices(Communications.objects.all())
                 self.fields['archives'].choices = _choices(Archive.objects.all())
+
+            self.fieldsets.append(
+                Fieldset(self, name='', fields=('locations', 'fields', 'installations', 'people',)))
+            self.fieldsets.append(Fieldset(self, name='', fields=('hse', 'events', 'graphics', 'communications', 'archives',) if request.user.is_staff else ('hse', 'events', 'graphics',)))
+
 
     return ImageFilterForm
