@@ -79,6 +79,8 @@ class Image(ImageModel):
         blank=True,
         verbose_name=_('archives'))
 
+    dont_convert = ['medium', 'large']
+
     class Meta:
         ordering = ['-date_added']
         get_latest_by = 'date_added'
@@ -94,7 +96,7 @@ class Image(ImageModel):
     def _get_filename_for_size(self, size):
         size = getattr(size, 'name', size)
         base, ext = os.path.splitext(self.image_filename())
-        if not size in ['small', 'medium', 'large']:
+        if not size in self.dont_convert:
             # rename to jpg, to ensure webserver sends correct content type
             ext = '.jpg'
         return ''.join([base, '_', size, ext])
@@ -105,7 +107,7 @@ class Image(ImageModel):
         if not os.path.isdir(self.cache_path()):
             os.makedirs(self.cache_path())
 
-        should_convert = lambda s : s.name not in ('small', 'medium', 'large')
+        should_convert = lambda s : s.name not in self.dont_convert
 
         # some images may have CMYK color encoding, so convert to RGB
         # we use tifficc from littlecms utils because pil color space conversion
