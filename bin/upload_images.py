@@ -23,6 +23,17 @@ category_mapping = {
     'G':'communcations',
     'H':'archives',}
 
+class MockFileObject(object):
+    def read(self):
+        return None
+
+    def close(self):
+        pass
+
+class MockOpener(object):
+    def open(self, *args, **kwargs):
+        return MockFileObject()
+
 def handle_file(opener, dirname, name):
 
     categories = re.findall(r'[A-Z][0-9]{2}',dirname)
@@ -58,6 +69,8 @@ def main():
                       help="password")
     parser.add_option("-l", "--url", dest="url",
                       help="host url")
+    parser.add_option("-f", action="store_true", dest="pretend", default=False,
+                      help="pretend image upload")
 
     (options, args) = parser.parse_args()
 
@@ -65,11 +78,15 @@ def main():
     user = options.user or USER
     password = options.password or PASSWORD
     url = options.url or URL
+    pretend = options.pretend
 
     # init url lib with cookie based auth handler
-    opener = urllib2.build_opener(
-        urllib2.HTTPCookieProcessor(), MultipartPostHandler.MultipartPostHandler)
-    urllib2.install_opener(opener)
+    if pretend:
+        opener = MockOpener()
+    else:
+        opener = urllib2.build_opener(
+            urllib2.HTTPCookieProcessor(), MultipartPostHandler.MultipartPostHandler)
+        urllib2.install_opener(opener)
 
     # do login
     params = urllib.urlencode(dict(username=user, password=password))
