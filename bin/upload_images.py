@@ -23,6 +23,9 @@ category_mapping = {
     'G':'communcations',
     'H':'archives',}
 
+# valid file extensions
+file_ext = ('.tif', '.TIF', '.jpg', '.JPG', '.jpeg', '.JPEG',)
+
 class MockFileObject(object):
     def read(self):
         return None
@@ -36,13 +39,24 @@ class MockOpener(object):
 
 def handle_file(opener, dirname, name):
 
+    # check for valid file extensions
+    base, ext = os.path.splitext(name)
+    if not ext in file_ext:
+        print "Invalid file extension for %s%s" % (base, ext)
+        return
+
+    # find categories
     categories = re.findall(r'[A-Z][0-9]{2}',dirname)
     image = os.path.join(dirname, name)
 
     print 'uploading image %s with categories %s...' % (name, categories),
 
     params = [('is_public', 'on'), ('_save', 'Save'), ("image", open(image, "rb")) ]
-    params += [(category_mapping[category[0]], str(int(category[1:3]))) for category in categories]
+    try:
+        params += [(category_mapping[category[0]], str(int(category[1:3]))) for category in categories]
+    except KeyError:
+        print 'failed'
+        return
     f = opener.open(urlparse.urljoin(URL, ADMIN_PATH), params)
     data = f.read()
     f.close()
