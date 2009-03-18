@@ -66,11 +66,8 @@ def handle_file(opener, dirname, name):
 def visit(arg, dirname, names):
     # handle each file
     for index, name in enumerate(names):
-        if name.startswith('.'):
-            del names[index]
-        else:
-            if os.path.isfile(os.path.join(dirname, name)):
-                handle_file(arg, dirname, name)
+        if os.path.isfile(os.path.join(dirname, name)):
+            handle_file(arg, dirname, name)
 
 def main():
     # options
