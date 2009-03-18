@@ -1,9 +1,11 @@
 body {
   text-align: left;
   min-width: 800px;
+  height: 100%;
 }
 body.nonauth {
-  background-color: #EEEEEE;
+  background: transparent url('/static/img/Ny-forside.jpg') no-repeat;
+  background-position: 0% 0%; 
 }
 .round {
   -moz-border-radius: 5px;
@@ -40,25 +42,8 @@ body.nonauth {
   width: 250px;
   padding: 250px;
 }
-#page {
-  background: white;
-}
 #indented_content {
   padding: 0 20px;
-}
-.nonauth #innerpage {
-  background: url(/static/img/draabe.gif) no-repeat 0% 100%;
-}
-.nonauth #logo {
-  margin-left: 225px;
-  padding-bottom: 10px;
-}
-#blueline {
-  padding: 0;
-  height: 5px;
-  width: 100%;
-  background-color: #012f63;
-  color: #012f63;
 }
 /* FORMS */
 form {
