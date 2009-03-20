@@ -11,6 +11,7 @@ body.nonauth {
 #frame {
   background: white url('/static/img/frontpage.gif') no-repeat;
   margin: auto;
+  margin-top: 10px;
   height: 733px;
   width: 1000px;
 }
