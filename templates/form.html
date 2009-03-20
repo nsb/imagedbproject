@@ -5,7 +5,7 @@
   <tr>
   {% for field in fieldset %}
   {% if not field.is_hidden %}
-    <td><label>{{ field.label }}</label> <span class="small quiet">{{ field.help_text }}</span></td>
+    <td><strong>{{ field.label }}</strong> <span class="small quiet">{{ field.help_text }}</span></td>
   {% endif %}
   {% endfor %}
   <td></td>
