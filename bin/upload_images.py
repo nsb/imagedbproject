@@ -37,13 +37,10 @@ class MockOpener(object):
     def open(self, *args, **kwargs):
         return MockFileObject()
 
-def handle_file(opener, dirname, name):
+# count number of uploads
+count = 0
 
-    # check for valid file extensions
-    base, ext = os.path.splitext(name)
-    if not ext in file_ext:
-        print "Invalid file extension for %s%s" % (base, ext)
-        return
+def handle_file(opener, dirname, name):
 
     # find categories
     categories = re.findall(r'[A-Z][0-9]{2}',dirname)
@@ -68,12 +65,6 @@ def handle_file(opener, dirname, name):
 
     print 'done'    
 
-def visit(arg, dirname, names):
-    # handle each file
-    for index, name in enumerate(names):
-        if os.path.isfile(os.path.join(dirname, name)):
-            handle_file(arg, dirname, name)
-
 def main():
     # options
     parser = OptionParser()
@@ -87,6 +78,8 @@ def main():
                       help="host url")
     parser.add_option("-f", action="store_true", dest="pretend", default=False,
                       help="pretend image upload")
+    parser.add_option("-s", "--skip", dest="skip", type="int",
+                      help="skip x images", default=0)
 
     (options, args) = parser.parse_args()
 
@@ -95,6 +88,7 @@ def main():
     password = options.password or PASSWORD
     url = options.url or URL
     pretend = options.pretend
+    skip = options.skip
 
     # init url lib with cookie based auth handler
     if pretend:
@@ -109,6 +103,22 @@ def main():
     f = opener.open(urlparse.urljoin(url, LOGIN_PATH), params)
     data = f.read()
     f.close()
+
+    def visit(arg, dirname, names):
+        # handle each file
+        global count
+        for index, name in enumerate(names):
+            if os.path.isfile(os.path.join(dirname, name)):
+
+                # check for valid file extensions
+                base, ext = os.path.splitext(name)
+                if ext in file_ext:
+                    if count >= skip:
+                        handle_file(arg, dirname, name)
+                    count += 1
+                else:
+                    print "Invalid file extension for %s%s" % (base, ext)
+                    return
 
     # walk the dir tree
     os.path.walk(path, visit, opener)
