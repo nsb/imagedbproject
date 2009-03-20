@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <div>
-  <a id="logo" href="{% url image-list %}"><img id="logo" src="/static/img/logo.gif"></a>
+  <a href="{% url image-list %}"><img id="logo" src="/static/img/logo.gif"></a>
   <img id="dbtop" src="/static/img/image_datab_top.gif">
   <span id="user_box" class="small quiet">
   {% if user.is_authenticated %}
