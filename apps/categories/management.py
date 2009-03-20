@@ -41,7 +41,6 @@ def create_category_values(app, created_models, verbosity, **kwargs):
     Field.objects.get_or_create(name="Dunga, KZ")
     Field.objects.get_or_create(name="El Kheit et Tessekha, AO")
     Field.objects.get_or_create(name="El Merk, AO")
-    Field.objects.get_or_create(name="ENSCO 101. DK")
     Field.objects.get_or_create(name="Gorm, DK")
     Field.objects.get_or_create(name="Gryphon, UK")
     Field.objects.get_or_create(name="Halfdan, DK")
@@ -62,6 +61,7 @@ def create_category_values(app, created_models, verbosity, **kwargs):
     Field.objects.get_or_create(name="Tullich, UK")
     Field.objects.get_or_create(name="Tyra, UK")
     Field.objects.get_or_create(name="Valdemar, DK")
+    Field.objects.get_or_create(name="ENSCO 101. DK")
 
     # installations & vessels
     Installation.objects.get_or_create(name="Affleck, UK")
@@ -72,7 +72,6 @@ def create_category_values(app, created_models, verbosity, **kwargs):
     Installation.objects.get_or_create(name="Dunga, KZ")
     Installation.objects.get_or_create(name="El Kheit et Tessekha, AO")
     Installation.objects.get_or_create(name="El Merk, AO")
-    Installation.objects.get_or_create(name="ENSCO 101. DK")
     Installation.objects.get_or_create(name="Gorm, DK")
     Installation.objects.get_or_create(name="Gryphon, UK")
     Installation.objects.get_or_create(name="Halfdan, DK")
@@ -95,6 +94,7 @@ def create_category_values(app, created_models, verbosity, **kwargs):
     Installation.objects.get_or_create(name="Valdemar, DK")
     Installation.objects.get_or_create(name="Unique Installations")
     Installation.objects.get_or_create(name="Vessels")
+    Installation.objects.get_or_create(name="ENSCO 101. DK")
 
     # people
     People.objects.get_or_create(name="Office")
