@@ -69,10 +69,6 @@ select {
   padding: 0;
   background: white;
 }
-select option {
-  border-top: #38c2d4 solid 2px;
-  font-family: "Verdana";
-}
 input[type="submit"] {
   color: white;
   background: #012f63;
