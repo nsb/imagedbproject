@@ -2,8 +2,8 @@
 
 import os, re
 from optparse import OptionParser
-import urllib, urllib2, urlparse
-import MultipartPostHandler, urllib2
+import urllib, urllib2, urlparse, httplib
+import MultipartPostHandler
 
 PATH = '.'
 USER = 'niels'
@@ -57,9 +57,14 @@ def handle_file(opener, dirname, name):
     except KeyError:
         print 'failed'
         return
-    f = opener.open(urlparse.urljoin(URL, ADMIN_PATH), params)
-    data = f.read()
-    f.close()
+
+    try:
+        f = opener.open(urlparse.urljoin(URL, ADMIN_PATH), params)
+        data = f.read()
+        f.close()
+    except httplib.BadStatusLine:
+        print 'failed'
+        return
 
     print 'done'    
 
