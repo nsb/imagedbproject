@@ -20,4 +20,100 @@
   <img src="{{ image.get_display_url }}" alt="{{ image.title }}">
   {% if image.caption %}<p>{{ image.caption }}</p>{% endif %}
 </div>
+<hr class="space">
+<h4>{% trans "Categories:" %}</h4>
+
+<div>
+{% if image.locations.all %}
+<strong>{% trans "Locations: " %}</strong>
+{% for location in image.locations.all %}
+{{ location }}
+{% endfor %}
+{% endif %}
+</div>
+
+<div>
+{% if image.fields.all %}
+<strong>{% trans "Fields: " %}</strong>
+{% for field in image.fields.all %}
+{{ field }}
+{% endfor %}
+{% endif %}
+</div>
+
+<div>
+{% if image.installations.all %}
+<strong>{% trans "Installation & Vessels: " %}</strong>
+{% for installation in image.installations.all %}
+{{ installation }}
+{% endfor %}
+{% endif %}
+</div>
+
+<div>
+{% if image.people.all %}
+<strong>{% trans "People: " %}</strong>
+{% for people in image.people.all %}
+{{ people }}
+{% endfor %}
+{% endif %}
+</div>
+
+<div>
+{% if image.hse.all %}
+<strong>{% trans "HSE: " %}</strong>
+{% for hse in image.hse.all %}
+{{ hse }}
+{% endfor %}
+{% endif %}
+</div>
+
+<div>
+{% if image.people.all %}
+<strong>{% trans "People: " %}</strong>
+{% for people in image.people.all %}
+{{ people }}
+{% endfor %}
+{% endif %}
+</div>
+
+<div>
+{% if image.events.all %}
+<strong>{% trans "Events: " %}</strong>
+{% for event in image.events.all %}
+{{ event }}
+{% endfor %}
+{% endif %}
+</div>
+
+<div>
+{% if image.graphics.all %}
+<strong>{% trans "Graphics: " %}</strong>
+{% for graphics in image.graphics.all %}
+{{ graphics }}
+{% endfor %}
+{% endif %}
+</div>
+
+<div>
+{% if image.communications.all %}
+<strong>{% trans "Communications use only: " %}</strong>
+{% for communication in image.communications.all %}
+{{ communication }}
+{% endfor %}
+{% endif %}
+</div>
+
+<div>
+{% if image.archives.all %}
+<strong>{% trans "Archives: " %}</strong>
+{% for archive in image.archives.all %}
+{{ archive }}
+{% endfor %}
+{% endif %}
+</div>
+<hr class="space">
+
+
+
 {% endblock indented_content %}
