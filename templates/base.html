@@ -11,7 +11,7 @@
 </head>
 <body class="{% block section %}{% endblock section %}">
 <div id="page">
-  {% block page %}{% endblock page %}
+  {% block page %}
   <div id="hd">
   {% block head %}{% endblock head %}
   </div>
@@ -21,6 +21,7 @@
   <div id="ft">
   {% include "footer.html" %}
   </div>
+  {% endblock page %}
 </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
 

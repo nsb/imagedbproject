@@ -1,15 +1,18 @@
 body {
   text-align: left;
   min-width: 800px;
-  height: 100%;
 }
 body.nonauth {
-  background: transparent url('/static/img/Ny-forside.jpg') no-repeat;
-  background-position: 0% 0%; 
 }
 .round {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px
+}
+#frame {
+  background: white url('/static/img/frontpage.gif') no-repeat;
+  margin: auto;
+  height: 733px;
+  width: 1000px;
 }
 #hd {
   height: 63px;
@@ -40,7 +43,7 @@ body.nonauth {
 .centerbox {
   margin: auto;
   width: 250px;
-  padding: 250px;
+  padding-top: 250px;
 }
 #indented_content {
   padding: 0 20px;
