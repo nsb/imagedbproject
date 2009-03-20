@@ -15,7 +15,7 @@
 
 {% if is_paginated %}
 <span id="page_controls">
-    {% if has_previous %}<a href="{% url image-filter previous %}{% if query %}?{{ query }}{% endif %}"><img src="/static/img/pil_tilbage.gif"></a> {% endif %} {% if has_next %} <a href="{% url image-filter next %}{% if query %}?{{ query }}{% endif %}"><img src="/static/img/pil_frem.gif"></a>{% endif %}
+    {% if has_previous %}<a href="{% url image-filter previous %}{% if query %}?{{ query }}{% endif %}"><img src="/static/img/pil_tilbage.gif" alt="{% trans "Previous" %}"></a> {% endif %} {% if has_next %} <a href="{% url image-filter next %}{% if query %}?{{ query }}{% endif %}"><img src="/static/img/pil_frem.gif" alt="{% trans "Next" %}"></a>{% endif %}
 </span>
 {% endif %}
 
