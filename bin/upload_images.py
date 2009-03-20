@@ -110,15 +110,21 @@ def main():
         for index, name in enumerate(names):
             if os.path.isfile(os.path.join(dirname, name)):
 
+                if name.startswith('.'):
+                    print 'dropping %s...' % name
+                    continue
+
                 # check for valid file extensions
                 base, ext = os.path.splitext(name)
-                if ext in file_ext:
-                    if count >= skip:
-                        handle_file(arg, dirname, name)
-                    count += 1
-                else:
+                if ext not in file_ext:
                     print "Invalid file extension for %s%s" % (base, ext)
-                    return
+                    continue
+
+                if count >= skip:
+                    handle_file(arg, dirname, name)
+                else:
+                    print 'skipping %s...' % name
+                count += 1
 
     # walk the dir tree
     os.path.walk(path, visit, opener)
