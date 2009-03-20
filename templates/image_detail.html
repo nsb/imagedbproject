@@ -8,12 +8,12 @@
 <a href="{% url image-list %}">{% trans "Home" %}</a> &rsaquo; <strong>{{ image.title }}</strong>
 </div>
 <ul id="photo_size" class="small quiet">
-<li><strong>{% trans "download:" %}</strong></li>
-<li><a href="{% url image-download image.id "small" %}">[small]</a></li>
-<li><a href="{% url image-download image.id "medium" %}">[medium]</a></li>
-<li><a href="{% url image-download image.id "large" %}">[large]</a></li>
+<li><strong><img src="/static/img/download.gif"></strong></li>
+<li><a href="{% url image-download image.id "small" %}"><img src="/static/img/small.gif"></a></li>
+<li><a href="{% url image-download image.id "medium" %}"><img src="/static/img/medium.gif"></a></li>
+<li><a href="{% url image-download image.id "large" %}"><img src="/static/img/large.gif"></a></li>
 <li>
-<a href="{% url image-download image.id "original" %}">[{% trans "original" %} {{ image.get_original_size }}]</a>
+<a href="{% url image-download image.id "original" %}"><img src="/static/img/original.gif"></a>
 </li>
 </ul>
 <div>
