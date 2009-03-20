@@ -1,8 +1,8 @@
 {% load i18n %}
 
 <div>
-  <a href="{% url image-list %}"><img id="logo" src="/static/img/logo.gif"></a>
-  <img id="dbtop" src="/static/img/image_datab_top.gif">
+  <a href="{% url image-list %}"><img id="logo" src="/static/img/logo.gif" alt="{% trans "Logo" %}"></a>
+  <img id="dbtop" src="/static/img/image_datab_top.gif" alt="">
   <span id="user_box" class="small quiet">
   {% if user.is_authenticated %}
     {% trans "signed in as" %} <strong>{{ user.username }}</strong> | 
