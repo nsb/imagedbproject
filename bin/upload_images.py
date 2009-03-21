@@ -59,8 +59,8 @@ def handle_file(opener, dirname, name):
         f = opener.open(urlparse.urljoin(URL, ADMIN_PATH), params)
         data = f.read()
         f.close()
-    except httplib.BadStatusLine:
-        print 'failed'
+    except Exception, e:
+        print 'failed %s' % e
         return
 
     print 'done'    
