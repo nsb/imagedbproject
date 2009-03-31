@@ -22,7 +22,7 @@ from django.conf import settings
 
 from photologue.models import ImageModel, PhotoSizeCache
 
-from categories.models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive
+from categories.models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive, Year
 from rounded_corners import round_image
 
 class Image(ImageModel):
@@ -78,6 +78,11 @@ class Image(ImageModel):
         null=True,
         blank=True,
         verbose_name=_('archives'))
+    years = models.ManyToManyField(
+        Year,
+        null=True,
+        blank=True,
+        verbose_name=_('years'))
 
     dont_convert = ['medium', 'large']
 

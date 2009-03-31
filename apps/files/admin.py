@@ -19,7 +19,7 @@ class ImageAdmin(admin.ModelAdmin):
             'fields': ('image',)
         }),
         ('Categories', {
-            'fields': ('locations', 'fields', 'installations', 'people', 'hse', 'events', 'graphics', 'communications', 'archives',)
+            'fields': ('locations', 'fields', 'installations', 'people', 'hse', 'events', 'graphics', 'communications', 'archives', 'years',)
         }),
         ('Options', {
             'fields': ('is_public',)

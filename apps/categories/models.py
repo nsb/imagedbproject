@@ -66,3 +66,9 @@ class Archive(Category):
         verbose_name = _("Archive")
         verbose_name_plural = _("Archives")
         ordering = ['name']
+
+class Year(Category):
+    class Meta:
+        verbose_name = _("Year")
+        verbose_name_plural = _("Years")
+        ordering = ['name']
