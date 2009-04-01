@@ -26,90 +26,77 @@
 {% if image.locations.all %}
 <div>
 <strong>{% trans "Locations: " %}</strong>
-{% for location in image.locations.all %}
-{{ location }}
-{% endfor %}
+{{ image.locations.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.fields.all %}
 <div>
 <strong>{% trans "Fields: " %}</strong>
-{% for field in image.fields.all %}
-{{ field }}
-{% endfor %}
+{{ image.fields.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.installations.all %}
 <div>
 <strong>{% trans "Installation & Vessels: " %}</strong>
-{% for installation in image.installations.all %}
-{{ installation }}
-{% endfor %}
+{{ image.installations.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.people.all %}
 <div>
 <strong>{% trans "People: " %}</strong>
-{% for people in image.people.all %}
-{{ people }}
-{% endfor %}
+{{ image.people.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.hse.all %}
 <div>
 <strong>{% trans "HSE: " %}</strong>
-{% for hse in image.hse.all %}
-{{ hse }}
-{% endfor %}
+{{ image.hse.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.people.all %}
 <div>
 <strong>{% trans "People: " %}</strong>
-{% for people in image.people.all %}
-{{ people }}
-{% endfor %}
+{{ image.people.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.events.all %}
 <div>
 <strong>{% trans "Events: " %}</strong>
-{% for event in image.events.all %}
-{{ event }}
-{% endfor %}
+{{ image.events.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.graphics.all %}
 <div>
 <strong>{% trans "Graphics: " %}</strong>
-{% for graphics in image.graphics.all %}
-{{ graphics }}
-{% endfor %}
+{{ image.graphics.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.communications.all %}
 <div>
 <strong>{% trans "Communications use only: " %}</strong>
-{% for communication in image.communications.all %}
-{{ communication }}
-{% endfor %}
+{{ image.communications.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.archives.all %}
 <div>
 <strong>{% trans "Archives: " %}</strong>
-{% for archive in image.archives.all %}
-{{ archive }}
-{% endfor %}
+{{ image.archives.all|join:"; " }}
+</div>
+{% endif %}
+
+{% if image.years.all %}
+<div>
+<strong>{% trans "Years: " %}</strong>
+{{ image.years.all|join:"; " }}
 </div>
 {% endif %}
 
