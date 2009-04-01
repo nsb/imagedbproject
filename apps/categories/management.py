@@ -5,7 +5,7 @@
 
 from django.db.models import signals
 
-from models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive
+from models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive, Year
 import models
 
 def create_category_values(app, created_models, verbosity, **kwargs):
@@ -133,5 +133,31 @@ def create_category_values(app, created_models, verbosity, **kwargs):
     # archive
     Archive.objects.get_or_create(id=2, name="Colombia")
     Archive.objects.get_or_create(id=15, name="Suriname")
+
+    # year
+    Year.objects.get_or_create(name="1985")
+    Year.objects.get_or_create(name="1986")
+    Year.objects.get_or_create(name="1987")
+    Year.objects.get_or_create(name="1988")
+    Year.objects.get_or_create(name="1989")
+    Year.objects.get_or_create(name="1990")
+    Year.objects.get_or_create(name="1991")
+    Year.objects.get_or_create(name="1992")
+    Year.objects.get_or_create(name="1993")
+    Year.objects.get_or_create(name="1994")
+    Year.objects.get_or_create(name="1995")
+    Year.objects.get_or_create(name="1996")
+    Year.objects.get_or_create(name="1997")
+    Year.objects.get_or_create(name="1998")
+    Year.objects.get_or_create(name="1999")
+    Year.objects.get_or_create(name="2001")
+    Year.objects.get_or_create(name="2002")
+    Year.objects.get_or_create(name="2003")
+    Year.objects.get_or_create(name="2004")
+    Year.objects.get_or_create(name="2005")
+    Year.objects.get_or_create(name="2006")
+    Year.objects.get_or_create(name="2007")
+    Year.objects.get_or_create(name="2008")
+    Year.objects.get_or_create(name="2009")
 
 signals.post_syncdb.connect(create_category_values, sender=models)

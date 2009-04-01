@@ -7,13 +7,16 @@ from django.contrib.auth.admin import UserAdmin
 
 from photologue.models import *
 
+from categories.models import Year
 from models import Image
 
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_taken', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
-    list_filter = ['date_added', 'is_public', 'locations', 'fields', 'installations', 'people', 'hse', 'events', 'graphics', 'communications', 'archives',]
+    list_filter = ['date_added', 'is_public', 'locations', 'fields', 'installations', 'people', 'hse', 'events', 'graphics', 'communications', 'archives', 'years']
     list_per_page = 10
     save_on_top = True
+    #actions = [set_year_factory(year) for year in Year.objects.all()]
+    actions = ['set_1985', 'set_1986', 'set_1987', 'set_1988', 'set_1989', 'set_1990', 'set_1991', 'set_1992', 'set_1993', 'set_1994', 'set_1995', 'set_1996', 'set_1997', 'set_1998', 'set_1999', 'set_2000', 'set_2001', 'set_2002', 'set_2003', 'set_2004', 'set_2005', 'set_2006', 'set_2007', 'set_2008', 'set_2009',]
     fieldsets = (
         (None, {
             'fields': ('image',)
@@ -25,6 +28,156 @@ class ImageAdmin(admin.ModelAdmin):
             'fields': ('is_public',)
         }),
     )
+
+    def set_1985(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='1985'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_1985.short_description = '1985'
+
+    def set_1986(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='1986'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_1986.short_description = '1986'
+
+    def set_1987(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='1987'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_1987.short_description = '1987'
+
+    def set_1988(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='1988'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_1988.short_description = '1988'
+
+    def set_1989(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='1989'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_1989.short_description = '1989'
+
+    def set_1990(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='1990'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_1990.short_description = '1990'
+
+    def set_1991(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='1991'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_1991.short_description = '1991'
+
+    def set_1992(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='1992'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_1992.short_description = '1992'
+
+    def set_1993(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='1993'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_1993.short_description = '1993'
+
+    def set_1994(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='1994'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_1994.short_description = '1994'
+
+    def set_1995(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='1995'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_1995.short_description = '1995'
+
+    def set_1996(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='1996'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_1996.short_description = '1996'
+
+    def set_1997(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='1997'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_1997.short_description = '1997'
+
+    def set_1998(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='1998'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_1998.short_description = '1998'
+
+    def set_1999(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='1999'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_1999.short_description = '1999'
+
+    def set_2000(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='2000'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_2000.short_description = '2000'
+
+    def set_2001(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='2001'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_2001.short_description = '2001'
+
+    def set_2002(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='2002'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_2002.short_description = '2002'
+
+    def set_2003(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='2003'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_2003.short_description = '2003'
+
+    def set_2004(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='2003'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_2004.short_description = '2004'
+
+    def set_2005(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='2005'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_2005.short_description = '2005'
+
+    def set_2006(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='2006'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_2006.short_description = '2006'
+
+    def set_2007(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='2007'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_2007.short_description = '2007'
+
+    def set_2008(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='2008'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_2008.short_description = '2008'
+
+    def set_2009(self, request, queryset):
+        for im in queryset:
+            im.years.add(Year.objects.get(name='2009'))
+        self.message_user(request, "Succesfully added year to %s images." % queryset.count())
+    set_2009.short_description = '2009'
 
     def save_model(self, request, obj, form, change):
         """
