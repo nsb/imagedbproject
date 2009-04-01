@@ -23,7 +23,7 @@ def list(request, page=1):
     form = imagefilterform_factory(request)()
 
     return object_list(request,
-                       queryset=Image.objects.filter(is_public=True),
+                       queryset=Image.objects.select_related().filter(is_public=True),
                        template_name = 'image_list.html',
                        template_object_name='image',
                        page=page,
