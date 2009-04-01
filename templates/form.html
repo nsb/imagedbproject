@@ -16,10 +16,7 @@
   <td>{{ field }}</td>
   {% endif %}
   {% endfor %}
-  {% if forloop.first %}
-  <td><input type="submit" value="Search"> {% if reset_url %}<a href="{{ reset_url }}">reset</a>{% endif %}</td>
-  {% endif %}
-  </tr>
+</tr>
 {% endfor %}
 </table>
 

@@ -8,8 +8,8 @@ import MultipartPostHandler
 PATH = '.'
 USER = 'niels'
 PASSWORD = 'niels'
-#URL = 'http://localhost:8000/'
-URL = 'http://imagedb.ciboe.dk/'
+URL = 'http://localhost:8000/'
+#URL = 'http://imagedb.ciboe.dk/'
 ADMIN_PATH = '/admin/files/image/add/'
 LOGIN_PATH = '/login/'
 

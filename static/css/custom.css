@@ -51,6 +51,9 @@ body.nonauth {
 #indented_content {
   padding: 0 20px;
 }
+#image_list {
+  margin: 10px 0;
+}
 /* FORMS */
 form {
   padding: 4px 0 4px 0;
@@ -72,4 +75,5 @@ select {
 input[type="submit"] {
   color: white;
   background: #012f63;
+  float: right;
 }
