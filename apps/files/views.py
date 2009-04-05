@@ -28,7 +28,7 @@ def list(request, page=1):
     eps_list = EPS.objects.select_related().all()
 
     return render_to_response(
-        'image_list.html',
+        'list.html',
         RequestContext(request,
             {'image_form':image_form,
              'image_list':image_list,
@@ -73,7 +73,7 @@ def images(request, page=1):
                            template_object_name='image',
                            page=page,
                            paginate_by=getattr(settings, 'PAGINATE_BY', 25),
-                           extra_context={'image_form':form, 'query':request.GET.urlencode()})
+                           extra_context={'form':form, 'query':request.GET.urlencode()})
     else:
         return HttpResponseBadRequest(form.errors)
 
@@ -119,4 +119,33 @@ def send_file(request, image_id, size):
 
 
 def eps(request, page=1):
-    pass
+    form = EPSFilterForm(request.GET)
+    if form.is_valid():
+
+        lookup_args={}
+        qs = EPS.objects.all()
+        for (key, value) in form.cleaned_data.items():
+            if value:
+                if value == 'all':
+                    pass
+                    # ugly hack to get content type, should be fixed
+                    model = getattr(EPS.objects.get(pk=1), key).model
+
+                    q_object = Q()
+                    for value in model.objects.values('name'):
+                        q_object = q_object | Q(**{'%s__name' % key: value['name']})
+                    qs = qs.filter(q_object).distinct()
+                else:
+                    lookup_args.update({'%s__name' % key: value})
+
+        qs = qs.filter(**lookup_args)
+
+        return object_list(request,
+                           queryset=qs,
+                           template_name = 'eps_list.html',
+                           template_object_name='eps',
+                           page=page,
+                           paginate_by=getattr(settings, 'PAGINATE_BY', 25),
+                           extra_context={'form':form, 'query':request.GET.urlencode()})
+    else:
+        return HttpResponseBadRequest(form.errors)

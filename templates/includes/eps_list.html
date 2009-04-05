@@ -1,0 +1,18 @@
+{% load i18n %}
+
+<form class="round" method="get" action="{% url eps 1 %}">
+{% include "form.html" %}
+
+{% if eps_list %}
+<div id="eps_list">
+{% for eps in eps_list %}
+  Hejsa
+{% endfor %}
+</div>
+
+{% else %}
+{% trans "No graphics found." %}
+{% endif %}
+
+<div><input type="submit" value="Search"> {% if reset_url %}<a href="{{ reset_url }}">reset</a>{% endif %}</div>
+</form>
