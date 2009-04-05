@@ -211,3 +211,22 @@ class Image(ImageModel):
         years = ' '.join(['%s;' % year.name for year in self.years.all()])
 
         return ' '.join([locations, fields, installations, people, hse, events, graphics, communications, archives, years])
+
+class EPS(models.Model):
+    eps = models.FileField(upload_to='eps')
+    locations = models.ManyToManyField(
+        Location,
+        null=True,
+        blank=True,
+        verbose_name=_('Locations'))
+    fields = models.ManyToManyField(
+        Field,
+        null=True,
+        blank=True,
+        verbose_name=_('Fields'))
+
+    class Meta:
+        #ordering = ['-date_added']
+        #get_latest_by = 'date_added'
+        verbose_name = _("EPS")
+        verbose_name_plural = _("EPS")

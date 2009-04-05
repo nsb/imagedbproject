@@ -7,32 +7,45 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.core.servers.basehttp import FileWrapper
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render_to_response
 from django.db.models import Q
 from django.conf import settings
+from django.template import RequestContext
 
 from photologue.models import PhotoSizeCache
 
-from models import Image
-from forms import imagefilterform_factory
+from models import Image, EPS
+from forms import imagefilterform_factory, EPSFilterForm
 
 @login_required
 @require_http_methods(["GET"])
 def list(request, page=1):
 
-    form = imagefilterform_factory(request)()
+    image_form = imagefilterform_factory(request)()
+    image_list = Image.objects.select_related().filter(is_public=True)
 
-    return object_list(request,
-                       queryset=Image.objects.select_related().filter(is_public=True),
-                       template_name = 'image_list.html',
-                       template_object_name='image',
-                       page=page,
-                       paginate_by=getattr(settings, 'PAGINATE_BY', 25),
-                       extra_context={'form':form})
+    eps_form = EPSFilterForm()
+    eps_list = EPS.objects.select_related().all()
+
+    return render_to_response(
+        'image_list.html',
+        RequestContext(request,
+            {'image_form':image_form,
+             'image_list':image_list,
+             'eps_form':eps_form,
+             'eps_list':eps_list}))
+
+    #return object_list(request,
+                       #queryset=Image.objects.select_related().filter(is_public=True),
+                       #template_name = 'image_list.html',
+                       #template_object_name='image',
+                       #page=page,
+                       #paginate_by=getattr(settings, 'PAGINATE_BY', 25),
+                       #extra_context={'image_form':image_form})
 
 @login_required
 @require_http_methods(["GET"])
-def filter(request, page=1):
+def images(request, page=1):
     form = imagefilterform_factory(request)(request.GET)
     if form.is_valid():
 
@@ -60,13 +73,13 @@ def filter(request, page=1):
                            template_object_name='image',
                            page=page,
                            paginate_by=getattr(settings, 'PAGINATE_BY', 25),
-                           extra_context={'form':form, 'query':request.GET.urlencode()})
+                           extra_context={'image_form':form, 'query':request.GET.urlencode()})
     else:
         return HttpResponseBadRequest(form.errors)
 
 @login_required
 @require_http_methods(["GET"])
-def detail(request, image_id):
+def image_detail(request, image_id):
     return object_detail(request,
                          queryset=Image.objects.filter(is_public=True),
                          template_name = 'image_detail.html',
@@ -103,3 +116,7 @@ def send_file(request, image_id, size):
     response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename)
     return response
 
+
+
+def eps(request, page=1):
+    pass

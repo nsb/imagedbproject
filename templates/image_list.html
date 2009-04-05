@@ -4,8 +4,19 @@
 {% load humanize %}
 
 {% block indented_content %}
-<form class="round" method="get" action="{% url image-filter 1 %}">
+
+<div id="tabs">
+
+<ul>
+<li><a href="#photos">Photos</a></li>
+<li><a href="#graphics">Graphics</a></li>
+</ul>
+
+<div id="photos">
+<form class="round" method="get" action="{% url images 1 %}">
+{% with image_form as form %}
 {% include "form.html" %}
+{% endwith %}
 
 {% if image_list %}
 <div id="image_list">
@@ -16,7 +27,7 @@
 
 {% if is_paginated %}
 <span id="page_controls">
-    {% if has_previous %}<a href="{% url image-filter previous %}{% if query %}?{{ query }}{% endif %}"><img src="/static/img/pil_tilbage.gif" alt="{% trans "Previous" %}"></a> {% endif %} {% if has_next %} <a href="{% url image-filter next %}{% if query %}?{{ query }}{% endif %}"><img src="/static/img/pil_frem.gif" alt="{% trans "Next" %}"></a>{% endif %}
+    {% if has_previous %}<a href="{% url images previous %}{% if query %}?{{ query }}{% endif %}"><img src="/static/img/pil_tilbage.gif" alt="{% trans "Previous" %}"></a> {% endif %} {% if has_next %} <a href="{% url images next %}{% if query %}?{{ query }}{% endif %}"><img src="/static/img/pil_frem.gif" alt="{% trans "Next" %}"></a>{% endif %}
 </span>
 {% endif %}
 
@@ -26,5 +37,31 @@
 
 <div><input type="submit" value="Search"> {% if reset_url %}<a href="{{ reset_url }}">reset</a>{% endif %}</div>
 </form>
+</div>
+
+<div id="graphics">
+
+<form class="round" method="get" action="{% url eps 1 %}">
+{% with eps_form as form %}
+{% include "form.html" %}
+{% endwith %}
+
+{% if eps_list %}
+<div id="eps_list">
+{% for eps in eps_list %}
+  Hejsa
+{% endfor %}
+</div>
+
+{% else %}
+{% trans "No graphics found." %}
+{% endif %}
+
+<div><input type="submit" value="Search"> {% if reset_url %}<a href="{{ reset_url }}">reset</a>{% endif %}</div>
+</form>
+
+</div>
+
+</div>
 
 {% endblock indented_content %}

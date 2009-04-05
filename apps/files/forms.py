@@ -57,3 +57,20 @@ def imagefilterform_factory(request):
             self.fieldsets.append(Fieldset(self, name='', fields=('hse', 'events', 'graphics', 'communications', 'archives',) if request.user.is_staff else ('hse', 'events', 'graphics',)))
 
     return ImageFilterForm
+
+class EPSFilterForm(forms.Form):
+    locations = forms.ChoiceField(label='Locations', required=False)
+    fields = forms.ChoiceField(label='Fields', required=False)
+
+    def __init__(self, *args, **kwargs):
+        self.fieldsets = []
+        super(EPSFilterForm, self).__init__(*args, **kwargs)
+        
+        _choices = lambda x: [('','')] + ([('all','All')] if x.count() else []) + \
+            [(item.name, '%s (%d)' % (item.name, item.eps_set.count())) for item in x]
+
+        self.fields['locations'].choices = _choices(Location.objects.all())
+        self.fields['fields'].choices = _choices(Field.objects.all())
+
+        self.fieldsets.append(
+            Fieldset(self, name='', fields=('locations', 'fields',)))

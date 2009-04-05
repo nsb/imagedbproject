@@ -18,7 +18,7 @@ body.nonauth {
   width: 1000px;
 }
 #hd {
-  height: 63px;
+  height: 64px;
 }
 #hd #logo {
   float: left;
@@ -51,8 +51,11 @@ body.nonauth {
 #indented_content {
   padding: 0 20px;
 }
+#tabs {
+  margin: 18px 0;
+}
 #image_list {
-  margin: 10px 0;
+  margin: 18px 0;
 }
 /* FORMS */
 form {

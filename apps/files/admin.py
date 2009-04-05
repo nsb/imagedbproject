@@ -8,7 +8,7 @@ from django.contrib.auth.admin import UserAdmin
 from photologue.models import *
 
 from categories.models import Year
-from models import Image
+from models import Image, EPS
 
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('title', 'date_taken', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
@@ -272,6 +272,9 @@ class ImageAdmin(admin.ModelAdmin):
                 obj.title = new_title
                 obj.save()
 
+class EPSAdmin(admin.ModelAdmin):
+    pass
+
 class PhotoSizeAdmin(admin.ModelAdmin):
     list_display = ('name', 'width', 'height', 'crop', 'pre_cache', 'increment_count')
     fieldsets = (
@@ -318,4 +321,5 @@ admin.site.unregister(Site)
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Image, ImageAdmin)
+admin.site.register(EPS, EPSAdmin)
 admin.site.register(PhotoSize, PhotoSizeAdmin)
