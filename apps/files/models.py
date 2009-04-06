@@ -214,6 +214,7 @@ class Image(ImageModel):
 
 class EPS(models.Model):
     eps = models.FileField(upload_to='eps')
+    thumbnail = models.ImageField(upload_to='eps_thumbnails')
     title = models.CharField(_('title'), max_length=100, unique=True)
     caption = models.TextField(_('caption'), blank=True)
     date_added = models.DateTimeField(_('date added'), default=datetime.now, editable=False)
@@ -240,12 +241,14 @@ class EPS(models.Model):
 
     def save(self, force_insert=False, force_update=False):
         super(EPS, self).save(force_insert, force_update)
-        infile = os.path.join(settings.MEDIA_ROOT, self.eps.name)
-        base, ext = os.path.splitext(infile)
-        outfile = ''.join((base, 'thumbnail', ext))
 
-        #create thumbnail
-        #THIS MAY BE UNSAFE !!! better to use shell = False
-        retcode = subprocess.call(
-            'gs -sDEVICE=jpeg -dNOPAUSE -dBATCH -sOutputFile="%s" "%s"' % \
-                (outfile, infile,) , shell=True)
+        # resize thumbnail
+        im = PILImage.open(os.path.join(settings.MEDIA_ROOT, self.thumbnail.name))
+        im = im.resize((100, 100))
+        im = round_image(im, {}, 10)
+        base, ext = os.path.splitext(self.thumbnail.name)
+        im.save(os.path.join(settings.MEDIA_ROOT, '%s_thumbnail%s' % (base, ext)))
+
+    def thumbnail_url(self):
+        base, ext = os.path.splitext(self.thumbnail.name)
+        return os.path.join(settings.MEDIA_URL, '%s_thumbnail%s' % (base, ext)) 

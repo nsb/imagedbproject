@@ -276,7 +276,7 @@ class EPSAdmin(admin.ModelAdmin):
     list_display = ('title',)
     fieldsets = (
         (None, {
-            'fields': ('eps',)
+            'fields': ('eps', 'thumbnail',)
         }),
         ('Categories', {
             'fields': ('locations', 'fields',)

@@ -6,7 +6,7 @@
 {% if eps_list %}
 <div id="eps_list">
 {% for eps in eps_list %}
-  {{ eps.title }}
+  <img src="{{ eps.thumbnail_url }}" alt="{{ eps.title }}">
 {% endfor %}
 </div>
 
