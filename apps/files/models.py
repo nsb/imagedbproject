@@ -213,7 +213,15 @@ class Image(ImageModel):
         return ' '.join([locations, fields, installations, people, hse, events, graphics, communications, archives, years])
 
 class EPS(models.Model):
+    """gs -sDEVICE=jpeg -dNOPAUSE -dBATCH -sOutputFile=test.jpg test.eps"""
     eps = models.FileField(upload_to='eps')
+    title = models.CharField(_('title'), max_length=100, unique=True)
+    caption = models.TextField(_('caption'), blank=True)
+    date_added = models.DateTimeField(_('date added'), default=datetime.now, editable=False)
+    is_public = models.BooleanField(
+        _('is public'),
+        default=True,
+        help_text=_('Public photographs will be displayed in the default views.'))
     locations = models.ManyToManyField(
         Location,
         null=True,

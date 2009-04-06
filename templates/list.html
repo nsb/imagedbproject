@@ -5,13 +5,14 @@
 
 {% block indented_content %}
 
-<div id="tabs">
+<div id="tabs" class="{% block default_tab %}{% endblock default_tab %}">
 
 <ul>
 <li><a href="#photos">Photos</a></li>
 <li><a href="#graphics">Graphics</a></li>
 </ul>
 
+{% block tabs %}
 <div id="photos">
 {% with image_form as form %}
 {% include "includes/image_list.html" %}
@@ -23,6 +24,7 @@
 {% include "includes/eps_list.html" %}
 {% endwith %}
 </div>
+{% endblock tabs %}
 
 </div>
 

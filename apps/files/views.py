@@ -46,6 +46,10 @@ def list(request, page=1):
 @login_required
 @require_http_methods(["GET"])
 def images(request, page=1):
+
+    eps_form = EPSFilterForm()
+    eps_list = EPS.objects.select_related().filter(is_public=True)
+
     form = imagefilterform_factory(request)(request.GET)
     if form.is_valid():
 
@@ -73,7 +77,7 @@ def images(request, page=1):
                            template_object_name='image',
                            page=page,
                            paginate_by=getattr(settings, 'PAGINATE_BY', 25),
-                           extra_context={'form':form, 'query':request.GET.urlencode()})
+                           extra_context={'image_form':form, 'query':request.GET.urlencode(), 'eps_form':eps_form, 'eps_list':eps_list})
     else:
         return HttpResponseBadRequest(form.errors)
 
@@ -119,6 +123,10 @@ def send_file(request, image_id, size):
 
 
 def eps(request, page=1):
+
+    image_form = imagefilterform_factory(request)()
+    image_list = Image.objects.select_related().filter(is_public=True)
+
     form = EPSFilterForm(request.GET)
     if form.is_valid():
 
@@ -146,6 +154,6 @@ def eps(request, page=1):
                            template_object_name='eps',
                            page=page,
                            paginate_by=getattr(settings, 'PAGINATE_BY', 25),
-                           extra_context={'form':form, 'query':request.GET.urlencode()})
+                           extra_context={'eps_form':form, 'query':request.GET.urlencode(), 'image_form':image_form, 'image_list':image_list})
     else:
         return HttpResponseBadRequest(form.errors)
