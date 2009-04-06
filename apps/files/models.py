@@ -213,7 +213,6 @@ class Image(ImageModel):
         return ' '.join([locations, fields, installations, people, hse, events, graphics, communications, archives, years])
 
 class EPS(models.Model):
-    """gs -sDEVICE=jpeg -dNOPAUSE -dBATCH -sOutputFile=test.jpg test.eps"""
     eps = models.FileField(upload_to='eps')
     title = models.CharField(_('title'), max_length=100, unique=True)
     caption = models.TextField(_('caption'), blank=True)
@@ -234,7 +233,19 @@ class EPS(models.Model):
         verbose_name=_('Fields'))
 
     class Meta:
-        #ordering = ['-date_added']
-        #get_latest_by = 'date_added'
+        ordering = ['-date_added']
+        get_latest_by = 'date_added'
         verbose_name = _("EPS")
         verbose_name_plural = _("EPS")
+
+    def save(self, force_insert=False, force_update=False):
+        super(EPS, self).save(force_insert, force_update)
+        infile = os.path.join(settings.MEDIA_ROOT, self.eps.name)
+        base, ext = os.path.splitext(infile)
+        outfile = ''.join((base, 'thumbnail', ext))
+
+        #create thumbnail
+        #THIS MAY BE UNSAFE !!! better to use shell = False
+        retcode = subprocess.call(
+            'gs -sDEVICE=jpeg -dNOPAUSE -dBATCH -sOutputFile="%s" "%s"' % \
+                (outfile, infile,) , shell=True)
