@@ -211,3 +211,44 @@ class Image(ImageModel):
         years = ' '.join(['%s;' % year.name for year in self.years.all()])
 
         return ' '.join([locations, fields, installations, people, hse, events, graphics, communications, archives, years])
+
+class EPS(models.Model):
+    eps = models.FileField(upload_to='eps')
+    thumbnail = models.ImageField(upload_to='eps_thumbnails')
+    title = models.CharField(_('title'), max_length=100, unique=True)
+    caption = models.TextField(_('caption'), blank=True)
+    date_added = models.DateTimeField(_('date added'), default=datetime.now, editable=False)
+    is_public = models.BooleanField(
+        _('is public'),
+        default=True,
+        help_text=_('Public photographs will be displayed in the default views.'))
+    locations = models.ManyToManyField(
+        Location,
+        null=True,
+        blank=True,
+        verbose_name=_('Locations'))
+    fields = models.ManyToManyField(
+        Field,
+        null=True,
+        blank=True,
+        verbose_name=_('Fields'))
+
+    class Meta:
+        ordering = ['-date_added']
+        get_latest_by = 'date_added'
+        verbose_name = _("EPS")
+        verbose_name_plural = _("EPS")
+
+    def save(self, force_insert=False, force_update=False):
+        super(EPS, self).save(force_insert, force_update)
+
+        # resize thumbnail
+        im = PILImage.open(os.path.join(settings.MEDIA_ROOT, self.thumbnail.name))
+        im = im.resize((100, 100))
+        im = round_image(im, {}, 10)
+        base, ext = os.path.splitext(self.thumbnail.name)
+        im.save(os.path.join(settings.MEDIA_ROOT, '%s_thumbnail%s' % (base, ext)))
+
+    def thumbnail_url(self):
+        base, ext = os.path.splitext(self.thumbnail.name)
+        return os.path.join(settings.MEDIA_URL, '%s_thumbnail%s' % (base, ext)) 

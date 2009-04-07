@@ -1,0 +1,34 @@
+{% extends "base_site.html" %}
+{% load i18n %}
+
+{% block title %}{{ block.super }} | {{ eps.title }}{% endblock title %}
+
+{% block indented_content %}
+<div id="breadcrumbs">
+<a href="{% url list %}">{% trans "Home" %}</a> &rsaquo; <strong>{{ eps.title }}</strong>
+</div>
+
+<div>
+  <img src="{{ eps.thumbnail.url }}" alt="{{ eps.title }}">
+  {% if image.caption %}<p>{{ image.caption }}</p>{% endif %}
+</div>
+<hr class="space">
+<h4>{% trans "Categories:" %}</h4>
+
+{% if eps.locations.all %}
+<div>
+<strong>{% trans "Locations: " %}</strong>
+{{ eps.locations.all|join:"; " }}
+</div>
+{% endif %}
+
+{% if eps.fields.all %}
+<div>
+<strong>{% trans "Fields: " %}</strong>
+{{ eps.fields.all|join:"; " }}
+</div>
+{% endif %}
+
+<hr class="space">
+
+{% endblock indented_content %}

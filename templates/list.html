@@ -1,0 +1,31 @@
+{% extends "base_site.html" %}
+
+{% load i18n %}
+{% load humanize %}
+
+{% block indented_content %}
+
+<div id="tabs" class="{% block default_tab %}{% endblock default_tab %}">
+
+<ul>
+<li><a href="#photos">Photos</a></li>
+<li><a href="#graphics">Graphics</a></li>
+</ul>
+
+{% block tabs %}
+<div id="photos">
+{% with image_form as form %}
+{% include "includes/image_list.html" %}
+{% endwith %}
+</div>
+
+<div id="graphics">
+{% with eps_form as form %}
+{% include "includes/eps_list.html" %}
+{% endwith %}
+</div>
+{% endblock tabs %}
+
+</div>
+
+{% endblock indented_content %}
