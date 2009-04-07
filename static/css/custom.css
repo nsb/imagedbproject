@@ -54,6 +54,9 @@ body.nonauth {
 #image_list {
   margin: 10px 0;
 }
+.caption {
+  width: 600px;
+}
 /* FORMS */
 form {
   padding: 4px 0 4px 0;
