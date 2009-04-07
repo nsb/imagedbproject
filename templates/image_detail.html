@@ -6,6 +6,7 @@
 {% block indented_content %}
 <div id="breadcrumbs">
 <a href="{% url image-list %}">{% trans "Home" %}</a> &rsaquo; <strong>{{ image.title }}</strong>
+<a onClick="history.back();" href="#">Back</a>
 </div>
 <ul id="photo_size" class="small quiet">
 <li><strong><img src="/static/img/download.gif" alt="{% trans "Download" %}"></strong></li>
