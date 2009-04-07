@@ -6,7 +6,7 @@
 {% if image_list %}
 <div id="image_list">
 {% for image in image_list %}
-<a href="{{ image.get_absolute_url }}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}" title="{{ image.categories }}"></a>
+<a href="{% url image-detail image.id %}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}" title="{{ image.categories }}"></a>
 {% endfor %}
 </div>
 

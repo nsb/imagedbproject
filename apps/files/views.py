@@ -157,3 +157,13 @@ def eps(request, page=1):
                            extra_context={'eps_form':form, 'query':request.GET.urlencode(), 'image_form':image_form, 'image_list':image_list})
     else:
         return HttpResponseBadRequest(form.errors)
+
+
+@login_required
+@require_http_methods(["GET"])
+def eps_detail(request, eps_id):
+    return object_detail(request,
+                         queryset=EPS.objects.filter(is_public=True),
+                         template_name = 'eps_detail.html',
+                         template_object_name = 'eps',
+                         object_id = eps_id)
