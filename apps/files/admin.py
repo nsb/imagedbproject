@@ -24,7 +24,7 @@ class ImageAdmin(admin.ModelAdmin):
             'fields': ('locations', 'fields', 'installations', 'people', 'hse', 'events', 'graphics', 'communications', 'archives', 'years',)
         }),
         ('Options', {
-            'fields': ('is_public',)
+            'fields': ('caption', 'is_public',)
         }),
     )
 
