@@ -35,14 +35,6 @@ def list(request, page=1):
              'eps_form':eps_form,
              'eps_list':eps_list}))
 
-    #return object_list(request,
-                       #queryset=Image.objects.select_related().filter(is_public=True),
-                       #template_name = 'image_list.html',
-                       #template_object_name='image',
-                       #page=page,
-                       #paginate_by=getattr(settings, 'PAGINATE_BY', 25),
-                       #extra_context={'image_form':image_form})
-
 @login_required
 @require_http_methods(["GET"])
 def images(request, page=1):
