@@ -11,6 +11,7 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.db.models import Q
 from django.conf import settings
 from django.template import RequestContext
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 from photologue.models import PhotoSizeCache
 
@@ -23,17 +24,29 @@ def list(request, page=1):
 
     image_form = imagefilterform_factory(request)()
     image_list = Image.objects.select_related().filter(is_public=True)
+    image_paginator = Paginator(image_list, getattr(settings, 'PAGINATE_BY', 25))
+
+    try:
+        images = image_paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        images = image_paginator.page(image_paginator.num_pages)
 
     eps_form = EPSFilterForm()
     eps_list = EPS.objects.select_related().all()
+    eps_paginator = Paginator(eps_list, getattr(settings, 'PAGINATE_BY', 25))
+
+    try:
+        eps = eps_paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        eps = eps_paginator.page(eps_paginator.num_pages)
 
     return render_to_response(
         'list.html',
         RequestContext(request,
             {'image_form':image_form,
-             'image_list':image_list,
+             'images':images,
              'eps_form':eps_form,
-             'eps_list':eps_list}))
+             'eps':eps}))
 
 @login_required
 @require_http_methods(["GET"])
@@ -41,6 +54,12 @@ def images(request, page=1):
 
     eps_form = EPSFilterForm()
     eps_list = EPS.objects.select_related().filter(is_public=True)
+    eps_paginator = Paginator(eps_list, getattr(settings, 'PAGINATE_BY', 25))
+
+    try:
+        eps = eps_paginator.page(1)
+    except (EmptyPage, InvalidPage):
+        eps = eps_paginator.page(eps_paginator.num_pages)
 
     form = imagefilterform_factory(request)(request.GET)
     if form.is_valid():
@@ -63,13 +82,23 @@ def images(request, page=1):
 
         qs = qs.filter(**lookup_args)
 
-        return object_list(request,
-                           queryset=qs,
-                           template_name = 'image_list.html',
-                           template_object_name='image',
-                           page=page,
-                           paginate_by=getattr(settings, 'PAGINATE_BY', 25),
-                           extra_context={'image_form':form, 'query':request.GET.urlencode(), 'eps_form':eps_form, 'eps_list':eps_list})
+        image_paginator = Paginator(qs, getattr(settings, 'PAGINATE_BY', 25))
+
+        try:
+            images = image_paginator.page(page)
+        except (EmptyPage, InvalidPage):
+            images = image_paginator.page(image_paginator.num_pages)
+
+        return render_to_response(
+            'image_list.html',
+            RequestContext(
+                request,
+                {'images':images,
+                 'image_form':form,
+                 'eps':eps,
+                 'eps_form':eps_form,
+                 'query':request.GET.urlencode()}))
+
     else:
         return HttpResponseBadRequest(form.errors)
 
@@ -112,12 +141,16 @@ def send_file(request, image_id, size):
     response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename)
     return response
 
-
-
 def eps(request, page=1):
 
     image_form = imagefilterform_factory(request)()
     image_list = Image.objects.select_related().filter(is_public=True)
+    image_paginator = Paginator(image_list, getattr(settings, 'PAGINATE_BY', 25))
+
+    try:
+        images = image_paginator.page(1)
+    except (EmptyPage, InvalidPage):
+        images = image_paginator.page(image_paginator.num_pages)
 
     form = EPSFilterForm(request.GET)
     if form.is_valid():
@@ -140,13 +173,23 @@ def eps(request, page=1):
 
         qs = qs.filter(**lookup_args)
 
-        return object_list(request,
-                           queryset=qs,
-                           template_name = 'eps_list.html',
-                           template_object_name='eps',
-                           page=page,
-                           paginate_by=getattr(settings, 'PAGINATE_BY', 25),
-                           extra_context={'eps_form':form, 'query':request.GET.urlencode(), 'image_form':image_form, 'image_list':image_list})
+        eps_paginator = Paginator(qs, getattr(settings, 'PAGINATE_BY', 25))
+
+        try:
+            eps = eps_paginator.page(page)
+        except (EmptyPage, InvalidPage):
+            eps = eps_paginator.page(eps_paginator.num_pages)
+
+        return render_to_response(
+            'eps_list.html',
+            RequestContext(
+                request,
+                {'eps':eps,
+                 'eps_form':form,
+                 'images':images,
+                 'image_form':image_form,
+                 'query':request.GET.urlencode()}))
+
     else:
         return HttpResponseBadRequest(form.errors)
 
