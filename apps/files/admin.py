@@ -299,7 +299,7 @@ class EPSAdmin(admin.ModelAdmin):
             if change and not form.has_changed():
                 obj.save()
             else:
-                qs = Image.objects.all()
+                qs = EPS.objects.all()
                 for key, val in lookup_args:
                     if val:
                         for v in val:
@@ -312,9 +312,9 @@ class EPSAdmin(admin.ModelAdmin):
                 while(True):
                     new_title = '%s.%d' % (title, c or 1)
                     try:
-                        im = Image.objects.get(title=new_title)
+                        im = EPS.objects.get(title=new_title)
                         c += 1
-                    except Image.DoesNotExist:
+                    except EPS.DoesNotExist:
                         break
 
                 obj.title = new_title
