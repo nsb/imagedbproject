@@ -6,10 +6,10 @@ import urllib, urllib2, urlparse, httplib
 import MultipartPostHandler
 
 PATH = '.'
-USER = 'niels'
-PASSWORD = 'niels'
-URL = 'http://localhost:8000/'
-#URL = 'http://imagedb.ciboe.dk/'
+USER = 'ciboe'
+PASSWORD = 'ciboe'
+#URL = 'http://localhost:8000/'
+URL = 'http://imagedb.ciboe.dk/'
 ADMIN_PATH = '/admin/files/image/add/'
 LOGIN_PATH = '/login/'
 
