@@ -71,4 +71,4 @@ class Year(Category):
     class Meta:
         verbose_name = _("Year")
         verbose_name_plural = _("Years")
-        ordering = ['name']
+        ordering = ['-name']
