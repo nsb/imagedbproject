@@ -6,10 +6,11 @@
 {% block indented_content %}
 <div id="breadcrumbs">
 <a href="{% url list %}">{% trans "Home" %}</a> &rsaquo; <strong>{{ eps.title }}</strong>
+<a onClick="history.back();" href="#">Back</a>
 </div>
 
 <div>
-{% trans "Download:" %} <a href="{% url eps-download eps.id %}">{% trans "Original" %}</a>
+<img src="/static/img/download.gif" alt="{% trans "Download" %}"> <a href="{% url eps-download eps.id %}"><img src="/static/img/original.gif" alt="{% trans "Original" %}"></a>
 </div>
 
 <div>
