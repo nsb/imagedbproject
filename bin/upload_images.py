@@ -127,6 +127,11 @@ def main():
                     logging.debug('dropping %s because it is too large...' % path)
                     continue
 
+                if " " in name:
+                    print 'dropping %s because of whitespace in name' % name
+                    logging.debug('dropping %s because of whitespace in name...' % path)
+                    continue
+
                 # check for valid file extensions
                 base, ext = os.path.splitext(name)
                 if ext not in file_ext:
