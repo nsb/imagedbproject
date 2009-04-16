@@ -124,10 +124,11 @@ class Image(ImageModel):
             output_profile = '%s/iccprofiles/AdobeRGB1998.icc' % settings.PROJECT_ROOT
             outputfile = tempfile.NamedTemporaryFile()
 
-            # THIS MAY BE UNSAFE !!! better to use shell = False
             retcode = subprocess.call(
-                'tifficc -i "%s" -o "%s" "%s" "%s"' % \
-                    (input_profile, output_profile, self.image.path, outputfile.name) , shell=True)
+                ['tifficc',
+                 "-i%s" % input_profile,
+                 "-o%s" % output_profile,
+                 self.image.path, outputfile.name])
 
         try:
             im = PILImage.open(outputfile.name if retcode == 0 else self.image.path)
