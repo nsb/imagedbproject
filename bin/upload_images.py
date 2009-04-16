@@ -92,7 +92,7 @@ def main():
     skip = options.skip
 
     # setup logging
-    LOG_FILENAME = '/tmp/logging_example.out'
+    LOG_FILENAME = '/tmp/imagedb.out'
     logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG,)
 
     # init url lib with cookie based auth handler
