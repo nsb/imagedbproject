@@ -1,6 +1,7 @@
 # Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
 
 import os, re
+import logging
 from optparse import OptionParser
 import urllib, urllib2, urlparse, httplib
 import MultipartPostHandler
@@ -90,6 +91,10 @@ def main():
     pretend = options.pretend
     skip = options.skip
 
+    # setup logging
+    LOG_FILENAME = '/tmp/logging_example.out'
+    logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG,)
+
     # init url lib with cookie based auth handler
     if pretend:
         opener = MockOpener()
@@ -117,8 +122,9 @@ def main():
                     print 'dropping %s...' % name
                     continue
 
-                if os.path.getsize(path) < 200000000:
+                if os.path.getsize(path) > 200000000:
                     print 'dropping %s because it is too large...' % name
+                    logging.debug('dropping %s because it is too large...' % path)
                     continue
 
                 # check for valid file extensions
