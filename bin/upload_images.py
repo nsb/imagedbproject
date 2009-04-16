@@ -122,10 +122,10 @@ def main():
                     print 'dropping %s...' % name
                     continue
 
-                if os.path.getsize(path) > 200000000:
-                    print 'dropping %s because it is too large...' % name
-                    logging.debug('dropping %s because it is too large...' % path)
-                    continue
+                #if os.path.getsize(path) > 200000000:
+                    #print 'dropping %s because it is too large...' % name
+                    #logging.debug('dropping %s because it is too large...' % path)
+                    #continue
 
                 # check for valid file extensions
                 base, ext = os.path.splitext(name)
