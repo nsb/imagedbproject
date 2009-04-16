@@ -111,6 +111,8 @@ def main():
             path = os.path.join(dirname, name)
             if os.path.isfile(path):
 
+                print 'trying %s...' % path
+
                 if name.startswith('.'):
                     print 'dropping %s...' % name
                     continue
