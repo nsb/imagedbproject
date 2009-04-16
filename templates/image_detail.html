@@ -52,17 +52,17 @@
 </div>
 {% endif %}
 
+{% if image.years.all %}
+<div>
+<strong>{% trans "Years: " %}</strong>
+{{ image.years.all|join:"; " }}
+</div>
+{% endif %}
+
 {% if image.hse.all %}
 <div>
 <strong>{% trans "HSE: " %}</strong>
 {{ image.hse.all|join:"; " }}
-</div>
-{% endif %}
-
-{% if image.people.all %}
-<div>
-<strong>{% trans "People: " %}</strong>
-{{ image.people.all|join:"; " }}
 </div>
 {% endif %}
 
@@ -91,13 +91,6 @@
 <div>
 <strong>{% trans "Archives: " %}</strong>
 {{ image.archives.all|join:"; " }}
-</div>
-{% endif %}
-
-{% if image.years.all %}
-<div>
-<strong>{% trans "Years: " %}</strong>
-{{ image.years.all|join:"; " }}
 </div>
 {% endif %}
 
