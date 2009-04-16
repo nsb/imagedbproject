@@ -108,10 +108,15 @@ def main():
         # handle each file
         global count
         for index, name in enumerate(names):
-            if os.path.isfile(os.path.join(dirname, name)):
+            path = os.path.join(dirname, name)
+            if os.path.isfile(path):
 
                 if name.startswith('.'):
                     print 'dropping %s...' % name
+                    continue
+
+                if os.path.getsize(path) < 200000000:
+                    print 'dropping %s because it is too large...' % name
                     continue
 
                 # check for valid file extensions
