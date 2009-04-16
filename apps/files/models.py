@@ -125,10 +125,7 @@ class Image(ImageModel):
             outputfile = tempfile.NamedTemporaryFile()
 
             retcode = subprocess.call(
-                ['tifficc',
-                 "-i%s" % input_profile,
-                 "-o%s" % output_profile,
-                 self.image.path, outputfile.name])
+                ['tifficc', "-i", input_profile, "-o", output_profile, self.image.path, outputfile.name])
 
         try:
             im = PILImage.open(outputfile.name if retcode == 0 else self.image.path)
