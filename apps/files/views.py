@@ -112,7 +112,7 @@ def image_detail(request, image_id):
                          object_id = image_id)
 
 @login_required
-def send_file(request, image_id, size):
+def send_image(request, image_id, size):
     """                                                                         
     Send a file through Django without loading the whole file into              
     memory at once. The FileWrapper will turn the file object into an           
@@ -202,3 +202,24 @@ def eps_detail(request, eps_id):
                          template_name = 'eps_detail.html',
                          template_object_name = 'eps',
                          object_id = eps_id)
+
+
+@login_required
+def send_eps(request, eps_id):
+    """                                                                         
+    Send a file through Django without loading the whole file into              
+    memory at once. The FileWrapper will turn the file object into an           
+    iterator for chunks of 8KB.                                                 
+    """
+
+    eps = get_object_or_404(EPS, pk=eps_id)
+
+    filename = eps.eps.path
+
+    mimetype, encoding = mimetypes.guess_type(filename)
+
+    wrapper = FileWrapper(file(filename))
+    response = HttpResponse(wrapper, content_type=mimetype or 'application/postscript')
+    response['Content-Length'] = os.path.getsize(filename)
+    response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename)
+    return response

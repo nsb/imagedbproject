@@ -9,6 +9,10 @@
 </div>
 
 <div>
+{% trans "Download:" %} <a href="{% url eps-download eps.id %}">{% trans "Original" %}</a>
+</div>
+
+<div>
   <img src="{{ eps.thumbnail.url }}" alt="{{ eps.title }}">
   {% if image.caption %}<p>{{ image.caption }}</p>{% endif %}
 </div>

@@ -7,8 +7,9 @@ urlpatterns = patterns('files.views',
     (r'^$', 'list', {}, 'list'),
     (r'^photos/page(?P<page>[0-9]+)/$', 'images', {}, 'images'),
     (r'^photos/(?P<image_id>\d+)/$', 'image_detail', {}, 'image-detail'),
-    (r'^photos/(?P<image_id>\d+)/(?P<size>(small|medium|large|original))/$', 'send_file', {}, 'image-download'),
+    (r'^photos/(?P<image_id>\d+)/(?P<size>(small|medium|large|original))/$', 'send_image', {}, 'image-download'),
     (r'^graphics/page(?P<page>[0-9]+)/$', 'eps', {}, 'eps'),
     (r'^graphics/(?P<eps_id>\d+)/$', 'eps_detail', {}, 'eps-detail'),
+    (r'^graphics/(?P<eps_id>\d+)/original/$', 'send_eps', {}, 'eps-download'),
 
 )
