@@ -118,24 +118,28 @@ def main():
 
                 print 'trying %s...' % path
 
+                # drop graphics for now
+                if "G - Graphics" in path:
+                    continue
+
                 if name.startswith('.'):
                     print 'dropping %s...' % name
                     continue
 
-                if os.path.getsize(path) > 200000000:
-                    print 'dropping %s because it is too large...' % name
-                    logging.debug('dropping %s because it is too large...' % path)
-                    continue
+                #if os.path.getsize(path) > 200000000:
+                    #print 'dropping %s because it is too large...' % name
+                    #logging.debug('dropping %s because it is too large...' % path)
+                    #continue
 
-                if " " in name:
-                    print 'dropping %s because of whitespace in name' % name
-                    logging.debug('dropping %s because of whitespace in name...' % path)
-                    continue
+                #if " " in name:
+                    #print 'dropping %s because of whitespace in name' % name
+                    #logging.debug('dropping %s because of whitespace in name...' % path)
+                    #continue
 
-                if name in ['5_brazil_gravity-cmyk.tif']:
-                    print 'dropping %s' % name
-                    logging.debug('dropping %s...' % path)
-                    continue
+                #if name in ['5_brazil_gravity-cmyk.tif']:
+                    #print 'dropping %s' % name
+                    #logging.debug('dropping %s...' % path)
+                    #continue
 
                 # check for valid file extensions
                 base, ext = os.path.splitext(name)
