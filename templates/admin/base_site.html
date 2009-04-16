@@ -1,10 +1,10 @@
 {% extends "admin/base.html" %}
 {% load i18n %}
 
-{% block title %}{{ title|escape }} | {% trans 'Image database administration' %}{% endblock %}
+{% block title %}{{ title|escape }} | {% trans 'Image database administration' %} {% endblock %}
 
 {% block branding %}
-<h1 id="site-name">{% trans 'Image database administration' %}</h1>
+<h1 id="site-name">{% trans 'Image database administration' %} | <small><small><a href="{% url list %}">{% trans "Frontend" %}</a></small></small></h1>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
