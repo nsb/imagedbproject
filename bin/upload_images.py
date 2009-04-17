@@ -44,7 +44,7 @@ count = 0
 def handle_file(opener, dirname, name):
 
     # find categories
-    categories = re.findall(r'[A-Z][0-9]{2}',dirname)
+    categories = re.findall(r'[A-Z|a-z][0-9]{2}',dirname)
     image = os.path.join(dirname, name)
 
     print 'uploading image %s with categories %s...' % (name, categories),
