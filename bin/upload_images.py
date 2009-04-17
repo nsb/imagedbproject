@@ -16,13 +16,21 @@ LOGIN_PATH = '/login/'
 
 category_mapping = {
     'A':'locations',
+    'a':'locations',
     'B':'fields',
+    'b':'fields',
     'C':'installations',
+    'c':'installations',
     'D':'people',
+    'd':'people',
     'E':'hse',
+    'e':'hse',
     'F':'events',
+    'f':'events',
     'G':'communcations',
-    'H':'archives',}
+    'g':'communcations',
+    'H':'archives',
+    'h':'archives',}
 
 # valid file extensions
 file_ext = ('.tif', '.TIF', '.jpg', '.JPG', '.jpeg', '.JPEG',)
