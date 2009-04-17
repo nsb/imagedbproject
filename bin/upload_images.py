@@ -115,7 +115,7 @@ def main():
             if os.path.isfile(path):
 
                 # drop graphics for now
-                if "G - Graphics" in path:
+                if "G - Graphics" in path or "Recycled" in path or "System Volume Information" in path:
                     continue
 
                 if name.startswith('.'):
