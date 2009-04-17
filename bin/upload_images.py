@@ -47,13 +47,13 @@ def handle_file(opener, dirname, name):
     categories = re.findall(r'[A-Z|a-z][0-9]{2}',dirname)
     image = os.path.join(dirname, name)
 
-    print 'uploading image %s with categories %s...' % (name, categories),
+    logging.debug('uploading image %s with categories %s...' % (image, categories))
 
     params = [('is_public', 'on'), ('_save', 'Save'), ("image", open(image, "rb")) ]
     try:
         params += [(category_mapping[category[0]], str(int(category[1:3]))) for category in categories]
     except KeyError:
-        print 'failed'
+        logging.debug('failed')
         return
 
     try:
@@ -61,10 +61,8 @@ def handle_file(opener, dirname, name):
         data = f.read()
         f.close()
     except Exception, e:
-        print 'failed %s' % e
+        logging.debug('failed %s' % e)
         return
-
-    print 'done'    
 
 def main():
     # options
@@ -116,8 +114,6 @@ def main():
             path = os.path.join(dirname, name)
             if os.path.isfile(path):
 
-                print 'trying %s...' % path
-
                 # drop graphics for now
                 if "G - Graphics" in path:
                     continue
@@ -126,15 +122,13 @@ def main():
                     print 'dropping %s...' % name
                     continue
 
-                #if os.path.getsize(path) > 200000000:
-                    #print 'dropping %s because it is too large...' % name
-                    #logging.debug('dropping %s because it is too large...' % path)
-                    #continue
+                if os.path.getsize(path) > 200000000:
+                    logging.debug('dropping %s because it is too large...' % path)
+                    continue
 
-                #if " " in name:
-                    #print 'dropping %s because of whitespace in name' % name
-                    #logging.debug('dropping %s because of whitespace in name...' % path)
-                    #continue
+                if " " in name:
+                    logging.debug('dropping %s because of whitespace in name...' % path)
+                    continue
 
                 #if name in ['5_brazil_gravity-cmyk.tif']:
                     #print 'dropping %s' % name
