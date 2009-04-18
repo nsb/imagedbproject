@@ -29,8 +29,8 @@ category_mapping = {
     'f':'events',
     'G':'graphics',
     'g':'graphics',
-    'H':'communcations',
-    'h':'communcations',
+    'H':'communications',
+    'h':'communications',
     'I':'archives',
     'i':'archives',}
 
