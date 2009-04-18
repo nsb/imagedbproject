@@ -69,7 +69,6 @@ def handle_file(opener, dirname, name):
     try:
         f = opener.open(urlparse.urljoin(URL, ADMIN_PATH), params)
         data = f.read()
-        logging.debug(data)
         f.close()
     except Exception, e:
         logging.debug('failed %s' % e)
