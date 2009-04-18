@@ -27,10 +27,12 @@ category_mapping = {
     'e':'hse',
     'F':'events',
     'f':'events',
-    'G':'communcations',
-    'g':'communcations',
-    'H':'archives',
-    'h':'archives',}
+    'G':'graphics',
+    'g':'graphics',
+    'H':'communcations',
+    'h':'communcations',
+    'I':'archives',
+    'i':'archives',}
 
 # valid file extensions
 file_ext = ('.tif', '.TIF', '.jpg', '.JPG', '.jpeg', '.JPEG',)
