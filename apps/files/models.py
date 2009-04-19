@@ -118,17 +118,22 @@ class Image(ImageModel):
         # we use tifficc from littlecms utils because pil color space conversion
         # does not give pretty results
 
-        retcode = -1
-        if should_convert(photosize):
-            input_profile = '%s/iccprofiles/CoatedFOGRA27.icc' % settings.PROJECT_ROOT
-            output_profile = '%s/iccprofiles/AdobeRGB1998.icc' % settings.PROJECT_ROOT
-            outputfile = tempfile.NamedTemporaryFile()
-
-            retcode = subprocess.call(
-                ['tifficc', "-i", input_profile, "-o", output_profile, self.image.path, outputfile.name])
-
         try:
+            # get the image format
+            im = PILImage.open(self.image.path)
+            format = im.format
+
+            # convert to rgb
+            retcode = -1
+            if should_convert(photosize) and format == 'TIFF':
+                input_profile = '%s/iccprofiles/CoatedFOGRA27.icc' % settings.PROJECT_ROOT
+                output_profile = '%s/iccprofiles/AdobeRGB1998.icc' % settings.PROJECT_ROOT
+                outputfile = tempfile.NamedTemporaryFile()
+
+                retcode = subprocess.call(
+                    ['tifficc', "-i", input_profile, "-o", output_profile, self.image.path, outputfile.name])
             im = PILImage.open(outputfile.name if retcode == 0 else self.image.path)
+
         except IOError:
             return
 
