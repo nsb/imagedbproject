@@ -132,13 +132,13 @@ def main():
                     print 'dropping %s...' % name
                     continue
 
-                if os.path.getsize(path) > 200000000:
-                    logging.debug('dropping %s because it is too large...' % path)
-                    continue
+                #if os.path.getsize(path) > 200000000:
+                    #logging.debug('dropping %s because it is too large...' % path)
+                    #continue
 
-                if " " in name:
-                    logging.debug('dropping %s because of whitespace in name...' % path)
-                    continue
+                #if " " in name:
+                    #logging.debug('dropping %s because of whitespace in name...' % path)
+                    #continue
 
                 #if name in ['5_brazil_gravity-cmyk.tif']:
                     #print 'dropping %s' % name
