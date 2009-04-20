@@ -131,7 +131,7 @@ def main():
                     print 'dropping %s...' % name
                     continue
 
-                if os.path.getsize(path) <= 200000000 or not " " in name:
+                if os.path.getsize(path) <= 200000000 and not " " in name:
                     continue
 
                 # check for valid file extensions
