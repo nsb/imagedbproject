@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 
-from models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive, Year
+from models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive, Year, Logo, Design
 
 admin.site.register(Location)
 admin.site.register(Field)
@@ -14,3 +14,5 @@ admin.site.register(Graphics)
 admin.site.register(Communications)
 admin.site.register(Archive)
 admin.site.register(Year)
+admin.site.register(Logo)
+admin.site.register(Design)

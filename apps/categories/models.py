@@ -72,3 +72,15 @@ class Year(Category):
         verbose_name = _("Year")
         verbose_name_plural = _("Years")
         ordering = ['-name']
+
+class Logo(Category):
+    class Meta:
+        verbose_name = _("Logo")
+        verbose_name_plural = _("Logos")
+        ordering = ['-name']
+
+class Design(Category):
+    class Meta:
+        verbose_name = _("Design element")
+        verbose_name_plural = _("Design Elements")
+        ordering = ['-name']
