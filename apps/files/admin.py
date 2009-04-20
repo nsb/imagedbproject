@@ -279,7 +279,7 @@ class EPSAdmin(admin.ModelAdmin):
             'fields': ('eps', 'thumbnail',)
         }),
         ('Categories', {
-            'fields': ('locations', 'fields',)
+            'fields': ('logos', 'designs',)
         }),
     )
 

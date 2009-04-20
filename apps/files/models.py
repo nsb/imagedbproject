@@ -22,7 +22,7 @@ from django.conf import settings
 
 from photologue.models import ImageModel, PhotoSizeCache
 
-from categories.models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive, Year
+from categories.models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive, Year, Logo, Design
 from rounded_corners import round_image
 
 class Image(ImageModel):
@@ -225,16 +225,16 @@ class EPS(models.Model):
         _('is public'),
         default=True,
         help_text=_('Public photographs will be displayed in the default views.'))
-    locations = models.ManyToManyField(
-        Location,
+    logos = models.ManyToManyField(
+        Logo,
         null=True,
         blank=True,
-        verbose_name=_('Locations'))
-    fields = models.ManyToManyField(
-        Field,
+        verbose_name=_('Logos'))
+    designs = models.ManyToManyField(
+        Design,
         null=True,
         blank=True,
-        verbose_name=_('Fields'))
+        verbose_name=_('Design elements'))
 
     class Meta:
         ordering = ['-date_added']

@@ -3,7 +3,7 @@
 from django import forms
 from django.forms.forms import BoundField
 
-from categories.models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive, Year
+from categories.models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive, Year, Logo, Design
 
 class Fieldset(object):
     def __init__(self, form, name=None, fields=(), description=None):
@@ -59,8 +59,8 @@ def imagefilterform_factory(request):
     return ImageFilterForm
 
 class EPSFilterForm(forms.Form):
-    locations = forms.ChoiceField(label='Locations', required=False)
-    fields = forms.ChoiceField(label='Fields', required=False)
+    logos = forms.ChoiceField(label='Logos', required=False)
+    designs = forms.ChoiceField(label='Design elements', required=False)
 
     def __init__(self, *args, **kwargs):
         self.fieldsets = []
@@ -69,8 +69,8 @@ class EPSFilterForm(forms.Form):
         _choices = lambda x: [('','')] + ([('all','All')] if x.count() else []) + \
             [(item.name, '%s (%d)' % (item.name, item.eps_set.count())) for item in x]
 
-        self.fields['locations'].choices = _choices(Location.objects.all())
-        self.fields['fields'].choices = _choices(Field.objects.all())
+        self.fields['logos'].choices = _choices(Logo.objects.all())
+        self.fields['designs'].choices = _choices(Design.objects.all())
 
         self.fieldsets.append(
-            Fieldset(self, name='', fields=('locations', 'fields',)))
+            Fieldset(self, name='', fields=('logos', 'designs',)))
