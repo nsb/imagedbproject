@@ -131,9 +131,6 @@ def main():
                     print 'dropping %s...' % name
                     continue
 
-                if os.path.getsize(path) <= 200000000 and not " " in name:
-                    continue
-
                 # check for valid file extensions
                 base, ext = os.path.splitext(name)
                 if ext not in file_ext:
