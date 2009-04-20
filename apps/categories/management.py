@@ -108,8 +108,8 @@ def create_category_values(app, created_models, verbosity, **kwargs):
 
     # events
     Event.objects.get_or_create(id=1, name="Conferences & Exhibitions")
-    Event.objects.get_or_create(id=3, name="GeoCenter Møns Klint, DK")
-    Event.objects.get_or_create(id=4, name="Official Visits")
+    Event.objects.get_or_create(id=2, name="GeoCenter Møns Klint, DK")
+    Event.objects.get_or_create(id=3, name="Official Visits")
 
     # graphics
     Graphics.objects.get_or_create(name="Environment")
