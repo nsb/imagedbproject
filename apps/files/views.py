@@ -18,12 +18,22 @@ from photologue.models import PhotoSizeCache
 from models import Image, EPS
 from forms import imagefilterform_factory, EPSFilterForm
 
+from categories.models import Communications, Archive
+
 @login_required
 @require_http_methods(["GET"])
 def list(request, page=1):
 
     image_form = imagefilterform_factory(request)()
     image_list = Image.objects.select_related().filter(is_public=True)
+
+    # filter communications and archives
+    if not request.user.is_staff:
+        for value in Communications.objects.values('name'):
+            image_list = image_list.exclude(communications__name=value['name'])
+        for value in Archive.objects.values('name'):
+            image_list = image_list.exclude(archives__name=value['name'])
+
     image_paginator = Paginator(image_list, getattr(settings, 'PAGINATE_BY', 25))
 
     try:
@@ -81,6 +91,13 @@ def images(request, page=1):
                     lookup_args.update({'%s__name' % key: value})
 
         qs = qs.filter(**lookup_args)
+
+        # filter communications and archives
+        if not request.user.is_staff:
+            for value in Communications.objects.values('name'):
+                qs = qs.exclude(communications__name=value['name'])
+            for value in Archive.objects.values('name'):
+                qs = qs.exclude(archives__name=value['name'])
 
         image_paginator = Paginator(qs, getattr(settings, 'PAGINATE_BY', 25))
 

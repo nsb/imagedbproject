@@ -129,6 +129,7 @@ def create_category_values(app, created_models, verbosity, **kwargs):
     Communications.objects.get_or_create(name="Management Photos")
     Communications.objects.get_or_create(name="Visual Identity")
     Communications.objects.get_or_create(name="Employee Events")
+    Communications.objects.get_or_create(name="Offshore Visit")
 
     # archive
     Archive.objects.get_or_create(id=1, name="Colombia")
