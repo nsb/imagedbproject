@@ -52,7 +52,7 @@ class Image(ImageModel):
         People,
         null=True,
         blank=True,
-        verbose_name=_('times of day'))
+        verbose_name=_('People'))
     hse = models.ManyToManyField(
         HSE,
         null=True,
