@@ -72,7 +72,7 @@ class Image(ImageModel):
         Communications,
         null=True,
         blank=True,
-        verbose_name=_('areas'))
+        verbose_name=_('Communications'))
     archives = models.ManyToManyField(
         Archive,
         null=True,
