@@ -131,8 +131,8 @@ def create_category_values(app, created_models, verbosity, **kwargs):
     Communications.objects.get_or_create(name="Employee Events")
 
     # archive
-    Archive.objects.get_or_create(id=2, name="Colombia")
-    Archive.objects.get_or_create(id=15, name="Suriname")
+    Archive.objects.get_or_create(id=1, name="Colombia")
+    Archive.objects.get_or_create(id=2, name="Kazakhstan")
 
     # year
     Year.objects.get_or_create(name="1985")
