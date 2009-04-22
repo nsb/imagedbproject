@@ -1,6 +1,6 @@
 # Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
 
-import os, re
+import os, re, time
 import logging
 from optparse import OptionParser
 import urllib, urllib2, urlparse, httplib
@@ -142,6 +142,8 @@ def main():
                 else:
                     print 'skipping %s...' % name
                 count += 1
+
+        time.sleep(4)
 
     # walk the dir tree
     os.path.walk(path, visit, opener)
