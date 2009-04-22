@@ -124,7 +124,7 @@ def main():
             path = os.path.join(dirname, name)
             if os.path.isfile(path):
 
-                if "Recycled" in path or "System Volume Information" in path or "G - Graphics" in path:
+                if "Recycled" in path or "System Volume Information" in path:
                     continue
 
                 if name.startswith('.'):
