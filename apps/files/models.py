@@ -125,7 +125,7 @@ class Image(ImageModel):
 
             # convert to rgb
             retcode = -1
-            if should_convert(photosize) and format == 'TIFF':
+            if should_convert(photosize):
                 input_profile = '%s/iccprofiles/CoatedFOGRA27.icc' % settings.PROJECT_ROOT
                 output_profile = '%s/iccprofiles/AdobeRGB1998.icc' % settings.PROJECT_ROOT
                 outputfile = tempfile.NamedTemporaryFile()
