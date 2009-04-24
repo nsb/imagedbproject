@@ -213,9 +213,7 @@ class Image(ImageModel):
         archives = ''.join(['%s; ' % archive.name for archive in self.archives.all()])
         years = ''.join(['%s; ' % year.name for year in self.years.all()])
 
-        ret = ''.join([locations, fields, installations, people, hse, events, graphics, communications, archives, years])
-        print ret
-        return ret
+        return ''.join([locations, fields, installations, people, hse, events, graphics, communications, archives, years])
 
 class EPS(models.Model):
     eps = models.FileField(upload_to='eps')
