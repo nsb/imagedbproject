@@ -237,6 +237,6 @@ def send_eps(request, eps_id):
 
     wrapper = FileWrapper(file(filename))
     response = HttpResponse(wrapper, content_type=mimetype or 'application/postscript')
-    response['Content-Length'] = os.path.getsize(filename)
-    response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename)
+    response['Content-Length'] = os.path.getsize(filename.encode('utf8'))
+    response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename.encode('utf8'))
     return response
