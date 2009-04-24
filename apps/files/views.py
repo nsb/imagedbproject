@@ -154,8 +154,8 @@ def send_image(request, image_id, size):
 
     wrapper = FileWrapper(file(filename))
     response = HttpResponse(wrapper, content_type=mimetype or 'image/jpeg')
-    response['Content-Length'] = os.path.getsize(filename)
-    response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename)
+    response['Content-Length'] = os.path.getsize(filename.encode('utf8'))
+    response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename.encode('utf8'))
     return response
 
 def eps(request, page=1):
