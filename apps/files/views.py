@@ -153,7 +153,7 @@ def send_image(request, image_id, size):
     mimetype, encoding = mimetypes.guess_type(filename)
 
     wrapper = FileWrapper(file(filename))
-    response = HttpResponse(wrapper, content_type=mimetype or 'image/jpeg')
+    response = HttpResponse(wrapper, content_type='%s; charset=utf8' % mimetype or 'image/jpeg')
     response['Content-Length'] = os.path.getsize(filename.encode('utf8'))
     response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename.encode('utf8'))
     return response
