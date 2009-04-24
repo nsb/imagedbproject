@@ -202,18 +202,20 @@ class Image(ImageModel):
         return reverse('image-detail', args=[self.id])
 
     def categories(self):
-        locations = ' '.join(['%s;' % location.name for location in self.locations.all()])
-        fields = ' '.join(['%s;' % field.name for field in self.fields.all()])
-        installations = ' '.join(['%s;' % installation.name for installation in self.installations.all()])
-        people = ' '.join(['%s;' % people.name for people in self.people.all()])
-        hse = ' '.join(['%s;' % hse.name for hse in self.hse.all()])
-        events = ' '.join(['%s;' % event.name for event in self.events.all()])
-        graphics = ' '.join(['%s;' % graphics.name for graphics in self.graphics.all()])
-        communications = ' '.join(['%s;' % communications.name for communications in self.communications.all()])
-        archives = ' '.join(['%s;' % archive.name for archive in self.archives.all()])
-        years = ' '.join(['%s;' % year.name for year in self.years.all()])
+        locations = ''.join(['%s; ' % location.name for location in self.locations.all()])
+        fields = ''.join(['%s; ' % field.name for field in self.fields.all()])
+        installations = ' '.join(['%s; ' % installation.name for installation in self.installations.all()])
+        people = ''.join(['%s; ' % people.name for people in self.people.all()])
+        hse = ''.join(['%s; ' % hse.name for hse in self.hse.all()])
+        events = ''.join(['%s; ' % event.name for event in self.events.all()])
+        graphics = ''.join(['%s; ' % graphics.name for graphics in self.graphics.all()])
+        communications = ''.join(['%s; ' % communications.name for communications in self.communications.all()])
+        archives = ''.join(['%s; ' % archive.name for archive in self.archives.all()])
+        years = ''.join(['%s; ' % year.name for year in self.years.all()])
 
-        return ' '.join([locations, fields, installations, people, hse, events, graphics, communications, archives, years])
+        ret = ''.join([locations, fields, installations, people, hse, events, graphics, communications, archives, years])
+        print ret
+        return ret
 
 class EPS(models.Model):
     eps = models.FileField(upload_to='eps')
