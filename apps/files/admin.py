@@ -11,9 +11,9 @@ from categories.models import Year
 from models import Image, EPS
 
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_taken', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
+    list_display = ('title', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
     list_filter = ['date_added', 'is_public', 'locations', 'fields', 'installations', 'people', 'hse', 'events', 'graphics', 'communications', 'archives', 'years']
-    list_per_page = 100
+    list_per_page = 10
     save_on_top = True
     actions = ['set_1985', 'set_1986', 'set_1987', 'set_1988', 'set_1989', 'set_1990', 'set_1991', 'set_1992', 'set_1993', 'set_1994', 'set_1995', 'set_1996', 'set_1997', 'set_1998', 'set_1999', 'set_2000', 'set_2001', 'set_2002', 'set_2003', 'set_2004', 'set_2005', 'set_2006', 'set_2007', 'set_2008', 'set_2009',]
     fieldsets = (
