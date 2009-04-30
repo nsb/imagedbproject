@@ -87,6 +87,13 @@ input[type="submit"] {
   float: right;
 }
 
+/* select box widths */
+#id_locations, #id_hse { width: 150px; }
+#id_fields, #id_events { width: 150px; }
+#id_installations, #id_graphics { width: 150px; }
+#id_people, #id_communications { width: 150px; }
+#id_years, #id_archives { width: 150px; }
+
 /* TABS */
 .ui-tabs { padding: .2em; zoom: 1; }
 #tabitems, .ui-tabs .ui-tabs-nav { list-style: none; position: relative; padding: .2em .2em 0; }
