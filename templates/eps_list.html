@@ -1,4 +1,35 @@
-{% extends "list.html" %}
+{% extends "base_site.html" %}
 {% load i18n %}
 
-{% block default_tab %}graphics{% endblock default_tab %}
+{% block indented_content %}
+
+<form class="round" method="get" action="{% url eps 1 %}">
+{% include "form.html" %}
+
+{% block eps_list %}
+{% if eps.object_list %}
+<div id="eps_list">
+{% for eps in eps.object_list %}
+  <a href="{% url eps-detail eps.id %}"><img src="{{ eps.thumbnail_url }}" alt="{{ eps.title }}"></a>
+{% endfor %}
+
+<span class="step-links">
+  {% if eps.has_previous %}
+    <a href="{% url eps eps.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img src="/static/img/pil_tilbage.gif" alt="{% trans "Previous" %}"></a>
+  {% endif %}
+
+  {% if eps.has_next %}
+    <a href="{% url eps eps.next_page_number %}{% if query %}?{{ query }}{% endif %}"><img src="/static/img/pil_frem.gif" alt="{% trans "Next" %}"></a>
+  {% endif %}
+</span>
+</div>
+
+{% else %}
+{% trans "No logos found." %}
+{% endif %}
+{% endblock eps_list %}
+
+<div><input type="submit" value="Search"> {% if reset_url %}<a href="{{ reset_url }}">reset</a>{% endif %}</div>
+</form>
+
+{% endblock indented_content %}

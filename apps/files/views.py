@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
 
 import os, mimetypes
@@ -22,54 +23,15 @@ from categories.models import Communications, Archive
 
 @login_required
 @require_http_methods(["GET"])
-def list(request, page=1):
+def image_front(request, page=1):
 
     image_form = imagefilterform_factory(request)()
-    image_list = Image.objects.select_related().filter(is_public=True)
 
-    # filter communications and archives
-    if not request.user.is_staff:
-        for value in Communications.objects.values('name'):
-            image_list = image_list.exclude(communications__name=value['name'])
-        for value in Archive.objects.values('name'):
-            image_list = image_list.exclude(archives__name=value['name'])
-
-    image_paginator = Paginator(image_list, getattr(settings, 'PAGINATE_BY', 25))
-
-    try:
-        images = image_paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        images = image_paginator.page(image_paginator.num_pages)
-
-    eps_form = EPSFilterForm()
-    eps_list = EPS.objects.select_related().all()
-    eps_paginator = Paginator(eps_list, getattr(settings, 'PAGINATE_BY', 25))
-
-    try:
-        eps = eps_paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        eps = eps_paginator.page(eps_paginator.num_pages)
-
-    return render_to_response(
-        'list.html',
-        RequestContext(request,
-            {'image_form':image_form,
-             'images':images,
-             'eps_form':eps_form,
-             'eps':eps}))
+    return render_to_response('image_front.html', RequestContext(request, {'form':image_form,}))
 
 @login_required
 @require_http_methods(["GET"])
 def images(request, page=1):
-
-    eps_form = EPSFilterForm()
-    eps_list = EPS.objects.select_related().filter(is_public=True)
-    eps_paginator = Paginator(eps_list, getattr(settings, 'PAGINATE_BY', 25))
-
-    try:
-        eps = eps_paginator.page(1)
-    except (EmptyPage, InvalidPage):
-        eps = eps_paginator.page(eps_paginator.num_pages)
 
     form = imagefilterform_factory(request)(request.GET)
     if form.is_valid():
@@ -111,9 +73,7 @@ def images(request, page=1):
             RequestContext(
                 request,
                 {'images':images,
-                 'image_form':form,
-                 'eps':eps,
-                 'eps_form':eps_form,
+                 'form':form,
                  'query':request.GET.urlencode()}))
 
     else:
@@ -158,16 +118,16 @@ def send_image(request, image_id, size):
     response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename.encode('utf8'))
     return response
 
+@login_required
+@require_http_methods(["GET"])
+def eps_front(request, page=1):
+
+    eps_form = EPSFilterForm()
+
+    return render_to_response('eps_front.html', RequestContext(request, {'form':eps_form,}))
+
+
 def eps(request, page=1):
-
-    image_form = imagefilterform_factory(request)()
-    image_list = Image.objects.select_related().filter(is_public=True)
-    image_paginator = Paginator(image_list, getattr(settings, 'PAGINATE_BY', 25))
-
-    try:
-        images = image_paginator.page(1)
-    except (EmptyPage, InvalidPage):
-        images = image_paginator.page(image_paginator.num_pages)
 
     form = EPSFilterForm(request.GET)
     if form.is_valid():
@@ -202,14 +162,11 @@ def eps(request, page=1):
             RequestContext(
                 request,
                 {'eps':eps,
-                 'eps_form':form,
-                 'images':images,
-                 'image_form':image_form,
+                 'form':form,
                  'query':request.GET.urlencode()}))
 
     else:
         return HttpResponseBadRequest(form.errors)
-
 
 @login_required
 @require_http_methods(["GET"])

@@ -1,4 +1,35 @@
-{% extends "list.html" %}
+{% extends "base_site.html" %}
 {% load i18n %}
 
-{% block default_tab %}photos{% endblock default_tab %}
+{% block indented_content %}
+
+<form class="round" method="get" action="{% url images 1 %}">
+{% include "form.html" %}
+
+{% block image_list %}
+{% if images.object_list %}
+<div id="image_list">
+{% for image in images.object_list %}
+<a href="{% url image-detail image.id %}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}" title="{{ image.categories }}"></a>
+{% endfor %}
+
+<span class="step-links">
+  {% if images.has_previous %}
+    <a href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img src="/static/img/pil_tilbage.gif" alt="{% trans "Previous" %}"></a>
+  {% endif %}
+
+  {% if images.has_next %}
+    <a href="{% url images images.next_page_number %}{% if query %}?{{ query }}{% endif %}"><img src="/static/img/pil_frem.gif" alt="{% trans "Next" %}"></a>
+  {% endif %}
+</span>
+</div>
+
+{% else %}
+{% trans "No images found." %}
+{% endif %}
+{% endblock image_list %}
+
+<div><input type="submit" value="Search"> {% if reset_url %}<a href="{{ reset_url }}">reset</a>{% endif %}</div>
+</form>
+
+{% endblock indented_content %}
