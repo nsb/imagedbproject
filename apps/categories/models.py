@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
 
 from django.db import models
@@ -64,13 +65,13 @@ class Communications(Category):
 class Archive(Category):
     class Meta:
         verbose_name = _("Archive")
-        verbose_name_plural = _("Archives")
+        verbose_name_plural = _("Archive")
         ordering = ['name']
 
 class Year(Category):
     class Meta:
         verbose_name = _("Year")
-        verbose_name_plural = _("Years")
+        verbose_name_plural = _("Year")
         ordering = ['-name']
 
 class Logo(Category):
