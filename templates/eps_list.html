@@ -29,7 +29,7 @@
 {% endif %}
 {% endblock eps_list %}
 
-<div><input type="submit" value="Search"> {% if reset_url %}<a href="{{ reset_url }}">reset</a>{% endif %}</div>
+<div id="submit_line"><input type="submit" value="Search"> <a href="{% url eps_front %}">reset</a></div>
 </form>
 
 {% endblock indented_content %}

@@ -84,6 +84,8 @@ select {
 input[type="submit"] {
   color: white;
   background: #012f63;
+}
+#submit_line {
   float: right;
 }
 
