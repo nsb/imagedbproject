@@ -8,12 +8,12 @@
 <div id="tabs" class="{% block default_tab %}{% endblock default_tab %}">
 
 <ul id="tabitems">
-<li><a href="#photos">Photos</a></li>
+<li><a href="#images">Images</a></li>
 <li><a href="#logos">Logos</a></li>
 </ul>
 
 {% block tabs %}
-<div id="photos">
+<div id="images">
 {% with image_form as form %}
 {% include "includes/image_list.html" %}
 {% endwith %}

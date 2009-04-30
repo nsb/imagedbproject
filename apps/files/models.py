@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
 
 import os
@@ -89,8 +90,8 @@ class Image(ImageModel):
     class Meta:
         ordering = ['-date_added']
         get_latest_by = 'date_added'
-        verbose_name = _("photo")
-        verbose_name_plural = _("Photos")
+        verbose_name = _("image")
+        verbose_name_plural = _("images")
 
     def __unicode__(self):
         return self.title
