@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
 
 from django.contrib import admin
@@ -279,7 +280,7 @@ class EPSAdmin(admin.ModelAdmin):
             'fields': ('eps', 'thumbnail',)
         }),
         ('Categories', {
-            'fields': ('logos', 'designs',)
+            'fields': ('logos',)
         }),
     )
 

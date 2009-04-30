@@ -231,11 +231,6 @@ class EPS(models.Model):
         null=True,
         blank=True,
         verbose_name=_('Logos'))
-    designs = models.ManyToManyField(
-        Design,
-        null=True,
-        blank=True,
-        verbose_name=_('Design elements'))
 
     class Meta:
         ordering = ['-date_added']

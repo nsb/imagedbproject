@@ -20,17 +20,10 @@
 <hr class="space">
 <h4>{% trans "Categories:" %}</h4>
 
-{% if eps.locations.all %}
+{% if eps.logos.all %}
 <div>
-<strong>{% trans "Locations: " %}</strong>
-{{ eps.locations.all|join:"; " }}
-</div>
-{% endif %}
-
-{% if eps.fields.all %}
-<div>
-<strong>{% trans "Fields: " %}</strong>
-{{ eps.fields.all|join:"; " }}
+<strong>{% trans "Logos: " %}</strong>
+{{ eps.logos.all|join:"; " }}
 </div>
 {% endif %}
 

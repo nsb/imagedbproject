@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
 
 from django import forms
@@ -60,7 +61,6 @@ def imagefilterform_factory(request):
 
 class EPSFilterForm(forms.Form):
     logos = forms.ChoiceField(label='Logos', required=False)
-    designs = forms.ChoiceField(label='Design elements', required=False)
 
     def __init__(self, *args, **kwargs):
         self.fieldsets = []
@@ -70,7 +70,6 @@ class EPSFilterForm(forms.Form):
             [(item.name, '%s (%d)' % (item.name, item.eps_set.count())) for item in x]
 
         self.fields['logos'].choices = _choices(Logo.objects.all())
-        self.fields['designs'].choices = _choices(Design.objects.all())
 
         self.fieldsets.append(
-            Fieldset(self, name='', fields=('logos', 'designs',)))
+            Fieldset(self, name='', fields=('logos',)))
