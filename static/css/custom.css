@@ -37,6 +37,9 @@ body.nonauth {
 #breadcrumbs {
   padding: 1em 0;
 }
+#ft {
+  text-align: center;
+}
 #photo_size {
   margin: 0 0 1em 0;
 }
