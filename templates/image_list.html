@@ -4,7 +4,13 @@
 {% block indented_content %}
 
 <form class="round" method="get" action="{% url images 1 %}">
+<table>
 {% include "form.html" %}
+
+<tr><td colspan="4"></td>
+<td id="submit_line"><input type="image" src="/static/img/button_07.gif" value="Search"> <a href="{% url image_front %}"><img src="/static/img/button_03.gif"></a></td></tr>
+</table>
+</form>
 
 {% block image_list %}
 {% if images.object_list %}
@@ -29,8 +35,5 @@
 {% endif %}
 {% endblock image_list %}
 
-<div id="submit_line"><input type="submit" value="Search"> <a href="{% url image_front %}">reset</a></div>
-<div class="clear"></div>
-</form>
 
 {% endblock indented_content %}

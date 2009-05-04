@@ -1,6 +1,5 @@
 {% load i18n %}
 
-<table>
 {% for fieldset in form.fieldsets %}
   <tr>
   {% for field in fieldset %}
@@ -18,7 +17,6 @@
   {% endfor %}
 </tr>
 {% endfor %}
-</table>
 
 {% for field in form %}
   {% if field.is_hidden %}

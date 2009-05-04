@@ -19,6 +19,7 @@ body.nonauth {
 }
 #hd {
   height: 64px;
+  margin-bottom: 1.4em;
 }
 #hd #logo {
   float: left;
@@ -54,42 +55,31 @@ body.nonauth {
 #indented_content {
   padding: 0 20px;
 }
-#tabs {
-  margin: 18px 0;
-}
 #image_list, #eps_list {
+  margin-bottom: 1.4em;
 }
 .caption {
   width: 600px;
 }
 /* FORMS */
 form {
-  padding: 4px 0 4px 0;
-  margin: 1em 0;
-}
-form table {
-  width: 100%;
-  margin: 0 0 18px 0;
+/*   padding: 4px 0 4px 0; */
+  margin-top: .5em;
 }
 form td {
-  padding: 0 1px 0 0;
+  padding: 0;
 }
 select {
-  margin: 0;
-  padding: 0;
-  background: white;
+  margin: 0 0 .5em 0;
 }
 input[type="submit"] {
   color: white;
   background: #012f63;
 }
-#submit_line {
-  float: right;
-}
 
 /* select box widths */
-#id_locations, #id_hse { width: 150px; }
-#id_fields, #id_events { width: 150px; }
-#id_installations, #id_graphics { width: 150px; }
-#id_people, #id_communications { width: 150px; }
-#id_years, #id_archives { width: 150px; }
+#id_locations, #id_hse { width: 175px; }
+#id_fields, #id_events { width: 175px; }
+#id_installations, #id_graphics { width: 175px; }
+#id_people, #id_communications { width: 175px; }
+#id_years, #id_archives { width: 175px; }
