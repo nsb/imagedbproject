@@ -243,7 +243,7 @@ class EPS(models.Model):
 
         # resize thumbnail
         im = PILImage.open(os.path.join(settings.MEDIA_ROOT, self.thumbnail.name))
-        im = im.resize((100, 100))
+        #im = im.resize((100, 100))
         im = round_image(im, {}, 10)
         base, ext = os.path.splitext(self.thumbnail.name)
         im.save(os.path.join(settings.MEDIA_ROOT, '%s_thumbnail%s' % (base, ext)))
