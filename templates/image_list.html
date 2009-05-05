@@ -3,6 +3,10 @@
 
 {% block indented_content %}
 
+<div id="sections">
+<a class="selected round" href="{% url image_front %}">{% trans "Images" %}</a> <a href="{% url eps_front %}">{% trans "Logos" %}</a>
+</div>
+
 <form class="round" method="get" action="{% url images 1 %}">
 <table>
 {% include "form.html" %}
@@ -19,15 +23,16 @@
 <a href="{% url image-detail image.id %}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}" title="{{ image.categories }}"></a>
 {% endfor %}
 
-<span class="step-links">
+<div class="step-links">
   {% if images.has_previous %}
-    <a href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img src="/static/img/pil_tilbage.gif" alt="{% trans "Previous" %}"></a>
+    <a href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="previousbutton" src="/static/img/button2_05.gif" alt="{% trans "Previous" %}"></a>
   {% endif %}
 
   {% if images.has_next %}
-    <a href="{% url images images.next_page_number %}{% if query %}?{{ query }}{% endif %}"><img src="/static/img/pil_frem.gif" alt="{% trans "Next" %}"></a>
+    <a href="{% url images images.next_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="nextbutton" src="/static/img/button2_07.gif" alt="{% trans "Next" %}"></a>
   {% endif %}
-</span>
+</div>
+<div class="clear"></div>
 </div>
 
 {% else %}

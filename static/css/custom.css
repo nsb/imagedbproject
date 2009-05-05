@@ -58,9 +58,25 @@ body.nonauth {
 #image_list, #eps_list {
   margin-bottom: 1.4em;
 }
+.step-links {
+  float: right;
+  margin-right: 60px;
+}
 .caption {
   width: 600px;
 }
+#sections {
+  margin-bottom: 1em;
+}
+#sections > a {
+  padding: .5em;
+  text-decoration: none;
+}
+#sections > a.selected {
+  background: #012f63;
+  color: white;
+}
+
 /* FORMS */
 form {
 /*   padding: 4px 0 4px 0; */

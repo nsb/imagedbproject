@@ -3,6 +3,10 @@
 
 {% block indented_content %}
 
+<div id="sections">
+<a href="{% url image_front %}">{% trans "Images" %}</a> <a class="selected round" href="{% url eps_front %}">{% trans "Logos" %}</a>
+</div>
+
 <form class="round" method="get" action="{% url eps 1 %}">
 {% include "form.html" %}
 
