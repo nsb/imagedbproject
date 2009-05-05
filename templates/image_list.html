@@ -22,6 +22,7 @@
 {% for image in images.object_list %}
 <a href="{% url image-detail image.id %}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}" title="{{ image.categories }}"></a>
 {% endfor %}
+</div>
 
 <table id="dummy">
   <tr>
@@ -47,7 +48,6 @@
   </tr>
 </table>
 
-</div>
 
 {% else %}
 {% trans "No images found." %}
