@@ -16,7 +16,7 @@ function toggleImage(buttonElm, imgover, imgout) {
 
 $(document).ready(function(){
 
-  $.preloadImages("/static/img/button_09.gif");
+  $.preloadImages("/static/img/button_09.gif", "/static/img/button_03.gif");
 
   toggleImage($('#searchbutton'), "/static/img/button_09.gif", "/static/img/button_07.gif"); 
   toggleImage($('#resetlink'), "/static/img/button_05.gif", "/static/img/button_03.gif"); 
