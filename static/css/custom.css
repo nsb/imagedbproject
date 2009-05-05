@@ -1,7 +1,6 @@
 body {
   text-align: left;
-/*   min-width: 800px; */
-  width: 1280px;
+  min-width: 800px;
   font-family: Verdana, Arial, sans-serif;
   font-size: 72%;
 }
@@ -58,11 +57,9 @@ body.nonauth {
 }
 #image_list, #eps_list {
   margin-bottom: 1.4em;
-/*   width: 1150px; */
 }
-.step-links, #submitline {
+.step-links {
   float: right;
-  margin-right: 70px;
 }
 .steps a {
   text-decoration: none;
@@ -92,10 +89,18 @@ form td {
 select {
   margin: 0 0 .5em 0;
 }
-
+#dummy {
+  margin-top: 1.4em;
+}
+#dummy td {
+  padding: 0;
+}
+#submitline > div {
+  float: right;
+}
 /* select box widths */
 #id_locations, #id_hse { width: 175px; }
 #id_fields, #id_events { width: 175px; }
 #id_installations, #id_graphics { width: 175px; }
 #id_people, #id_communications { width: 175px; }
-#id_years, #id_archives { width: 175px; }
+#id_years, #id_archives, #submitline { width: 175px; }
