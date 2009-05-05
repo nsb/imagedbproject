@@ -1,6 +1,7 @@
 body {
   text-align: left;
-  min-width: 800px;
+/*   min-width: 800px; */
+  width: 1280px;
   font-family: Verdana, Arial, sans-serif;
   font-size: 72%;
 }
@@ -57,10 +58,11 @@ body.nonauth {
 }
 #image_list, #eps_list {
   margin-bottom: 1.4em;
-  width: 1150px;
+/*   width: 1150px; */
 }
-.step-links {
+.step-links, #submitline {
   float: right;
+  margin-right: 70px;
 }
 .steps a {
   text-decoration: none;

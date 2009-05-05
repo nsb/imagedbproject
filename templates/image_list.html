@@ -10,10 +10,9 @@
 <form class="round" method="get" action="{% url images 1 %}">
 <table>
 {% include "form.html" %}
-
-<tr><td colspan="4"></td>
-<td><input id="searchbutton" type="image" src="/static/img/button_07.gif" value="Search"> <a href="{% url image_front %}"><img id="resetlink" src="/static/img/button_03.gif"></a></td></tr>
 </table>
+<div id="submitline"><input id="searchbutton" type="image" src="/static/img/button_07.gif" value="Search"> <a href="{% url image_front %}"><img id="resetlink" src="/static/img/button_03.gif"></a></div>
+<div class="clear"></div>
 </form>
 
 {% block image_list %}
@@ -27,7 +26,7 @@
   {% if images.has_previous %}
     <a href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="previousbutton" src="/static/img/button2_05.gif" alt="{% trans "Previous" %}"></a>
   {% endif %}
-
+  <span class="quiet steps"><a href="">1</a> <a href="">2</a> <a href="">3</a></span>
   {% if images.has_next %}
     <a href="{% url images images.next_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="nextbutton" src="/static/img/button2_07.gif" alt="{% trans "Next" %}"></a>
   {% endif %}
