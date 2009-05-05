@@ -57,10 +57,13 @@ body.nonauth {
 }
 #image_list, #eps_list {
   margin-bottom: 1.4em;
+  width: 1150px;
 }
 .step-links {
   float: right;
-  margin-right: 60px;
+}
+.steps a {
+  text-decoration: none;
 }
 .caption {
   width: 600px;
@@ -79,7 +82,6 @@ body.nonauth {
 
 /* FORMS */
 form {
-/*   padding: 4px 0 4px 0; */
   margin-top: .5em;
 }
 form td {
@@ -87,10 +89,6 @@ form td {
 }
 select {
   margin: 0 0 .5em 0;
-}
-input[type="submit"] {
-  color: white;
-  background: #012f63;
 }
 
 /* select box widths */

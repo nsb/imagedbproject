@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # -*- encoding: utf-8 -*-
 # Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
 #
@@ -107,7 +108,7 @@ from utils import get_image_path
 
 #PHOTOLOGUE_PATH = get_image_path
 
-PAGINATE_BY=27
+PAGINATE_BY=33
 
 try:
     from settings_local import *
