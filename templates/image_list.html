@@ -52,7 +52,7 @@
 {% endif %}
  
 {% for num in page_numbers %}
-  {% ifequal num page %}
+  {% ifequal num images.number %}
     <span class="curr" title="Current Page">{{ num }}</span>
   {% else %}
         <span class="page"><a href="{% url images num %}{% if query %}?{{ query }}{% endif %}" title="Page {{ num }}">{{ num }}</a></span>
