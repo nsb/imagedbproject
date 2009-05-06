@@ -29,5 +29,9 @@ $(document).ready(function(){
   toggleImage($('#resetlink'), "/static/img/button_05.gif", "/static/img/button_03.gif"); 
   toggleImage($('#previousbutton'), "/static/img/button2_03.gif", "/static/img/button2_05.gif"); 
   toggleImage($('#nextbutton'), "/static/img/button2_09.gif", "/static/img/button2_07.gif"); 
+  toggleImage($('#download-small'), "/static/img/Small2.jpg", "/static/img/Small.jpg"); 
+  toggleImage($('#download-medium'), "/static/img/Medium2.jpg", "/static/img/Medium.jpg"); 
+  toggleImage($('#download-large'), "/static/img/Large2.jpg", "/static/img/Large.jpg"); 
+  toggleImage($('#download-original'), "/static/img/original_size2.jpg", "/static/img/original_size.jpg"); 
 
 });
