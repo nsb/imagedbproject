@@ -19,7 +19,11 @@ $(document).ready(function(){
   $.preloadImages("/static/img/button_09.gif",
                   "/static/img/button_05.gif",
                   "/static/img/button2_03.gif",
-                  "/static/img/button2_09.gif");
+                  "/static/img/button2_09.gif",
+                  "/static/img/Small2.jpg",
+                  "/static/img/Medium2.jpg",
+                  "/static/img/Large2.jpg",
+                  "/static/img/original_size2.jpg");
 
   toggleImage($('#searchbutton'), "/static/img/button_09.gif", "/static/img/button_07.gif"); 
   toggleImage($('#resetlink'), "/static/img/button_05.gif", "/static/img/button_03.gif"); 

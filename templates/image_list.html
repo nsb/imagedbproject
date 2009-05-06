@@ -4,7 +4,7 @@
 {% block indented_content %}
 
 <div id="sections">
-<a class="selected round" href="{% url image_front %}">{% trans "Images" %}</a> <a href="{% url eps_front %}">{% trans "Logos" %}</a>
+<a class="selected round" href="{% url image_front %}"><img src="/static/img/Images.gif" alt="{% trans "Images" %}"></a> <a href="{% url eps_front %}"><img src="/static/img/logos.jpg" alt="{% trans "Logos" %}"></a>
 </div>
 
 <form class="round" method="get" action="{% url images 1 %}">
@@ -36,12 +36,37 @@
 
 <div class="step-links">
   {% if images.has_previous %}
-    <a href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="previousbutton" src="/static/img/button2_05.gif" alt="{% trans "Previous" %}"></a>
+    <a class="step-button" href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="previousbutton" src="/static/img/button2_05.gif" alt="{% trans "Previous" %}"></a>
   {% endif %}
-  <span class="quiet steps"><a href="">1</a> <a href="">2</a> <a href="">3</a></span>
   {% if images.has_next %}
-    <a href="{% url images images.next_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="nextbutton" src="/static/img/button2_07.gif" alt="{% trans "Next" %}"></a>
+    <a class="step-button" href="{% url images images.next_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="nextbutton" src="/static/img/button2_07.gif" alt="{% trans "Next" %}"></a>
   {% endif %}
+  <div class="clear"></div>
+
+<div class="small quiet steps">
+{% if not in_leading_range %}
+        {% for num in pages_outside_trailing_range %}
+                <span class="page"><a href="{% url images num %}{% if query %}?{{ query }}{% endif %}">{{ num }}</a></span>
+        {% endfor %}
+        ...
+{% endif %}
+ 
+{% for num in page_numbers %}
+  {% ifequal num page %}
+    <span class="curr" title="Current Page">{{ num }}</span>
+  {% else %}
+        <span class="page"><a href="{% url images num %}{% if query %}?{{ query }}{% endif %}" title="Page {{ num }}">{{ num }}</a></span>
+  {% endifequal %}
+{% endfor %}
+ 
+{% if not in_trailing_range %}
+        ...
+        {% for num in pages_outside_leading_range reversed %}
+                <span class="page"><a href="{% url images num %}{% if query %}?{{ query }}{% endif %}" >{{ num }}</a></span>
+        {% endfor %}
+{% endif %}
+</div> 
+
 </div>
 
   </div></td>

@@ -62,22 +62,18 @@ body.nonauth {
 .step-links {
   float: right;
 }
-.steps a {
+.step-links .step-button {
+  float: right;
+}
+.steps {
+  color: #a5a3a5;
+}
+.steps > a {
   text-decoration: none;
+  color: #a5a3a5;
 }
 .caption {
   width: 600px;
-}
-#sections {
-  margin-bottom: 1em;
-}
-#sections > a {
-  padding: .5em;
-  text-decoration: none;
-}
-#sections > a.selected {
-  background: #012f63;
-  color: white;
 }
 
 /* FORMS */

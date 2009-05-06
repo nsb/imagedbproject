@@ -68,13 +68,51 @@ def images(request, page=1):
         except (EmptyPage, InvalidPage):
             images = image_paginator.page(image_paginator.num_pages)
 
+
+        LEADING_PAGE_RANGE_DISPLAYED = TRAILING_PAGE_RANGE_DISPLAYED = 3
+        LEADING_PAGE_RANGE = TRAILING_PAGE_RANGE = 3
+        NUM_PAGES_OUTSIDE_RANGE = 2 
+        ADJACENT_PAGES = 2
+ 
+        " Initialize variables "
+        in_leading_range = in_trailing_range = False
+        pages_outside_leading_range = pages_outside_trailing_range = range(0)
+ 
+        page = images
+
+        if (page.paginator.num_pages <= LEADING_PAGE_RANGE_DISPLAYED):
+            in_leading_range = in_trailing_range = True
+            page_numbers = page.paginator.page_range
+        elif (page.number <= LEADING_PAGE_RANGE):
+            in_leading_range = True
+            page_numbers = [n for n in range(1, LEADING_PAGE_RANGE_DISPLAYED + 1) if n > 0 and n <= page.paginator.num_pages]
+            pages_outside_leading_range = [n + page.paginator.num_pages for n in range(0, -NUM_PAGES_OUTSIDE_RANGE, -1)]
+        elif (page.number > page.paginator.num_pages - TRAILING_PAGE_RANGE):
+            in_trailing_range = True
+            page_numbers = [n for n in range(page.paginator.num_pages - TRAILING_PAGE_RANGE_DISPLAYED + 1, page.paginator.num_pages + 1) if n > 0 and n <= page.paginator.num_pages]
+            pages_outside_trailing_range = [n + 1 for n in range(0, NUM_PAGES_OUTSIDE_RANGE)]
+        else: 
+            page_numbers = [n for n in range(page.number - ADJACENT_PAGES, page.number + ADJACENT_PAGES + 1) if n > 0 and n <= page.paginator.num_pages]
+            pages_outside_leading_range = [n + page.paginator.num_pages for n in range(0, -NUM_PAGES_OUTSIDE_RANGE, -1)]
+            pages_outside_trailing_range = [n + 1 for n in range(0, NUM_PAGES_OUTSIDE_RANGE)]
+        context = {
+            "page_numbers": page_numbers,
+            "in_leading_range" : in_leading_range,
+            "in_trailing_range" : in_trailing_range,
+            "pages_outside_leading_range": pages_outside_leading_range,
+            "pages_outside_trailing_range": pages_outside_trailing_range
+        }
+
+        context.update(
+            {'images':images,
+             'form':form,
+             'query':request.GET.urlencode()})
+
         return render_to_response(
             'image_list.html',
             RequestContext(
                 request,
-                {'images':images,
-                 'form':form,
-                 'query':request.GET.urlencode()}))
+                context))
 
     else:
         return HttpResponseBadRequest(form.errors)
