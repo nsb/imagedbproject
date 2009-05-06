@@ -44,6 +44,7 @@
   <div class="clear"></div>
 
 <div class="small quiet pages">
+Page
 {% if not in_leading_range %}
         {% for num in pages_outside_trailing_range %}
                 <span class="page"><a href="{% url images num %}{% if query %}?{{ query }}{% endif %}">{{ num }}</a></span>
