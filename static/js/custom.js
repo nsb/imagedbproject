@@ -20,6 +20,8 @@ $(document).ready(function(){
                   "/static/img/button_05.gif",
                   "/static/img/button2_03.gif",
                   "/static/img/button2_09.gif",
+                  "/static/img/Images2.gif",
+                  "/static/img/logos2.jpg",
                   "/static/img/Small2.jpg",
                   "/static/img/Medium2.jpg",
                   "/static/img/Large2.jpg",
@@ -33,5 +35,8 @@ $(document).ready(function(){
   toggleImage($('#download-medium'), "/static/img/Medium2.jpg", "/static/img/Medium.jpg"); 
   toggleImage($('#download-large'), "/static/img/Large2.jpg", "/static/img/Large.jpg"); 
   toggleImage($('#download-original'), "/static/img/original_size2.jpg", "/static/img/original_size.jpg"); 
+  toggleImage($('#images-section'), "/static/img/Images2.gif", "/static/img/Images.gif"); 
+  toggleImage($('#logos-section'), "/static/img/logos2.jpg", "/static/img/logos.jpg"); 
+
 
 });
