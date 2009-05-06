@@ -35,11 +35,11 @@
   <td><div id="id_years">
 
 <div class="step-links">
-  {% if images.has_previous %}
-    <a href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="previousbutton" src="/static/img/button2_05.gif" alt="{% trans "Previous" %}"></a>
-  {% endif %}
   {% if images.has_next %}
-    <a href="{% url images images.next_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="nextbutton" src="/static/img/button2_07.gif" alt="{% trans "Next" %}"></a>
+    <a class="step-button" href="{% url images images.next_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="nextbutton" src="/static/img/button2_07.gif" alt="{% trans "Next" %}"></a>
+  {% endif %}
+  {% if images.has_previous %}
+    <a class="step-button" href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="previousbutton" src="/static/img/button2_05.gif" alt="{% trans "Previous" %}"></a>
   {% endif %}
   <div class="clear"></div>
 

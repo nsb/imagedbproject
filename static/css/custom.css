@@ -59,7 +59,7 @@ body.nonauth {
   margin-bottom: 1.4em;
   width: 1150px;
 }
-.step-links, .pages {
+.step-links, .pages, .step-button {
   float: right;
 }
 .page {
