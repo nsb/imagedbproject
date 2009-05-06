@@ -59,16 +59,13 @@ body.nonauth {
   margin-bottom: 1.4em;
   width: 1150px;
 }
-.step-links {
+.step-links, .pages {
   float: right;
 }
-.step-links .step-button {
-  float: right;
-}
-.steps {
+.page {
   color: #a5a3a5;
 }
-.steps > a {
+.page > a {
   text-decoration: none;
   color: #a5a3a5;
 }

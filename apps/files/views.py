@@ -71,8 +71,8 @@ def images(request, page=1):
 
         LEADING_PAGE_RANGE_DISPLAYED = TRAILING_PAGE_RANGE_DISPLAYED = 3
         LEADING_PAGE_RANGE = TRAILING_PAGE_RANGE = 3
-        NUM_PAGES_OUTSIDE_RANGE = 2 
-        ADJACENT_PAGES = 2
+        NUM_PAGES_OUTSIDE_RANGE = 2
+        ADJACENT_PAGES = 1
  
         " Initialize variables "
         in_leading_range = in_trailing_range = False

@@ -36,14 +36,14 @@
 
 <div class="step-links">
   {% if images.has_previous %}
-    <a class="step-button" href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="previousbutton" src="/static/img/button2_05.gif" alt="{% trans "Previous" %}"></a>
+    <a href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="previousbutton" src="/static/img/button2_05.gif" alt="{% trans "Previous" %}"></a>
   {% endif %}
   {% if images.has_next %}
-    <a class="step-button" href="{% url images images.next_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="nextbutton" src="/static/img/button2_07.gif" alt="{% trans "Next" %}"></a>
+    <a href="{% url images images.next_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="nextbutton" src="/static/img/button2_07.gif" alt="{% trans "Next" %}"></a>
   {% endif %}
   <div class="clear"></div>
 
-<div class="small quiet steps">
+<div class="small quiet pages">
 {% if not in_leading_range %}
         {% for num in pages_outside_trailing_range %}
                 <span class="page"><a href="{% url images num %}{% if query %}?{{ query }}{% endif %}">{{ num }}</a></span>
