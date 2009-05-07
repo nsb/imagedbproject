@@ -4,6 +4,12 @@ body {
   font-family: Verdana, Arial, sans-serif;
   font-size: 72%;
 }
+a {
+  color: #e6e6e6;
+}
+a:hover {
+  color: #454545;
+}
 body.nonauth {
 }
 .round {
@@ -37,12 +43,6 @@ body.nonauth {
 }
 #breadcrumbs {
   padding: 1em 0;
-}
-#breadcrumbs a {
-  color: #e6e6e6;
-}
-#breadcrumbs a:hover {
-  color: #454545;
 }
 #ft {
   text-align: center;
