@@ -38,6 +38,12 @@ body.nonauth {
 #breadcrumbs {
   padding: 1em 0;
 }
+#breadcrumbs a {
+  color: #e6e6e6;
+}
+#breadcrumbs a:hover {
+  color: #454545;
+}
 #ft {
   text-align: center;
 }
