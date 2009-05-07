@@ -11,7 +11,7 @@
 <table>
 {% include "form.html" %}
 </table>
-<div id="submitline"><input id="searchbutton" type="image" src="/static/img/button_07.gif" value="Search"> <a href="{% url image_front %}"><img id="resetlink" src="/static/img/button_03.gif"></a></div>
+<div id="submitline"><input id="searchbutton" type="image" src="/static/img/Search.jpg" value="Search"> <a href="{% url image_front %}"><img id="resetlink" src="/static/img/clear.jpg"></a></div>
 </form>
 
 {% block image_list %}
@@ -24,7 +24,7 @@
 
 <div class="step-links">
   {% if images.has_previous %}
-    <a class="step-button" href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="previousbutton" src="/static/img/button2_05.gif" alt="{% trans "Previous" %}"></a>
+    <a class="step-button" href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="previousbutton" src="/static/img/prev.jpg" alt="{% trans "Previous" %}"></a>
   {% endif %}
 
   <span class="small quiet pages">
@@ -52,7 +52,7 @@
   </span>
 
   {% if images.has_next %}
-    <a class="step-button" href="{% url images images.next_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="nextbutton" src="/static/img/button2_07.gif" alt="{% trans "Next" %}"></a>
+    <a class="step-button" href="{% url images images.next_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="nextbutton" src="/static/img/next.jpg" alt="{% trans "Next" %}"></a>
   {% endif %}
 
 </div>
