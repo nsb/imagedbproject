@@ -79,9 +79,3 @@ class Logo(Category):
         verbose_name = _("Logo")
         verbose_name_plural = _("Logos")
         ordering = ['-name']
-
-class Design(Category):
-    class Meta:
-        verbose_name = _("Design element")
-        verbose_name_plural = _("Design Elements")
-        ordering = ['-name']

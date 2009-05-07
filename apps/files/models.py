@@ -23,7 +23,7 @@ from django.conf import settings
 
 from photologue.models import ImageModel, PhotoSizeCache
 
-from categories.models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive, Year, Logo, Design
+from categories.models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive, Year, Logo
 from rounded_corners import round_image
 
 class Image(ImageModel):

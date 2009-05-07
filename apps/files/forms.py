@@ -4,7 +4,7 @@
 from django import forms
 from django.forms.forms import BoundField
 
-from categories.models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive, Year, Logo, Design
+from categories.models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive, Year, Logo
 
 class Fieldset(object):
     def __init__(self, form, name=None, fields=(), description=None):
