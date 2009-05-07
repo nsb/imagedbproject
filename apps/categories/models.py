@@ -78,4 +78,4 @@ class Logo(Category):
     class Meta:
         verbose_name = _("Logo")
         verbose_name_plural = _("Logos")
-        ordering = ['-name']
+        ordering = ['name']
