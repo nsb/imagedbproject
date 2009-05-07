@@ -251,3 +251,8 @@ class EPS(models.Model):
     def thumbnail_url(self):
         base, ext = os.path.splitext(self.thumbnail.name)
         return os.path.join(settings.MEDIA_URL, '%s_thumbnail%s' % (base, ext)) 
+
+    def categories(self):
+        logos = ''.join(['%s; ' % logo.name for logo in self.logos.all()])
+
+        return ''.join([logos])
