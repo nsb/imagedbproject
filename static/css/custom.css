@@ -56,14 +56,17 @@ body.nonauth {
   padding: 0 20px;
 }
 #image_list, #eps_list {
-  margin-bottom: 1.4em;
+  margin-bottom: .5em;
   width: 1150px;
 }
-.step-links, .pages, .step-button {
-  float: right;
+.step-button {
+  float: left;
 }
 .page {
   color: #a5a3a5;
+}
+.pages, .page > a, .curr {
+  padding: 0 .3em;
 }
 .page > a {
   text-decoration: none;
@@ -73,25 +76,27 @@ body.nonauth {
   text-decoration: underline;
   color: gray;
 }
+.step-links .pages {
+  position: relative;
+  float: left;
+  margin-top: .3em;
+}
 .caption {
   width: 600px;
 }
 
 /* FORMS */
 form {
-  margin-top: .5em;
+  margin: .5em 0;
+}
+form > table {
+  margin: 0;
 }
 form td {
   padding: 0;
 }
 select {
   margin: 0 0 .5em 0;
-}
-#dummy td {
-  padding: 0;
-}
-#submitline > div {
-  float: right;
 }
 /* select box widths */
 #id_locations, #id_hse { width: 200px; }

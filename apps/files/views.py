@@ -21,10 +21,10 @@ from forms import imagefilterform_factory, EPSFilterForm
 
 from categories.models import Communications, Archive
 
-LEADING_PAGE_RANGE_DISPLAYED = TRAILING_PAGE_RANGE_DISPLAYED = 3
-LEADING_PAGE_RANGE = TRAILING_PAGE_RANGE = 3
+LEADING_PAGE_RANGE_DISPLAYED = TRAILING_PAGE_RANGE_DISPLAYED = 10
+LEADING_PAGE_RANGE = TRAILING_PAGE_RANGE = 8
 NUM_PAGES_OUTSIDE_RANGE = 2
-ADJACENT_PAGES = 1
+ADJACENT_PAGES = 4
 
 @login_required
 @require_http_methods(["GET"])
