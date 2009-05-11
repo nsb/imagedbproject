@@ -16,27 +16,27 @@ function toggleImage(buttonElm, imgover, imgout) {
 
 $(document).ready(function(){
 
-  $.preloadImages("/static/img/Search2.jpg",
-                  "/static/img/clear2.jpg",
-                  "/static/img/prev2.jpg",
-                  "/static/img/next2.jpg",
-/*                  "/static/img/Images2.gif",
-                  "/static/img/logos2.jpg",*/
-                  "/static/img/Small2.jpg",
-                  "/static/img/Medium2.jpg",
-                  "/static/img/Large2.jpg",
-                  "/static/img/original_size2.jpg");
+  $.preloadImages("/static/img/Search2.png",
+                  "/static/img/clear2.png",
+                  "/static/img/prev2.png",
+                  "/static/img/next2.png",
+/*                  "/static/img/Images2.png",
+                  "/static/img/logos2.png",*/
+                  "/static/img/Small2.png",
+                  "/static/img/Medium2.png",
+                  "/static/img/Large2.png",
+                  "/static/img/original_size2.png");
 
-  toggleImage($('#searchbutton'), "/static/img/Search2.jpg", "/static/img/Search.jpg"); 
-  toggleImage($('#resetlink'), "/static/img/clear2.jpg", "/static/img/clear.jpg");
-  toggleImage($('#previousbutton'), "/static/img/prev2.jpg", "/static/img/prev.jpg"); 
-  toggleImage($('#nextbutton'), "/static/img/next2.jpg", "/static/img/next.jpg"); 
-  toggleImage($('#download-small'), "/static/img/Small2.jpg", "/static/img/Small.jpg"); 
-  toggleImage($('#download-medium'), "/static/img/Medium2.jpg", "/static/img/Medium.jpg"); 
-  toggleImage($('#download-large'), "/static/img/Large2.jpg", "/static/img/Large.jpg"); 
-  toggleImage($('#download-original'), "/static/img/original_size2.jpg", "/static/img/original_size.jpg"); 
-//   toggleImage($('#images-section'), "/static/img/Images2.gif", "/static/img/Images.gif"); 
-//   toggleImage($('#logos-section'), "/static/img/logos2.jpg", "/static/img/logos.jpg"); 
+  toggleImage($('#searchbutton'), "/static/img/Search2.png", "/static/img/Search.png"); 
+  toggleImage($('#resetlink'), "/static/img/clear2.png", "/static/img/clear.png");
+  toggleImage($('#previousbutton'), "/static/img/prev2.png", "/static/img/prev.png"); 
+  toggleImage($('#nextbutton'), "/static/img/next2.png", "/static/img/next.png"); 
+  toggleImage($('#download-small'), "/static/img/Small2.png", "/static/img/Small.png"); 
+  toggleImage($('#download-medium'), "/static/img/Medium2.png", "/static/img/Medium.png"); 
+  toggleImage($('#download-large'), "/static/img/Large2.png", "/static/img/Large.png"); 
+  toggleImage($('#download-original'), "/static/img/original_size2.png", "/static/img/original_size.png"); 
+//   toggleImage($('#images-section'), "/static/img/Images2.png", "/static/img/Images.png"); 
+//   toggleImage($('#logos-section'), "/static/img/logos2.png", "/static/img/logos.png"); 
 
 
 });

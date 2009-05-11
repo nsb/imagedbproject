@@ -4,14 +4,14 @@
 {% block indented_content %}
 
 <div id="sections">
-<a class="selected round" href="{% url image_front %}"><img id="images-section" src="/static/img/Images2.gif" alt="{% trans "Images" %}"></a> <a href="{% url eps_front %}"><img id="logos-section" src="/static/img/logos.jpg" alt="{% trans "Logos" %}"></a>
+<a class="selected round" href="{% url image_front %}"><img id="images-section" src="/static/img/Images2.png" alt="{% trans "Images" %}"></a> <a href="{% url eps_front %}"><img id="logos-section" src="/static/img/logos.png" alt="{% trans "Logos" %}"></a>
 </div>
 
 <form class="round" method="get" action="{% url images 1 %}">
 <table>
 {% include "form.html" %}
 </table>
-<div id="submitline"><input id="searchbutton" type="image" src="/static/img/Search.jpg" value="Search"> <a href="{% url image_front %}"><img id="resetlink" src="/static/img/clear.jpg"></a></div>
+<div id="submitline"><input id="searchbutton" type="image" src="/static/img/Search.png" value="Search"> <a href="{% url image_front %}"><img id="resetlink" src="/static/img/clear.png"></a></div>
 </form>
 
 {% block image_list %}
@@ -24,7 +24,7 @@
 
 <div class="step-links">
   {% if images.has_previous %}
-    <a class="step-button" href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="previousbutton" src="/static/img/prev.jpg" alt="{% trans "Previous" %}"></a>
+    <a class="step-button" href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="previousbutton" src="/static/img/prev.png" alt="{% trans "Previous" %}"></a>
   {% endif %}
 
   <span class="small quiet pages">
@@ -52,7 +52,7 @@
   </span>
 
   {% if images.has_next %}
-    <a class="step-button" href="{% url images images.next_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="nextbutton" src="/static/img/next.jpg" alt="{% trans "Next" %}"></a>
+    <a class="step-button" href="{% url images images.next_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="nextbutton" src="/static/img/next.png" alt="{% trans "Next" %}"></a>
   {% endif %}
 
 </div>
