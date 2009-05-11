@@ -177,6 +177,14 @@ class Image(ImageModel):
                 os.unlink(im_filename)
             raise e
 
+    def size_exists(self, photosize):
+        """ encode with utf8 to support unicode filenames"""
+        func = getattr(self, "get_%s_filename" % photosize.name, None)
+        if func is not None:
+            if os.path.isfile(func().encode('utf8')):
+                return True
+        return False
+
     def get_original_size(self):
         return PILImage.open(self.image.path).size
 
