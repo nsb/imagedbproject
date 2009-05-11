@@ -5,8 +5,7 @@
 
 {% block indented_content %}
 <div id="breadcrumbs">
-<a href="{% url image_front %}">{% trans "Home" %}</a> &rsaquo; <strong>(Ref. No.:{{ image.title }})</strong>
-<a onClick="history.back();" href="#">Back</a>
+<a href="{% url image_front %}">{% trans "Home" %}</a> &rsaquo; <a onClick="history.back();" href="#">Back</a>
 </div>
 <ul id="photo_size" class="small quiet">
 <li><strong><img src="/static/img/download.gif" alt="{% trans "Download" %}"></strong></li>
@@ -93,6 +92,10 @@
 {{ image.archives.all|join:"; " }}
 </div>
 {% endif %}
+
+<hr class="space">
+
+<div><strong>Ref. No.:</strong> {{ image.title }}</div>
 
 <hr class="space">
 
