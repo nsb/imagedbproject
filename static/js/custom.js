@@ -20,8 +20,8 @@ $(document).ready(function(){
                   "/static/img/clear2.png",
                   "/static/img/prev2.png",
                   "/static/img/next2.png",
-/*                  "/static/img/Images2.png",
-                  "/static/img/logos2.png",*/
+                 "/static/img/Images2.png",
+                  "/static/img/logos2.png",
                   "/static/img/Small2.png",
                   "/static/img/Medium2.png",
                   "/static/img/Large2.png",
