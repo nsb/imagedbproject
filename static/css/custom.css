@@ -63,7 +63,13 @@ body.nonauth {
 }
 #image_list, #eps_list {
   margin-bottom: .5em;
-  width: 1150px;
+  width: 1200px;
+}
+#image_list img, #eps_list img {
+  margin-right: 10px;
+  margin-bottom: 10px; 
+  width: 100px;
+  height: 100px;
 }
 .step-button {
   float: left;
