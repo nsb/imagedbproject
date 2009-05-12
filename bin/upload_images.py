@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
 
 import os, re
@@ -98,10 +99,6 @@ def main():
     url = options.url or URL
     pretend = options.pretend
     skip = options.skip
-
-    # setup logging
-    LOG_FILENAME = '/tmp/imagedb.out'
-    logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG,)
 
     # init url lib with cookie based auth handler
     if pretend:
