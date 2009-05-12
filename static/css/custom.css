@@ -62,7 +62,7 @@ body.nonauth {
   padding: 0 20px;
 }
 #image_list, #eps_list {
-  margin-bottom: .5em;
+  margin-top: 1em;
   width: 1200px;
 }
 #image_list img, #eps_list img {
@@ -98,11 +98,8 @@ body.nonauth {
 }
 
 /* FORMS */
-form {
-  margin: .5em 0;
-}
 form > table {
-  margin: 0;
+  margin: .5em 0;
 }
 form td {
   padding: 0;
