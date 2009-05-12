@@ -226,6 +226,8 @@ class Image(ImageModel):
 
 class EPS(models.Model):
     eps = models.FileField(upload_to='eps')
+    cmyk = models.FileField(upload_to='eps_cmyk')
+    pantone = models.FileField(upload_to='eps_pantone')
     thumbnail = models.ImageField(upload_to='eps_thumbnails')
     title = models.CharField(_('title'), max_length=100, unique=True)
     caption = models.TextField(_('caption'), blank=True)
