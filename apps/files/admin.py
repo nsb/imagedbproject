@@ -274,7 +274,7 @@ class ImageAdmin(admin.ModelAdmin):
                 obj.save()
 
 class EPSAdmin(admin.ModelAdmin):
-    list_display = ('title',)
+    list_display = ('title', 'admin_thumbnail',)
     fieldsets = (
         (None, {
             'fields': ('cmyk', 'pantone', 'thumbnail',)
