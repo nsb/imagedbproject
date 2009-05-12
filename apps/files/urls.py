@@ -13,5 +13,7 @@ urlpatterns = patterns('files.views',
     (r'^logos/page(?P<page>[0-9]+)/$', 'eps', {}, 'eps'),
     (r'^logos/(?P<eps_id>\d+)/$', 'eps_detail', {}, 'eps-detail'),
     (r'^logos/(?P<eps_id>\d+)/original/$', 'send_eps', {}, 'eps-download'),
+    (r'^logos/(?P<eps_id>\d+)/cmyk/$', 'send_cmyk', {}, 'eps-cmyk-download'),
+    (r'^logos/(?P<eps_id>\d+)/pantone/$', 'send_pantone', {}, 'eps-pantone-download'),
 
 )

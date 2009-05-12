@@ -225,8 +225,7 @@ class Image(ImageModel):
         return ''.join([locations, fields, installations, people, hse, events, graphics, communications, archives, years])
 
 class EPS(models.Model):
-    eps = models.FileField(upload_to='eps')
-    cmyk = models.FileField(upload_to='eps_cmyk')
+    cmyk = models.FileField(upload_to='eps_cmyk', verbose_name='CMYK')
     pantone = models.FileField(upload_to='eps_pantone')
     thumbnail = models.ImageField(upload_to='eps_thumbnails')
     title = models.CharField(_('title'), max_length=100, unique=True)

@@ -266,3 +266,43 @@ def send_eps(request, eps_id):
     response['Content-Length'] = os.path.getsize(filename.encode('utf8'))
     response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename.encode('utf8'))
     return response
+
+@login_required
+def send_cmyk(request, eps_id):
+    """                                                                         
+    Send a file through Django without loading the whole file into              
+    memory at once. The FileWrapper will turn the file object into an           
+    iterator for chunks of 8KB.                                                 
+    """
+
+    eps = get_object_or_404(EPS, pk=eps_id)
+
+    filename = eps.cmyk.path
+
+    mimetype, encoding = mimetypes.guess_type(filename)
+
+    wrapper = FileWrapper(file(filename))
+    response = HttpResponse(wrapper, content_type=mimetype or 'application/postscript')
+    response['Content-Length'] = os.path.getsize(filename.encode('utf8'))
+    response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename.encode('utf8'))
+    return response
+
+@login_required
+def send_pantone(request, eps_id):
+    """                                                                         
+    Send a file through Django without loading the whole file into              
+    memory at once. The FileWrapper will turn the file object into an           
+    iterator for chunks of 8KB.                                                 
+    """
+
+    eps = get_object_or_404(EPS, pk=eps_id)
+
+    filename = eps.pantone.path
+
+    mimetype, encoding = mimetypes.guess_type(filename)
+
+    wrapper = FileWrapper(file(filename))
+    response = HttpResponse(wrapper, content_type=mimetype or 'application/postscript')
+    response['Content-Length'] = os.path.getsize(filename.encode('utf8'))
+    response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename.encode('utf8'))
+    return response
