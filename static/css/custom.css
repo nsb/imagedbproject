@@ -10,7 +10,7 @@ a {
 a:hover {
   color: #454545;
 }
-a:focus, object:focus, input:focus {
+a:focus, object:focus {
   outline: none;
 }
 body.nonauth {
