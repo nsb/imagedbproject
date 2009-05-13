@@ -64,6 +64,9 @@ body.nonauth {
 #indented_content {
   padding: 0 20px;
 }
+#sections {
+  margin-bottom: 4px;
+}
 #image_list, #eps_list {
 /*   border: solid 1px; */
   margin-top: 15px;
