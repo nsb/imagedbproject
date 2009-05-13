@@ -264,6 +264,7 @@ class EPS(models.Model):
     def admin_thumbnail(self):
         return u'<a href="%s"><img src="%s"></a>' % \
                     (self.thumbnail.url, self.thumbnail_url())
+    admin_thumbnail.short_description = _('Thumbnail')
     admin_thumbnail.allow_tags = True
 
     def categories(self):
