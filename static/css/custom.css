@@ -65,7 +65,8 @@ body.nonauth {
   padding: 0 20px;
 }
 #image_list, #eps_list {
-  margin-top: 1em;
+/*   border: solid 1px; */
+  margin-top: 15px;
   width: 1200px;
 }
 #image_list img, #eps_list img {
@@ -105,6 +106,13 @@ body.nonauth {
 /* FORMS */
 form > table {
   margin: .5em 0;
+  margin-bottom: .7em;
+/*   border: solid 1px; */
+}
+#submitline {
+  padding: 0;
+  margin-top: 3px;
+/*   border: solid 1px; */
 }
 form td {
   padding: 0;
@@ -117,5 +125,5 @@ select {
 #id_fields, #id_events { width: 220px; }
 #id_installations, #id_graphics { width: 200px; }
 #id_people, #id_communications { width: 175px; }
-#id_years, #id_archives, #submitline { width: 110px; }
+#id_years, #id_archives { width: 110px; }
 #id_logos { width: 200px; }
