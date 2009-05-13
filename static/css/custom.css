@@ -69,8 +69,8 @@ body.nonauth {
   width: 1200px;
 }
 #image_list img, #eps_list img {
-  margin-right: 5px;
-  margin-bottom: 5px; 
+  margin-right: 3px;
+  margin-bottom: 3px; 
 }
 #image_list img {
   width: 100px;
