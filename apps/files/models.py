@@ -253,6 +253,7 @@ class EPS(models.Model):
         # resize thumbnail
         im = PILImage.open(os.path.join(settings.MEDIA_ROOT, self.thumbnail.name))
         #im = im.resize((100, 100))
+        im = self.resize_thumbnail(im)
         im = round_image(im, {}, 10)
         base, ext = os.path.splitext(self.thumbnail.name)
         im.save(os.path.join(settings.MEDIA_ROOT, '%s_thumbnail%s' % (base, ext)))
@@ -271,3 +272,23 @@ class EPS(models.Model):
         logos = ''.join(['%s; ' % logo.name for logo in self.logos.all()])
 
         return ''.join([logos])
+
+    def resize_thumbnail(self, im):
+        cur_width, cur_height = im.size
+        new_width, new_height = (100, 100)
+        if not new_width == 0 and not new_height == 0:
+            ratio = min(float(new_width)/cur_width,
+                        float(new_height)/cur_height)
+        else:
+            if new_width == 0:
+                ratio = float(new_height)/cur_height
+            else:
+                ratio = float(new_width)/cur_width
+        new_dimensions = (int(round(cur_width*ratio)),
+                          int(round(cur_height*ratio)))
+        if new_dimensions[0] > cur_width or \
+            new_dimensions[1] > cur_height:
+            if not photosize.upscale:
+                return im
+        im = im.resize(new_dimensions, PILImage.ANTIALIAS)
+        return im
