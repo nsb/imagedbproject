@@ -288,7 +288,6 @@ class EPS(models.Model):
                           int(round(cur_height*ratio)))
         if new_dimensions[0] > cur_width or \
             new_dimensions[1] > cur_height:
-            if not photosize.upscale:
-                return im
+            return im
         im = im.resize(new_dimensions, PILImage.ANTIALIAS)
         return im
