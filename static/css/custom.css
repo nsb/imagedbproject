@@ -73,8 +73,8 @@ body.nonauth {
   width: 1200px;
 }
 #image_list img, #eps_list img {
-  margin-right: 4px;
-  margin-bottom: 4px; 
+  margin-right: 5px;
+  margin-bottom: 5px; 
 }
 #image_list img {
   width: 100px;
