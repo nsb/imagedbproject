@@ -10,6 +10,9 @@ a {
 a:hover {
   color: #454545;
 }
+a:focus, object:focus, input:focus {
+  outline: 0;
+}
 body.nonauth {
 }
 .round {
