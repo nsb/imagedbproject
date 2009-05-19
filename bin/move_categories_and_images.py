@@ -4,6 +4,7 @@ import sys, os
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/..')
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../apps')
+sys.path.append("/home/ciboe/lib")
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
 from categories.models import Event, Communications
