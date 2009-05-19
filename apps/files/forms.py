@@ -4,7 +4,7 @@
 from django import forms
 from django.forms.forms import BoundField
 
-from categories.models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive, Year, Logo
+from categories.models import Location, Field, Installation, People, HSE, Graphics, Communications, Archive, Year, Logo
 
 class Fieldset(object):
     def __init__(self, form, name=None, fields=(), description=None):
@@ -24,7 +24,6 @@ def imagefilterform_factory(request):
         installations = forms.ChoiceField(label='Installations & Vessels', required=False)
         people = forms.ChoiceField(label='People', required=False)
         hse = forms.ChoiceField(label='HSE', required=False)
-        events = forms.ChoiceField(label='Events', required=False)
         graphics = forms.ChoiceField(label='Graphics', required=False)
         years = forms.ChoiceField(label='Year', required=False)
 
@@ -40,7 +39,6 @@ def imagefilterform_factory(request):
             self.fields['installations'].choices = _choices(Installation.objects.all())
             self.fields['people'].choices = _choices(People.objects.all())
             self.fields['hse'].choices = _choices(HSE.objects.all())
-            self.fields['events'].choices = _choices(Event.objects.all())
             self.fields['graphics'].choices = _choices(Graphics.objects.all())
             self.fields['years'].choices = _choices(Year.objects.all())
 
@@ -55,7 +53,7 @@ def imagefilterform_factory(request):
 
             self.fieldsets.append(
                 Fieldset(self, name='', fields=('locations', 'fields', 'installations', 'people', 'years',)))
-            self.fieldsets.append(Fieldset(self, name='', fields=('hse', 'events', 'graphics', 'communications', 'archives',) if request.user.is_staff else ('hse', 'events', 'graphics',)))
+            self.fieldsets.append(Fieldset(self, name='', fields=('hse', 'graphics', 'communications', 'archives',) if request.user.is_staff else ('hse', 'graphics',)))
 
     return ImageFilterForm
 

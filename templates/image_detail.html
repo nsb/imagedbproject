@@ -65,13 +65,6 @@
 </div>
 {% endif %}
 
-{% if image.events.all %}
-<div>
-<strong>{% trans "Events: " %}</strong>
-{{ image.events.all|join:"; " }}
-</div>
-{% endif %}
-
 {% if image.graphics.all %}
 <div>
 <strong>{% trans "Graphics: " %}</strong>

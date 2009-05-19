@@ -5,7 +5,7 @@
 
 from django.db.models import signals
 
-from models import Location, Field, Installation, People, HSE, Event, Graphics, Communications, Archive, Year
+from models import Location, Field, Installation, People, HSE, Graphics, Communications, Archive, Year
 import models
 
 def create_category_values(app, created_models, verbosity, **kwargs):
@@ -105,11 +105,6 @@ def create_category_values(app, created_models, verbosity, **kwargs):
     # hse
     HSE.objects.get_or_create(name="Environment")
     HSE.objects.get_or_create(name="Health & Safety")
-
-    # events
-    Event.objects.get_or_create(id=1, name="Conferences & Exhibitions")
-    Event.objects.get_or_create(id=2, name="GeoCenter Møns Klint, DK")
-    Event.objects.get_or_create(id=3, name="Official Visits")
 
     # graphics
     Graphics.objects.get_or_create(name="Environment")

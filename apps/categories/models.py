@@ -44,12 +44,6 @@ class HSE(Category):
         verbose_name_plural = _("HSE")
         ordering = ['name']
 
-class Event(Category):
-    class Meta:
-        verbose_name = _("Event")
-        verbose_name_plural = _("Events")
-        ordering = ['name']
-
 class Graphics(Category):
     class Meta:
         verbose_name = _("Graphics")
