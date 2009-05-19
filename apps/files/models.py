@@ -269,7 +269,7 @@ class EPS(models.Model):
 
     def resize_thumbnail(self, im):
         cur_width, cur_height = im.size
-        new_width, new_height = (275, 275)
+        new_width, new_height = (350, 350)
         if not new_width == 0 and not new_height == 0:
             ratio = min(float(new_width)/cur_width,
                         float(new_height)/cur_height)
