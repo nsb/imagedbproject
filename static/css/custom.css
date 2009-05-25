@@ -90,7 +90,11 @@ body.nonauth {
   overflow: hidden;
   height: 25px;
 }
-.nonauth #nav-center > ul > li.selected, .nonauth #nav-center > ul > li:hover {
+.nonauth #nav-center > ul > li a {
+  text-decoration: none;
+}
+
+.nonauth #nav-center > ul > li.selected a, .nonauth #nav-center > ul > li a:hover {
   color: white;
 }
 .nonauth #nav-center > ul > li.selected {
@@ -110,10 +114,18 @@ body.nonauth {
   height: 401px; /* height of flashmovie */
 }
 .nonauth #boxmain {
-  margin: 0;
+/*   margin: 0; */
   width: 457px;
   height: 401px;
   background: url('/static/img/halve_billedet_02_02_01.png') no-repeat;
+  color: white;
+}
+#loginbox {
+  margin: auto;
+  padding-top: 80px;
+  height: 200px;
+  width: 350px;
+/*   border: solid 1px; */
 }
 #indented_content {
   padding: 0 20px;
