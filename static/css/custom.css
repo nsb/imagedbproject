@@ -57,26 +57,51 @@ body.nonauth {
 .nonauth .centerbox {
   margin: 0 auto;
   margin-top: 10%;
-/*   border: solid 1px; */
   width: 690px;
 }
-.nonauth #boxhead {
-  width: 100%;
-  height: 30px;
-/*   border: solid 1px; */
-}
-.nonauth #boxhead #logo {
-  float: left;
-  width: 170px;
-}
-.nonauth #boxhead #nav {
+.nonauth #nav {
   width: 457px;
-  height: 30px;
+}
+.nonauth #nav, .nonauth #nav-left, .nonauth #nav-right, .nonauth #nav-center {
+  height: 29px;
+}
+.nonauth #nav-left, .nonauth #nav-right {
+  width: 10px;
+  float: left;
+}
+.nonauth #nav-left {
+  background: transparent url('/static/img/halve_billedet_01_01_02.png') no-repeat;
+}
+.nonauth #nav-right {
+  background: transparent url('/static/img/halve_billedet_01_03.png') no-repeat;
+}
+.nonauth #nav-center {
   background: black;
   color: white;
-  float: right;
+  width: 437px;
+  float: left;
 }
-.nonauth #boxcontent #flashcontent, .nonauth #boxcontent #boxmain {
+.nonauth #nav-center > ul > li {
+  list-style: none;
+  float: left;
+  font-size: 120%;
+  margin: 3px 14px;
+  color: gray;
+  overflow: hidden;
+  height: 25px;
+}
+.nonauth #nav-center > ul > li.selected, .nonauth #nav-center > ul > li:hover {
+  color: white;
+}
+.nonauth #nav-center > ul > li.selected {
+  overflow: visible;
+}
+.nonauth #nav-center > ul > li > img {
+}
+.nonauth #nav-center > ul > li.selected img {
+  margin-left: 15px;
+}
+.nonauth #leftbox, .nonauth #rightbox {
   float: left;
 }
 .nonauth #flashcontent {
@@ -90,7 +115,6 @@ body.nonauth {
   height: 401px;
   background: url('/static/img/halve_billedet_02_02_01.png') no-repeat;
 }
-
 #indented_content {
   padding: 0 20px;
 }

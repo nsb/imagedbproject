@@ -3,14 +3,24 @@
 {% block login %}{% endblock login %}
 
 {% block boxcontent %}
-<div id="boxhead">
-<div>
+<div id="leftbox">
   <div id="logo"><img src="/static/img/logo.gif"></div>
-  <div id="nav"></div>
-</div>
-</div>
-<div id="boxcontent">
   <div id="flashcontent"></div>
+</div>
+
+<div id="rightbox">
+  <div id="nav">
+    <div id="nav-left"></div>
+    <div id="nav-center">
+      <ul>
+        <li><div>Introduction</div><img src="/static/img/pil.png"></li>
+        <li><div>How to search</div><img src="/static/img/pil.png"></li>
+        <li class="selected"><div>Contact</div><img src="/static/img/pil.png"></li>
+        <li><div>Login</div><img src="/static/img/pil.png"></li>
+      </ul>
+    </div>
+    <div id="nav-right"></div>
+  </div>
   <div id="boxmain"></div>
 </div>
 {% endblock boxcontent %}
