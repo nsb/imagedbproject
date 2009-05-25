@@ -14,17 +14,15 @@ a:focus, object:focus, input:focus {
   outline: 0;
 }
 body.nonauth {
+  width: 100%;
+  height: 100%;
+  background: white url('/static/img/background_1px.gif') repeat-x;
 }
 .round {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px
 }
 #frame {
-  background: white url('/static/img/frontpage.gif') no-repeat;
-  margin: auto;
-  margin-top: 10px;
-  height: 733px;
-  width: 1000px;
 }
 #hd {
   height: 64px;
@@ -56,11 +54,43 @@ body.nonauth {
 #photo_size li {
   display: inline;
 }
-.centerbox {
-  margin: auto;
-  width: 250px;
-  padding-top: 250px;
+.nonauth .centerbox {
+  margin: 0 auto;
+  margin-top: 10%;
+/*   border: solid 1px; */
+  width: 690px;
 }
+.nonauth #boxhead {
+  width: 100%;
+  height: 30px;
+/*   border: solid 1px; */
+}
+.nonauth #boxhead #logo {
+  float: left;
+  width: 170px;
+}
+.nonauth #boxhead #nav {
+  width: 457px;
+  height: 30px;
+  background: black;
+  color: white;
+  float: right;
+}
+.nonauth #boxcontent #flashcontent, .nonauth #boxcontent #boxmain {
+  float: left;
+}
+.nonauth #flashcontent {
+  margin: 0; /* centers this */
+  width: 233px; /* width of flashmovie */
+  height: 401px; /* height of flashmovie */
+}
+.nonauth #boxmain {
+  margin: 0;
+  width: 457px;
+  height: 401px;
+  background: url('/static/img/halve_billedet_02_02_01.png') no-repeat;
+}
+
 #indented_content {
   padding: 0 20px;
 }

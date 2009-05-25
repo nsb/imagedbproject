@@ -3,10 +3,25 @@
 {% block login %}{% endblock login %}
 
 {% block boxcontent %}
-<form method="post" action="">
-<table>
-{{ form }}
-<tr><td><input type="submit" value="login"></td></tr>
-</table>
-</form>
+<div id="boxhead">
+<div>
+  <div id="logo"><img src="/static/img/logo.gif"></div>
+  <div id="nav"></div>
+</div>
+</div>
+<div id="boxcontent">
+  <div id="flashcontent"></div>
+  <div id="boxmain"></div>
+</div>
 {% endblock boxcontent %}
+
+{% block javascript %}
+<script src="/static/js/swfobject.js" type="text/javascript"></script>
+<script type="text/javascript">
+   var so = new SWFObject("/static/flash/maersk.swf", "mærsk", "100%", "100%", "8", "#FFFFFF");
+   so.addParam("quality", "best");
+   so.addParam("scalemode", "noscale");
+   so.addParam("wmode", "transparent");
+   so.write("flashcontent");
+</script>
+{% endblock javascript %}
