@@ -22,8 +22,6 @@ body.nonauth {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px
 }
-#frame {
-}
 #hd {
   height: 64px;
   margin-bottom: 1.4em;
@@ -65,15 +63,7 @@ body.nonauth {
   margin: 0;
   background: black;
   float: left;
-}
-.nonauth #nav, .nonauth #nav-left, .nonauth #nav-right, .nonauth #nav-center {
   height: 29px;
-}
-.nonauth #nav-left {
-  background: transparent url('/static/img/halve_billedet_01_01_02.png') no-repeat;
-}
-.nonauth #nav-right {
-  background: transparent url('/static/img/halve_billedet_01_03.png') no-repeat;
 }
 .nonauth #nav > li {
   list-style: none;
