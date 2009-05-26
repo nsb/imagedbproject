@@ -58,7 +58,7 @@ body.nonauth {
   width: 690px;
 }
 .nonauth #logo {
-  height: 34px;
+  height: 33px;
   margin: 0;
   padding: 0;
 }
@@ -107,8 +107,9 @@ body.nonauth {
 }
 .nonauth #boxmain {
   width: 457px;
-  height: 401px;
+  height: 400px;
   background: url('/static/img/halve_billedet_02_02_01.png') no-repeat;
+/*   background: url('/static/img/New_barckground_400px.png') no-repeat; */
   color: white;
 }
 #login {
