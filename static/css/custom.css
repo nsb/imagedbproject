@@ -57,20 +57,25 @@ body.nonauth {
   margin-top: 10%;
   width: 690px;
 }
+.nonauth #logo {
+  height: 34px;
+  margin: 0;
+  padding: 0;
+}
 .nonauth #nav {
-  width: 435px;
+  width: 407px;
   color: white;
   margin: 0;
   background: black;
-  float: left;
-  height: 29px;
+  float: right;
+  height: 34px;
 }
 .nonauth #nav > li {
   list-style: none;
   float: left;
   margin: 0;
   color: gray;
-  padding: 3px 18px;
+  padding: 6px 15px;
   font-size: 120%;
 }
 .nonauth #nav > li a {
@@ -89,8 +94,11 @@ body.nonauth {
 .nonauth #nav > li a:hover {
   color: white;
 }
-.nonauth #leftbox, .nonauth #rightbox, .nonauth .corner_img {
+.nonauth #leftbox, .nonauth #rightbox {
   float: left;
+}
+.nonauth .corner_img {
+  float: right;
 }
 .nonauth #flashcontent {
   margin: 0; /* centers this */
