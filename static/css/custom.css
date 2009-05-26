@@ -60,14 +60,14 @@ body.nonauth {
   width: 690px;
 }
 .nonauth #nav {
-  width: 457px;
+  width: 435px;
+  color: white;
+  margin: 0;
+  background: black;
+  float: left;
 }
 .nonauth #nav, .nonauth #nav-left, .nonauth #nav-right, .nonauth #nav-center {
   height: 29px;
-}
-.nonauth #nav-left, .nonauth #nav-right {
-  width: 10px;
-  float: left;
 }
 .nonauth #nav-left {
   background: transparent url('/static/img/halve_billedet_01_01_02.png') no-repeat;
@@ -75,37 +75,31 @@ body.nonauth {
 .nonauth #nav-right {
   background: transparent url('/static/img/halve_billedet_01_03.png') no-repeat;
 }
-.nonauth #nav-center {
-  background: black;
-  color: white;
-  width: 437px;
-  float: left;
-}
-.nonauth #nav-center > ul > li {
+.nonauth #nav > li {
   list-style: none;
   float: left;
-  font-size: 120%;
-  margin: 3px 14px;
+  margin: 0;
   color: gray;
-  overflow: hidden;
-  height: 25px;
+  padding: 3px 18px;
+  font-size: 120%;
 }
-.nonauth #nav-center > ul > li a {
+.nonauth #nav > li a {
   text-decoration: none;
 }
-
-.nonauth #nav-center > ul > li.selected a, .nonauth #nav-center > ul > li a:hover {
-  color: white;
+.nonauth #nav > li > a > div {
+  height: 20px;
+  overflow: hidden;
 }
-.nonauth #nav-center > ul > li.selected {
+.nonauth #nav > li.ui-tabs-selected > a > div {
   overflow: visible;
 }
-.nonauth #nav-center > ul > li > img {
-}
-.nonauth #nav-center > ul > li.selected img {
+.nonauth #nav > li > a > div > img {
   margin-left: 15px;
 }
-.nonauth #leftbox, .nonauth #rightbox {
+.nonauth #nav > li a:hover {
+  color: white;
+}
+.nonauth #leftbox, .nonauth #rightbox, .nonauth .corner_img {
   float: left;
 }
 .nonauth #flashcontent {
@@ -114,7 +108,6 @@ body.nonauth {
   height: 401px; /* height of flashmovie */
 }
 .nonauth #boxmain {
-/*   margin: 0; */
   width: 457px;
   height: 401px;
   background: url('/static/img/halve_billedet_02_02_01.png') no-repeat;
@@ -125,7 +118,6 @@ body.nonauth {
   padding-top: 80px;
   height: 200px;
   width: 350px;
-/*   border: solid 1px; */
 }
 #indented_content {
   padding: 0 20px;
@@ -193,3 +185,11 @@ select {
 #id_people, #id_archives { width: 145px; }
 #id_years { width: 110px; }
 #id_logos { width: 200px; }
+
+/* jquery ui tabs css */
+.ui-tabs .ui-tabs-hide {
+     display: none;
+}
+.ui-tabs-selected a, .ui-state-active a, .ui-state-focus a {
+  color: white;
+}
