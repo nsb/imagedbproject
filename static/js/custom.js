@@ -16,6 +16,8 @@ function toggleImage(buttonElm, imgover, imgout) {
 
 $(document).ready(function(){
 
+  $("#rightbox").tabs();
+
   $.preloadImages("/static/img/Search2.png",
                   "/static/img/clear2.png",
                   "/static/img/prev2.png",

@@ -120,7 +120,7 @@ body.nonauth {
   background: url('/static/img/halve_billedet_02_02_01.png') no-repeat;
   color: white;
 }
-#loginbox {
+#login {
   margin: auto;
   padding-top: 80px;
   height: 200px;

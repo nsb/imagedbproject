@@ -13,17 +13,21 @@
     <div id="nav-left"></div>
     <div id="nav-center">
       <ul>
-        <li><div><a>Introduction</a></div><img src="/static/img/pil.png"></li>
-        <li><div><a>How to search</a></div><img src="/static/img/pil.png"></li>
-        <li><div><a>Contact</a></div><img src="/static/img/pil.png"></li>
-        <li class="selected"><div><a href="{% url auth_login %}">Login</a></div><img src="/static/img/pil.png"></li>
+        <li><a href="#introduction"><div>Introduction</div><img src="/static/img/pil.png"></a></li>
+        <li><a href="#howto"><div>How to search</div><img src="/static/img/pil.png"></a></li>
+        <li><a href="#contact"><div>Contact</div><img src="/static/img/pil.png"></a></li>
+        <li class="selected"><a href="#login"><div>Login</div><img src="/static/img/pil.png"></a></li>
       </ul>
     </div>
     <div id="nav-right"></div>
   </div>
   <div id="boxmain">
 
-    <div id="loginbox">
+    <div id="introduction">introduction</div>
+    <div id="howto">howto</div>
+    <div id="contact">contact</div>
+
+    <div id="login">
       Welcome to <h2>Maersk Oil Image Database</h2>
       <table>
       {{ form }}
