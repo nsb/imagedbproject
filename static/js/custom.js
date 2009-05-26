@@ -16,7 +16,9 @@ function toggleImage(buttonElm, imgover, imgout) {
 
 $(document).ready(function(){
 
+//   $("#howto, #contact, #login").show();
   $("#rightbox").tabs();
+  // try to hide tab items, except default
 
   $.preloadImages("/static/img/Search2.png",
                   "/static/img/clear2.png",
