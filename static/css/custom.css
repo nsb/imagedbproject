@@ -112,22 +112,37 @@ body.nonauth {
 /*   background: url('/static/img/New_barckground_400px.png') no-repeat; */
   color: white;
 }
+.nonauth .frame {
+  background: #BBDFE8;
+  color: black;
+  padding: 1em;
+  margin-top: .5em;
+}
+/* INTRODUCTION */
+.nonauth #introduction {
+  margin: auto;
+  padding: 1em;
+  padding-top: 2em;
+}
+.nonauth #introduction .frame {
+  font-size: 80%;
+}
 /* HOWTO */
 .nonauth #howto {
   width: 90%;
   margin: auto;
   padding: 1em;
+  padding-top: 2em;
 }
 .nonauth #howto .frame {
-  background: #EEEEEE;
   height: 250px;
-  color: black;
-  padding: 1em;
 }
-.nonauth #howto .frame > div {
-  float: left;
-  width: 50%;
-}
+/*#howto .bl {background: url('/static/img/inside_corners_07.png') 0 100% no-repeat;}
+#howto .br {background: url(br.gif) 100% 100% no-repeat}
+#howto .tl {background: url(tl.gif) 0 0 no-repeat}
+#howto .tr {background: url(tr.gif) 100% 0 no-repeat; padding:10px}
+#howto .roundclear {font-size: 1px; height: 1px}*/
+
 /* LOGIN */
 #login {
   margin: auto;
