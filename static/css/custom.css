@@ -112,11 +112,34 @@ body.nonauth {
 /*   background: url('/static/img/New_barckground_400px.png') no-repeat; */
   color: white;
 }
+/* HOWTO */
+.nonauth #howto {
+  width: 90%;
+  margin: auto;
+  padding: 1em;
+}
+.nonauth #howto .frame {
+  background: #EEEEEE;
+  height: 250px;
+  color: black;
+  padding: 1em;
+}
+.nonauth #howto .frame > div {
+  float: left;
+  width: 50%;
+}
+/* LOGIN */
 #login {
   margin: auto;
   padding-top: 80px;
   height: 200px;
   width: 350px;
+}
+#login #id_username, #login #id_password {
+  width: 290px;
+  border: 0;
+  margin: .5em 0;
+  background: url('/static/img/graf__15.png') repeat-x;
 }
 #indented_content {
   padding: 0 20px;
