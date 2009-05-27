@@ -52,7 +52,6 @@
     <div id="login" class="ui-tabs-panel ui-tabs-hide">
       <img src="/static/img/graf__03.png">
       <form method="post" action="">
-      <table>
       {% for field in form %}
         <div>
         {% if field.errors %}
@@ -63,8 +62,8 @@
         {{ field }}
         </div>
       {% endfor %}
-      <tr><td><input type="submit" value="Login"></td></tr>
-      </table>
+      <input id="login_button" type="image" src="/static/img/graf__20.png" value="Login">
+      <div class="clear">
       </form>
     </div>
 

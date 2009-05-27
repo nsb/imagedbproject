@@ -133,13 +133,16 @@ body.nonauth {
   margin: auto;
   padding-top: 80px;
   height: 200px;
-  width: 350px;
+  width: 290px;
 }
 #login #id_username, #login #id_password {
   width: 290px;
   border: 0;
   margin: .5em 0;
   background: url('/static/img/graf__15.png') repeat-x;
+}
+#login #login_button {
+  float: right;
 }
 #indented_content {
   padding: 0 20px;
