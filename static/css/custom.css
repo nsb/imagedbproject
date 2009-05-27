@@ -143,6 +143,16 @@ body.nonauth {
 #howto .tr {background: url(tr.gif) 100% 0 no-repeat; padding:10px}
 #howto .roundclear {font-size: 1px; height: 1px}*/
 
+/* CONTACT */
+.nonauth #contact {
+  margin: auto;
+  padding: 1em;
+  padding-top: 2em;
+}
+.nonauth #contact .frame {
+
+}
+
 /* LOGIN */
 #login {
   margin: auto;
