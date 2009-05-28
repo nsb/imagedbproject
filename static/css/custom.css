@@ -109,7 +109,6 @@ body.nonauth {
   width: 457px;
   height: 400px;
   background: url('/static/img/halve_billedet_02_02_01.png') no-repeat;
-/*   background: url('/static/img/New_barckground_400px.png') no-repeat; */
   color: white;
 }
 .nonauth .frame {
@@ -118,25 +117,29 @@ body.nonauth {
   padding: 1em;
   margin-top: .5em;
 }
-/* INTRODUCTION */
-.nonauth #introduction {
+.nonauth #introduction, .nonauth #howto, .nonauth #contact {
   margin: auto;
-  padding: 1em;
-  padding-top: 2em;
+  padding: 2em;
 }
+/* INTRODUCTION */
 .nonauth #introduction .frame {
   font-size: 80%;
 }
 /* HOWTO */
-.nonauth #howto {
-  width: 90%;
-  margin: auto;
-  padding: 1em;
-  padding-top: 2em;
+.nonauth #howto .frame td * {
+/*   border: solid 1px; */
+/*   vertical-align: middle; */
+  padding: 0 .5em;
 }
-.nonauth #howto .frame {
-  height: 250px;
+.nonauth #howto .frame td > img {
+  float: left;
 }
+.nonauth #howto .frame td > span {
+/*   position: relative; */
+  float: left;
+  border: solid 1px;
+}
+
 /*#howto .bl {background: url('/static/img/inside_corners_07.png') 0 100% no-repeat;}
 #howto .br {background: url(br.gif) 100% 100% no-repeat}
 #howto .tl {background: url(tl.gif) 0 0 no-repeat}
@@ -145,9 +148,6 @@ body.nonauth {
 
 /* CONTACT */
 .nonauth #contact {
-  margin: auto;
-  padding: 1em;
-  padding-top: 2em;
 }
 .nonauth #contact .frame {
 
