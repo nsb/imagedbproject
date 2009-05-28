@@ -69,6 +69,8 @@ body.nonauth {
   background: black;
   float: right;
   height: 34px;
+  z-index: 10;
+  position: relative;
 }
 .nonauth #nav > li {
   list-style: none;
@@ -110,6 +112,7 @@ body.nonauth {
   height: 400px;
   background: url('/static/img/halve_billedet_02_02_01.png') no-repeat;
   color: white;
+  z-index: 0;
 }
 .nonauth .frame {
   background: #BBDFE8;
