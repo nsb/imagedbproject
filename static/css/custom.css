@@ -141,9 +141,37 @@ body.nonauth {
 .nonauth .frame {
   background: #BBDFE8;
   color: black;
-  padding: 1em;
-  margin-top: .5em;
+  padding: 10px;
+/*   margin-top: .5em; */
 }
+.nonauth .top-left, .nonauth .top-right, .nonauth .top-center {
+  height: 9px;
+  width: 9px;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+.nonauth .top-left {
+  background: url('/static/img/inside_corners_01.png') no-repeat;
+}
+.nonauth .top-right {
+  background: url('/static/img/inside_corners_03.png') no-repeat;
+}
+.nonauth .top-center {
+  width: 392px;
+  background: #BBDFE8;
+}
+.nonauth .bottom-left {
+  background: url('/static/img/inside_corners_07.png') no-repeat;
+}
+.nonauth .bottom-right {
+  background: url('/static/img/inside_corners_08.png') no-repeat;
+}
+.nonauth .bottom-center {
+  width: 200px;
+  background: #BBDFE8;
+}
+
 .nonauth #introduction, .nonauth #howto, .nonauth #contact {
   margin: auto;
   padding: 2em;
@@ -191,7 +219,7 @@ body.nonauth {
   width: 290px;
   border: 0;
   margin: .5em 0;
-  background: url('/static/img/graf__15.png') repeat-x;
+/*   background: url('/static/img/graf__15.png') repeat-x; */
 }
 #login #login_button {
   float: right;
