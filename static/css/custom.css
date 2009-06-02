@@ -63,9 +63,10 @@ body.nonauth {
   padding: 0;
 }
 .nonauth #nav {
-  width: 407px;
+  width: 367px;
   color: white;
   margin: 0;
+  padding: 0 20px;
   background: black;
   float: right;
   height: 34px;
@@ -77,22 +78,21 @@ body.nonauth {
   float: left;
   margin: 0;
   color: gray;
-  padding: 6px 0px;
+  padding: 7px 0px;
   position: relative;
-  width: 95px; /* SET EXPLICIT WIDTH FOR EACH LIST ITEM. MOVE ARROWS TO MAIN CONTENT AND SHOW HIDE WITH CLASSES */
 }
-/*.nonauth #nav-1 {
-  width: 95px;
+.nonauth #nav-1 {
+  width: 110px;
 }
 .nonauth #nav-2 {
-  width: 95px;
+  width: 125px;
 }
 .nonauth #nav-3 {
-  width: 95px;
+  width: 85px;
 }
 .nonauth #nav-4 {
-  width: 95px;
-}*/
+  width: 40px;
+}
 .nonauth #nav li a {
   text-decoration: none;
 }
