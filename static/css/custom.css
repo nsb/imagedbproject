@@ -141,9 +141,35 @@ body.nonauth {
 .nonauth .frame {
   background: #BBDFE8;
   color: black;
-  padding: 1em;
-  margin-top: .5em;
+  padding: 0 10px;
+  width: 389px;
 }
+.nonauth .top-left {
+  background: url('/static/img/inside_corners_01.png') no-repeat left top;
+  padding-left: 9px;
+  height: 9px;
+  width: 400px;
+}
+.nonauth .top-right {
+  background: url('/static/img/inside_corners_03.png') no-repeat right top;
+  height: 9px;
+}
+.nonauth .top-center, .nonauth .bottom-center {
+  width: 391px;
+  background: #BBDFE8;
+  height: 9px;
+}
+.nonauth .bottom-left {
+  background: url('/static/img/inside_corners_07.png') no-repeat left top;
+  padding-left: 9px;
+  height: 9px;
+  width: 400px;
+}
+.nonauth .bottom-right {
+  background: url('/static/img/inside_corners_08.png') no-repeat right top;
+  height: 9px;
+}
+
 .nonauth #introduction, .nonauth #howto, .nonauth #contact {
   margin: auto;
   padding: 2em;
@@ -156,7 +182,7 @@ body.nonauth {
 .nonauth #howto .frame td * {
 /*   border: solid 1px; */
 /*   vertical-align: middle; */
-  padding: 0 .5em;
+/*   padding: 0 .5em; */
 }
 .nonauth #howto .frame td > img {
   float: left;
@@ -191,7 +217,7 @@ body.nonauth {
   width: 290px;
   border: 0;
   margin: .5em 0;
-  background: url('/static/img/graf__15.png') repeat-x;
+/*   background: url('/static/img/graf__15.png') repeat-x; */
 }
 #login #login_button {
   float: right;
