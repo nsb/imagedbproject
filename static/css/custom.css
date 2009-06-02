@@ -72,43 +72,67 @@ body.nonauth {
   z-index: 10;
   position: relative;
 }
-.nonauth #nav > li {
+.nonauth #nav li {
   list-style: none;
   float: left;
   margin: 0;
   color: gray;
-  padding: 6px 15px;
-  font-size: 120%;
+  padding: 6px 0px;
+  position: relative;
+  width: 95px; /* SET EXPLICIT WIDTH FOR EACH LIST ITEM. MOVE ARROWS TO MAIN CONTENT AND SHOW HIDE WITH CLASSES */
 }
-.nonauth #nav > li a {
+/*.nonauth #nav-1 {
+  width: 95px;
+}
+.nonauth #nav-2 {
+  width: 95px;
+}
+.nonauth #nav-3 {
+  width: 95px;
+}
+.nonauth #nav-4 {
+  width: 95px;
+}*/
+.nonauth #nav li a {
   text-decoration: none;
 }
-.nonauth #nav > li > a > div {
+.nonauth #nav li a div {
   height: 20px;
-  overflow: hidden;
+/*   overflow: hidden; */
 }
-.nonauth #nav > li.ui-tabs-selected > a > div {
-  overflow: visible;
+.nonauth #nav li.ui-tabs-selected a div {
+/*   overflow: visible; */
 }
-.nonauth #nav > li > a > div > img {
+.nonauth #nav li a div img {
   margin-left: 15px;
+  display: none;
 }
-.nonauth #nav > li a:hover {
+.nonauth #nav-1.ui-tabs-selected a div img, .nonauth #nav-2.ui-tabs-selected a div img, .nonauth #nav-3.ui-tabs-selected a div img, .nonauth #nav-4.ui-tabs-selected a div img {
+  display: inline;
+  position: absolute;
+  margin-top: 5px;
+}
+.nonauth #nav li a:hover {
   color: white;
 }
 .nonauth #leftbox, .nonauth #rightbox {
   float: left;
+}
+.nonauth #leftbox {
+  width: 233px;
+}
+.nonauth #rightbox {
+  width: 457px;
+  margin: 0;
 }
 .nonauth .corner_img {
   float: right;
 }
 .nonauth #flashcontent {
   margin: 0; /* centers this */
-  width: 233px; /* width of flashmovie */
   height: 401px; /* height of flashmovie */
 }
 .nonauth #boxmain {
-  width: 457px;
   height: 400px;
   background: url('/static/img/halve_billedet_02_02_01.png') no-repeat;
   color: white;
