@@ -315,3 +315,6 @@ select {
 .ui-tabs-selected a, .ui-state-active a, .ui-state-focus a {
   color: white;
 }
+#contact {
+  padding: 10px 0;
+}
