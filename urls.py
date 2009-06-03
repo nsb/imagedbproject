@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
 # Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
 
 from django.conf.urls.defaults import *
 from django.conf import settings
 from django.contrib.auth import views as auth_views
+from django.views.generic.simple import direct_to_template
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -45,6 +47,11 @@ urlpatterns = patterns('',
     url(r'^password/reset/done/$',
         auth_views.password_reset_done,
         name='auth_password_reset_done'),
+
+    url(r'^contact/$',
+        direct_to_template,
+        {'template':'contact.html'},
+        name='contact'),
 
     (r'^', include('files.urls')),
 )

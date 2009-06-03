@@ -248,6 +248,7 @@ class ImageAdmin(admin.ModelAdmin):
         """
         Given a model instance save it to the database.
         """
+        print type(obj.image.path)
         categories = self.fieldsets[1][1]['fields']
 
         if form.is_valid():
