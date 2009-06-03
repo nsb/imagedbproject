@@ -141,8 +141,7 @@ body.nonauth {
 .nonauth .frame {
   background: #BBDFE8;
   color: black;
-  padding: 0 10px;
-  width: 389px;
+  width: 409px;
 }
 .top, .bottom {
   width: 391px;
