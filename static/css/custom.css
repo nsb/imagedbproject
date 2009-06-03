@@ -78,7 +78,7 @@ body.nonauth {
   float: left;
   margin: 0;
   color: gray;
-  padding: 7px 0px;
+  padding: 8px 0px;
   position: relative;
 }
 .nonauth #nav-1 {
@@ -103,9 +103,20 @@ body.nonauth {
 .nonauth #nav li.ui-tabs-selected a div {
 /*   overflow: visible; */
 }
-.nonauth #nav li a div img {
-  margin-left: 15px;
+.nonauth #nav-1 a div img, .nonauth #nav-2 a div img, .nonauth #nav-3 a div img, .nonauth #nav-4 a div img {
   display: none;
+}
+.nonauth #nav-1 a div img {
+  margin-left: 20px;
+}
+.nonauth #nav-2 a div img {
+  margin-left: 30px;
+}
+.nonauth #nav-3 a div img {
+  margin-left: 15px;
+}
+.nonauth #nav-4 a div img {
+  margin-left: 8px;
 }
 .nonauth #nav-1.ui-tabs-selected a div img, .nonauth #nav-2.ui-tabs-selected a div img, .nonauth #nav-3.ui-tabs-selected a div img, .nonauth #nav-4.ui-tabs-selected a div img {
   display: inline;
@@ -151,12 +162,10 @@ body.nonauth {
 }
 .nonauth .top-left {
 /*   background: url('/static/img/inside_corners_01.png') no-repeat left top; */
-  height: 9px;
   float: left;
 }
 .nonauth .top-right {
 /*   background: url('/static/img/inside_corners_03.png') no-repeat right top; */
-  height: 9px;
   float: left;
 }
 .nonauth .bottom-left {
