@@ -154,6 +154,10 @@ body.nonauth {
   color: black;
   width: 409px;
 }
+.nonauth .frame-wrapper {
+  height: 9px;
+/*   width:  */
+}
 .top-center, .bottom-center {
   width: 391px;
   background: #BBDFE8;
