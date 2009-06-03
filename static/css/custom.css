@@ -249,8 +249,8 @@ body.nonauth {
   width: 1240px;
 }
 #image_list img, #eps_list img {
-  margin-right: 6px;
-  margin-bottom: 6px; 
+  margin-right: 4px;
+  margin-bottom: 4px; 
 }
 #image_list img {
   width: 100px;
