@@ -244,8 +244,12 @@ body.nonauth {
 #sections {
   margin-bottom: 4px;
 }
-#image_list, #eps_list {
+#image_list {
   margin-top: 15px;
+  width: 1240px;
+}
+#eps_list {
+  margin-top: 36px;
   width: 1240px;
 }
 #image_list img, #eps_list img {
