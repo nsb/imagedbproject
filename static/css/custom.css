@@ -213,6 +213,9 @@ body.nonauth {
   height: 200px;
   width: 290px;
 }
+#login form * {
+  position: relative;
+}
 #login #id_username, #login #id_password {
   width: 290px;
   border: 0;
