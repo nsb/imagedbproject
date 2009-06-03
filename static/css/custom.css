@@ -144,26 +144,25 @@ body.nonauth {
   padding: 0 10px;
   width: 389px;
 }
+.top, .bottom {
+  width: 391px;
+  margin: 0 9px;
+  background: #BBDFE8;
+  height: 9px;
+}
 .nonauth .top-left {
   background: url('/static/img/inside_corners_01.png') no-repeat left top;
-  padding-left: 9px;
+  margin: 0 -9px;
   height: 9px;
-  width: 400px;
 }
 .nonauth .top-right {
   background: url('/static/img/inside_corners_03.png') no-repeat right top;
   height: 9px;
 }
-.nonauth .top-center, .nonauth .bottom-center {
-  width: 391px;
-  background: #BBDFE8;
-  height: 9px;
-}
 .nonauth .bottom-left {
   background: url('/static/img/inside_corners_07.png') no-repeat left top;
-  padding-left: 9px;
+  margin: 0 -9px;
   height: 9px;
-  width: 400px;
 }
 .nonauth .bottom-right {
   background: url('/static/img/inside_corners_08.png') no-repeat right top;
