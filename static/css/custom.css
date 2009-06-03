@@ -143,25 +143,21 @@ body.nonauth {
   color: black;
   padding: 0 10px;
   width: 389px;
-  border: solid 1px;
 }
 .nonauth .top-left {
   background: url('/static/img/inside_corners_01.png') no-repeat left top;
   padding-left: 9px;
   height: 9px;
   width: 400px;
-  border: solid 1px;
 }
 .nonauth .top-right {
   background: url('/static/img/inside_corners_03.png') no-repeat right top;
   height: 9px;
-  border: solid 1px;
 }
 .nonauth .top-center, .nonauth .bottom-center {
-  width: 370px;
+  width: 391px;
   background: #BBDFE8;
   height: 9px;
-  border: solid 1px;
 }
 .nonauth .bottom-left {
   background: url('/static/img/inside_corners_07.png') no-repeat left top;
@@ -219,7 +215,7 @@ body.nonauth {
 }
 #login #id_username, #login #id_password {
   width: 290px;
-/*   border: 0; */
+  border: 0;
   margin: .5em 0;
 /*   background: url('/static/img/graf__15.png') repeat-x; */
 }
