@@ -334,7 +334,6 @@ def bulk_caption(request, app_label, model_name):
     else:
         return render_to_response('admin/bulk_caption.html', 
             RequestContext(request, {'object_list': qs,
-                'app_label': app_label,
                 'title': 'Bulk update of captions',}))
 
 
