@@ -71,3 +71,4 @@ class EPSFilterForm(forms.Form):
 
         self.fieldsets.append(
             Fieldset(self, name='', fields=('logos',)))
+

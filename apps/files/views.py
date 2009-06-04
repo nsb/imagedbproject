@@ -5,8 +5,9 @@ import os, mimetypes
 
 from django.views.generic.list_detail import object_list, object_detail
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.views.decorators.http import require_http_methods
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.core.servers.basehttp import FileWrapper
 from django.shortcuts import get_object_or_404, render_to_response
 from django.db.models import Q
@@ -30,11 +31,9 @@ ADJACENT_PAGES = 4
 @require_http_methods(["GET"])
 def image_front(request, page=1):
 
-    meta = request.META
-
     image_form = imagefilterform_factory(request)()
 
-    return render_to_response('image_front.html', RequestContext(request, {'form':image_form, 'meta':meta}))
+    return render_to_response('image_front.html', RequestContext(request, {'form':image_form,}))
 
 @login_required
 @require_http_methods(["GET"])
@@ -308,3 +307,35 @@ def send_pantone(request, eps_id):
     response['Content-Length'] = os.path.getsize(filename.encode('utf8'))
     response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename.encode('utf8'))
     return response
+
+@staff_member_required
+def bulk_caption(request):
+    """
+    Intermediate view for admin action that allows
+    bulk edits of captions for both the Image and EPS model
+    """
+    
+    ct = request.GET[u'ct'] 
+    ids = request.GET[u'ids'].split(',')
+    
+    if request.method == 'POST':
+        bulkcaption = request.POST[u'caption']
+        
+        if ct == '25': # it is the image model 
+            qs = Image.objects.filter(id__in=ids)
+            list_view = '/admin/files/image/'
+
+        else: # it is the EPS 
+            qs = EPS.objects.filter(id__in=ids)
+            list_view = '/admin/files/EPS/'
+            
+        qs.update(caption=bulkcaption)
+        request.user.message_set.create(
+            message="Succesfully changed the caption of %s images." % qs.count())
+        return HttpResponseRedirect(list_view)
+        
+    else:
+        return render_to_response('admin/bulk_caption.html', 
+            RequestContext(request, {}))
+
+

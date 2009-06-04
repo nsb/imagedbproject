@@ -6,7 +6,7 @@ from django.contrib.auth.models import User, Group
 from django.contrib.sites.models import Site
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.contenttypes.models import ContentType
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 
 from photologue.models import *
@@ -35,7 +35,7 @@ class ImageAdmin(admin.ModelAdmin):
     def bulk_caption(self, request, queryset):
         selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
         ct = ContentType.objects.get_for_model(queryset.model)
-        return HttpResponseRedirect("%s?ct=%s&ids=%s" % (reverse('bulk-caption'), ct.pk, ",".join(selected)))
+        return HttpResponseRedirect("/admin/bulk_caption/?ct=%s&ids=%s" % (ct.pk, ",".join(selected)))
 
     def _save_year_title(self, im, year):
         """ set title after updating year with admin actions"""
@@ -283,6 +283,7 @@ class ImageAdmin(admin.ModelAdmin):
 
 class EPSAdmin(admin.ModelAdmin):
     list_display = ('title', 'admin_thumbnail',)
+    actions = ['bulk_caption',]
     fieldsets = (
         (None, {
             'fields': ('cmyk', 'pantone', 'thumbnail',)
@@ -291,6 +292,11 @@ class EPSAdmin(admin.ModelAdmin):
             'fields': ('logos',)
         }),
     )
+    
+    def bulk_caption(self, request, queryset):
+        selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
+        ct = ContentType.objects.get_for_model(queryset.model)
+        return HttpResponseRedirect("/admin/bulk_caption/?ct=%s&ids=%s" % (ct.pk, ",".join(selected)))
 
     def save_model(self, request, obj, form, change):
         """
