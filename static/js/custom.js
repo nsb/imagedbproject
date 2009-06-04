@@ -16,7 +16,7 @@ function toggleImage(buttonElm, imgover, imgout) {
 
 $(document).ready(function(){
 
-  $('body').supersleight();
+  // $('body').supersleight();
 
   $("#rightbox").tabs({ selected: 3 });
   // try to hide tab items, except default
