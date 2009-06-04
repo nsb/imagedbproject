@@ -30,9 +30,11 @@ ADJACENT_PAGES = 4
 @require_http_methods(["GET"])
 def image_front(request, page=1):
 
+    lang = request.META['LANG']
+
     image_form = imagefilterform_factory(request)()
 
-    return render_to_response('image_front.html', RequestContext(request, {'form':image_form,}))
+    return render_to_response('image_front.html', RequestContext(request, {'form':image_form, 'lang':lang}))
 
 @login_required
 @require_http_methods(["GET"])
