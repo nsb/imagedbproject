@@ -34,8 +34,7 @@ class ImageAdmin(admin.ModelAdmin):
 
     def bulk_caption(self, request, queryset):
         selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
-        ct = ContentType.objects.get_for_model(queryset.model)
-        return HttpResponseRedirect("/admin/bulk_caption/?ct=%s&ids=%s" % (ct.pk, ",".join(selected)))
+        return HttpResponseRedirect("bulk_caption/?ids=%s" % "".join(selected))
 
     def _save_year_title(self, im, year):
         """ set title after updating year with admin actions"""
@@ -295,8 +294,7 @@ class EPSAdmin(admin.ModelAdmin):
     
     def bulk_caption(self, request, queryset):
         selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
-        ct = ContentType.objects.get_for_model(queryset.model)
-        return HttpResponseRedirect("/admin/bulk_caption/?ct=%s&ids=%s" % (ct.pk, ",".join(selected)))
+        return HttpResponseRedirect("bulk_caption/?ids=%s" % "".join(selected))
 
     def save_model(self, request, obj, form, change):
         """

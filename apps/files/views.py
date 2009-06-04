@@ -11,6 +11,7 @@ from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedire
 from django.core.servers.basehttp import FileWrapper
 from django.shortcuts import get_object_or_404, render_to_response
 from django.db.models import Q
+from django.db import models
 from django.conf import settings
 from django.template import RequestContext
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
@@ -309,33 +310,27 @@ def send_pantone(request, eps_id):
     return response
 
 @staff_member_required
-def bulk_caption(request):
+def bulk_caption(request, app_label, model_name):
     """
     Intermediate view for admin action that allows
     bulk edits of captions for both the Image and EPS model
     """
     
-    ct = request.GET[u'ct'] 
     ids = request.GET[u'ids'].split(',')
+    
+    model = models.get_model(app_label, model_name)
+    qs = model.objects.filter(id__in=ids)
     
     if request.method == 'POST':
         bulkcaption = request.POST[u'caption']
-        
-        if ct == '25': # it is the image model 
-            qs = Image.objects.filter(id__in=ids)
-            list_view = '/admin/files/image/'
-
-        else: # it is the EPS 
-            qs = EPS.objects.filter(id__in=ids)
-            list_view = '/admin/files/EPS/'
-            
+          
         qs.update(caption=bulkcaption)
         request.user.message_set.create(
             message="Succesfully changed the caption of %s images." % qs.count())
-        return HttpResponseRedirect(list_view)
+        return HttpResponseRedirect("../")
         
     else:
         return render_to_response('admin/bulk_caption.html', 
-            RequestContext(request, {}))
+            RequestContext(request, {'object_list': qs}))
 
 
