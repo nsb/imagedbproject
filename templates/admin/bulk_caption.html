@@ -1,11 +1,10 @@
-{% extends "admin/base_site.html" %}
-
-{% block title %}Bulk update of captions{% endblock %}
+{% extends "admin/change_form.html" %}
 
 {% block content %}
-<form action="" method="POST">
 
-<h1>Update captions</h1>
+<p>Update captions for the {{ object_list.count }} images you selected</p>
+
+<form action="" method="POST">
 
 <textarea cols="60" rows="10" id="caption" name="caption">
 </textarea>
@@ -13,3 +12,4 @@
 <input type="submit" value="Submit" />
 </form>
 {% endblock %}
+

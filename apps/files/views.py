@@ -315,11 +315,13 @@ def bulk_caption(request, app_label, model_name):
     Intermediate view for admin action that allows
     bulk edits of captions for both the Image and EPS model
     """
+
     
     ids = request.GET[u'ids'].split(',')
     
     model = models.get_model(app_label, model_name)
     qs = model.objects.filter(id__in=ids)
+
     
     if request.method == 'POST':
         bulkcaption = request.POST[u'caption']
@@ -331,6 +333,8 @@ def bulk_caption(request, app_label, model_name):
         
     else:
         return render_to_response('admin/bulk_caption.html', 
-            RequestContext(request, {'object_list': qs}))
+            RequestContext(request, {'object_list': qs,
+                'app_label': app_label,
+                'title': 'Bulk update of captions',}))
 
 
