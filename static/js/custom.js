@@ -22,7 +22,7 @@ $(document).ready(function(){
   // try to hide tab items, except default
 
   $.preloadImages("/static/img/Search2.png",
-                  "/static/img/clear2.png",
+                  "/static/img/reset2.png",
                   "/static/img/prev2.png",
                   "/static/img/next2.png",
                  "/static/img/Images2.png",
@@ -35,7 +35,7 @@ $(document).ready(function(){
                   "/static/img/pantone2.png");
 
   toggleImage($('#searchbutton'), "/static/img/Search2.png", "/static/img/Search.png"); 
-  toggleImage($('#resetlink'), "/static/img/clear2.png", "/static/img/clear1.png");
+  toggleImage($('#resetlink'), "/static/img/reset2.png", "/static/img/reset.png");
   toggleImage($('#previousbutton'), "/static/img/prev2.png", "/static/img/prev.png"); 
   toggleImage($('#nextbutton'), "/static/img/next2.png", "/static/img/next.png"); 
   toggleImage($('#download-small'), "/static/img/Small2.png", "/static/img/Small.png"); 
