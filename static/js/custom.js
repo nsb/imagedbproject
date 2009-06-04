@@ -35,15 +35,15 @@ $(document).ready(function(){
                   "/static/img/pantone2.png");
 
   toggleImage($('#searchbutton'), "/static/img/Search2.png", "/static/img/Search.png"); 
-  toggleImage($('#resetlink'), "/static/img/clear2.png", "/static/img/clear.png");
+  toggleImage($('#resetlink'), "/static/img/clear2.png", "/static/img/clear1.png");
   toggleImage($('#previousbutton'), "/static/img/prev2.png", "/static/img/prev.png"); 
   toggleImage($('#nextbutton'), "/static/img/next2.png", "/static/img/next.png"); 
   toggleImage($('#download-small'), "/static/img/Small2.png", "/static/img/Small.png"); 
   toggleImage($('#download-medium'), "/static/img/Medium2.png", "/static/img/Medium.png"); 
   toggleImage($('#download-large'), "/static/img/Large2.png", "/static/img/Large.png"); 
   toggleImage($('#download-original'), "/static/img/original_size2.png", "/static/img/original_size.png"); 
-  toggleImage($('#download-cmyk'), "/static/img/cmyk2.png", "/static/img/cmyk.png"); 
-  toggleImage($('#download-pantone'), "/static/img/pantone2.png", "/static/img/pantone.png");
+  toggleImage($('#download-cmyk'), "/static/img/cmyk2.png", "/static/img/cmyk1.png"); 
+  toggleImage($('#download-pantone'), "/static/img/pantone2.png", "/static/img/pantone1.png");
   toggleImage($('.logos #images-section'), "/static/img/Images2.png", "/static/img/Images.png"); 
   toggleImage($('.images #logos-section'), "/static/img/logos2.png", "/static/img/logos.png"); 
 
