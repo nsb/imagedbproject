@@ -14,7 +14,7 @@
 {% if eps.pantone %}<a href="{% url eps-pantone-download eps.id %}"><img id="download-pantone" src="/static/img/pantone.png" alt="{% trans "Pantone" %}"></a>{% endif %}
 </div>
 
-<div>
+<div id="eps_detail">
   <img src="{{ eps.thumbnail.url }}" alt="{{ eps.title }}">
   {% if eps.caption %}<p>{{ eps.caption }}</p>{% endif %}
 </div>

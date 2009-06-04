@@ -244,7 +244,7 @@ body.nonauth {
 #sections {
   margin-bottom: 4px;
 }
-#image_list {
+#image_list, #eps_list {
   margin-top: 15px;
   width: 1240px;
 }
@@ -259,6 +259,9 @@ body.nonauth {
 #image_list img {
   width: 100px;
   height: 100px;
+}
+#eps_detail {
+  margin-top: 30px;
 }
 .step-button {
   float: left;
