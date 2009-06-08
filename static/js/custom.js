@@ -32,10 +32,11 @@ $(document).ready(function(){
                   "/static/img/Large2.png",
                   "/static/img/original_size2.png",
                   "/static/img/cmyk2.png",
-                  "/static/img/pantone2.png");
+                  "/static/img/pantone2.png",
+                  "/static/img/back2.png",
+                  "/static/img/reset2.png");
 
   toggleImage($('#searchbutton'), "/static/img/Search2.png", "/static/img/Search.png"); 
-  toggleImage($('#resetlink'), "/static/img/reset2.png", "/static/img/reset.png");
   toggleImage($('#previousbutton'), "/static/img/prev2.png", "/static/img/prev.png"); 
   toggleImage($('#nextbutton'), "/static/img/next2.png", "/static/img/next.png"); 
   toggleImage($('#download-small'), "/static/img/Small2.png", "/static/img/Small.png"); 
@@ -46,5 +47,7 @@ $(document).ready(function(){
   toggleImage($('#download-pantone'), "/static/img/pantone2.png", "/static/img/pantone.png");
   toggleImage($('.logos #images-section'), "/static/img/Images2.png", "/static/img/Images.png"); 
   toggleImage($('.images #logos-section'), "/static/img/logos2.png", "/static/img/logos.png"); 
+  toggleImage($('#back'), "/static/img/back2.png", "/static/img/back.png"); 
+  toggleImage($('#reset'), "/static/img/reset2.png", "/static/img/reset.png"); 
 
 });
