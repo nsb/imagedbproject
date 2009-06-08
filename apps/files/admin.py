@@ -294,6 +294,9 @@ class EPSAdmin(admin.ModelAdmin):
         ('Categories', {
             'fields': ('logos',)
         }),
+        ('Options', {
+            'fields': ('caption', 'is_public',)
+        }),
     )
 
     def save_model(self, request, obj, form, change):
