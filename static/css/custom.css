@@ -13,6 +13,7 @@ a:hover {
 a:focus, object:focus, input:focus {
   outline: 0;
 }
+outline-style:none;
 body.nonauth {
   width: 100%;
   height: 100%;
