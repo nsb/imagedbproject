@@ -43,10 +43,8 @@ class ImageAdmin(admin.ModelAdmin):
     def _save_year_title(self, im, year):
         """ set title after updating year with admin actions"""
         title = im.title.split('.')
-        print title
         title[-2] = str(year.id)
         im.title = '.'.join(title)
-        print im.title
         im.save()
 
     def set_1985(self, request, queryset):
