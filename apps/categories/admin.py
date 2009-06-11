@@ -3,10 +3,9 @@
 
 from django.contrib import admin
 
-from models import Location, Field, Installation, People, HSE, Graphics, Communications, Archive, Year, Logo
+from models import Location, Installation, People, HSE, Graphics, Communications, Archive, Year, Logo
 
 admin.site.register(Location)
-admin.site.register(Field)
 admin.site.register(Installation)
 admin.site.register(People)
 admin.site.register(HSE)

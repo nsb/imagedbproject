@@ -20,12 +20,6 @@ class Location(Category):
         verbose_name_plural = _("Locations")
         ordering = ['name']
 
-class Field(Category):
-    class Meta:
-        verbose_name = _("Field")
-        verbose_name_plural = _("Fields")
-        ordering = ['name']
-
 class Installation(Category):
     class Meta:
         verbose_name = _("Installation & Vessel")
