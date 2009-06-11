@@ -23,8 +23,8 @@ def imagefilterform_factory(request):
         installations = forms.ChoiceField(label='Installations & Vessels', required=False)
         people = forms.ChoiceField(label='People', required=False)
         hse = forms.ChoiceField(label='HSE', required=False)
-        graphics = forms.ChoiceField(label='Graphics', required=False)
         years = forms.ChoiceField(label='Year', required=False)
+        graphics = forms.ChoiceField(label='Graphics', required=False)
 
         def __init__(self, *args, **kwargs):
             self.fieldsets = []
@@ -37,12 +37,12 @@ def imagefilterform_factory(request):
             self.fields['installations'].choices = _choices(Installation.objects.all())
             self.fields['people'].choices = _choices(People.objects.all())
             self.fields['hse'].choices = _choices(HSE.objects.all())
-            self.fields['graphics'].choices = _choices(Graphics.objects.all())
             self.fields['years'].choices = _choices(Year.objects.all())
+            self.fields['graphics'].choices = _choices(Graphics.objects.all())
 
             if request.user.is_staff:
                 self.fields['communications'] = \
-                    forms.ChoiceField(label='Communications use only', required=False)
+                    forms.ChoiceField(required=False)
                 self.fields['archives'] = \
                     forms.ChoiceField(label='Archive', required=False)
 
@@ -50,8 +50,8 @@ def imagefilterform_factory(request):
                 self.fields['archives'].choices = _choices(Archive.objects.all())
 
             self.fieldsets.append(
-                Fieldset(self, name='', fields=('locations', 'installations', 'people', 'years',)))
-            self.fieldsets.append(Fieldset(self, name='', fields=('hse', 'graphics', 'communications', 'archives',) if request.user.is_staff else ('hse', 'graphics',)))
+                Fieldset(self, name='', fields=('locations', 'installations', 'people', 'communications',) if request.user.is_staff else ('locations', 'installations', 'people',)))
+            self.fieldsets.append(Fieldset(self, name='', fields=('hse', 'graphics', 'years', 'archives',) if request.user.is_staff else ('hse', 'graphics', 'years',)))
 
     return ImageFilterForm
 
