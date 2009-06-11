@@ -20,7 +20,7 @@
 {% if eps.object_list %}
 <div id="eps_list">
 {% for eps in eps.object_list %}
-  <a href="{% url eps-detail eps.id %}"><img src="{{ eps.thumbnail_url }}" alt="{{ eps.title }}" title="{{ eps.categories }}"></a>
+  <a href="{% url eps-detail eps.id %}"><img src="{{ eps.thumbnail_url }}" alt="{{ eps.title }}" title="{{ eps.categories }} {{ eps.caption }}"></a>
 {% endfor %}
 </div>
 
