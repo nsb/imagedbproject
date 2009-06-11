@@ -43,7 +43,7 @@ class Image(ImageModel):
         Installation,
         null=True,
         blank=True,
-        verbose_name=_('Installations and Vessels'))
+        verbose_name=_('Fields and Installations'))
     people = models.ManyToManyField(
         People,
         null=True,

@@ -22,8 +22,8 @@ class Location(Category):
 
 class Installation(Category):
     class Meta:
-        verbose_name = _("Installation & Vessel")
-        verbose_name_plural = _("Installations & Vessels")
+        verbose_name = _("Fields and Installations")
+        verbose_name_plural = _("Fields and Installations")
         ordering = ['name']
 
 class People(Category):

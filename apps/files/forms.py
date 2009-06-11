@@ -20,7 +20,7 @@ def imagefilterform_factory(request):
 
     class ImageFilterForm(forms.Form):
         locations = forms.ChoiceField(label='Locations', required=False)
-        installations = forms.ChoiceField(label='Installations & Vessels', required=False)
+        installations = forms.ChoiceField(label='Fields and Installations', required=False)
         people = forms.ChoiceField(label='People', required=False)
         hse = forms.ChoiceField(label='HSE', required=False)
         years = forms.ChoiceField(label='Year', required=False)
