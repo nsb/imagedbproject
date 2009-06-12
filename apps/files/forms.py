@@ -42,9 +42,9 @@ def imagefilterform_factory(request):
 
             if request.user.is_staff:
                 self.fields['communications'] = \
-                    forms.ChoiceField(required=False)
+                    forms.ChoiceField(label="Communications (admin)", required=False)
                 self.fields['archives'] = \
-                    forms.ChoiceField(label='Archive', required=False)
+                    forms.ChoiceField(label='Archive (admin)', required=False)
 
                 self.fields['communications'].choices = _choices(Communications.objects.all())
                 self.fields['archives'].choices = _choices(Archive.objects.all())
