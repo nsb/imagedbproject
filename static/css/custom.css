@@ -309,7 +309,7 @@ select {
   margin: 0 0 .5em 0;
 }
 /* select box widths */
-#id_locations, #id_hse { width: 210px; }
+#id_locations, #id_hse { width: 220px; }
 #id_installations, #id_graphics { width: 220px; }
 #id_people, #id_years { width: 110px; } { width: 145px; }
 #id_communications, #id_archives { width: 215px; }
