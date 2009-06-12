@@ -310,10 +310,9 @@ select {
 }
 /* select box widths */
 #id_locations, #id_hse { width: 200px; }
-#id_fields, #id_graphics { width: 220px; }
-#id_installations, #id_communications { width: 210px; }
-#id_people, #id_archives { width: 145px; }
-#id_years { width: 110px; }
+#id_installations, #id_graphics { width: 220px; }
+#id_people, #id_years { width: 110px; } { width: 145px; }
+#id_communications, #id_archives { width: 210px; }
 #id_logos { width: 200px; }
 
 /* jquery ui tabs css */
