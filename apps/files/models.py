@@ -89,6 +89,25 @@ class Image(ImageModel):
     def __str__(self):
         return self.__unicode__()
 
+    def save(self, *args, **kwargs):
+        if self.date_taken is None:
+            try:
+                exif_date = self.EXIF.get('EXIF DateTimeOriginal', None)
+                if exif_date is not None:
+                    d, t = str.split(exif_date.values)
+                    year, month, day = d.split(':')
+                    hour, minute, second = t.split(':')
+                    self.date_taken = datetime(int(year), int(month), int(day),
+                                               int(hour), int(minute), int(second))
+            except:
+                pass
+        if self.date_taken is None:
+            self.date_taken = datetime.now()
+        #if self._get_pk_val():
+            #self.clear_cache()
+        super(ImageModel, self).save(*args, **kwargs)
+        #self.pre_cache()
+
     def _get_filename_for_size(self, size):
         size = getattr(size, 'name', size)
         base, ext = os.path.splitext(self.image_filename())
