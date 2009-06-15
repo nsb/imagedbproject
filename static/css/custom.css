@@ -246,11 +246,11 @@ body.nonauth {
 }
 #image_list, #eps_list {
   margin-top: 15px;
-  width: 1240px;
+  width: 1200px;
 }
 #eps_list {
   margin-top: 36px;
-  width: 1240px;
+  width: 1200px;
 }
 #image_list img, #eps_list img {
   margin-right: 3px;
