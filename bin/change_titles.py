@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+"""
+WARNING: Do not run this script without overriding the save method for Image!
+"""
+
 import sys, os
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/..')
