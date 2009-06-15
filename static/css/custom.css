@@ -253,8 +253,8 @@ body.nonauth {
   width: 1240px;
 }
 #image_list img, #eps_list img {
-  margin-right: 4px;
-  margin-bottom: 4px; 
+  margin-right: 3px;
+  margin-bottom: 3px; 
 }
 #image_list img {
   width: 100px;
@@ -309,11 +309,11 @@ select {
   margin: 0 0 .5em 0;
 }
 /* select box widths */
-#id_locations, #id_hse { width: 220px; }
-#id_installations, #id_graphics { width: 220px; }
-#id_people, #id_years { width: 110px; } { width: 145px; }
-#id_communications, #id_archives { width: 215px; }
-#id_logos { width: 200px; }
+#id_locations, #id_hse { width: 255px; }
+#id_installations, #id_graphics { width: 255px; }
+#id_people, #id_years { width: 255px; }
+#id_communications, #id_archives { width: 255px; }
+#id_logos { width: 255px; }
 
 /* jquery ui tabs css */
 .ui-tabs .ui-tabs-hide {
