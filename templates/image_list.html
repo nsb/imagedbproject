@@ -18,10 +18,9 @@
 {% block image_list %}
 {% if images.object_list %}
 <div id="image_list">
-{% for image in images.object_list %}
-<a href="{% url image-detail image.id %}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}" title="{{ image.categories }}{{ image.caption }}"></a>
-{% endfor %}
+{% for image in images.object_list %}<a href="{% url image-detail image.id %}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}" title="{{ image.categories }}{{ image.caption }}"></a>{% endfor %}
 </div>
+<div class="clear"></div>
 
 <div class="step-links">
   {% if images.has_previous %}
