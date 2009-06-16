@@ -292,8 +292,7 @@ body.nonauth {
 }
 .step-links {
   padding: 0;
-  margin-top: 5px;
-/*   margin: 5px 0; */
+  margin: 5px 0;
 }
 .step-links .pages {
   position: relative;
