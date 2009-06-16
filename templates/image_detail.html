@@ -21,74 +21,74 @@
   {% if image.caption %}<p class="caption">{{ image.caption }}</p>{% endif %}
 </div>
 <hr class="space">
-<h4>{% trans "Categories:" %}</h4>
+<p><strong>{% trans "Categories:" %}</strong></p>
 
 {% if image.locations.all %}
 <div>
-<strong>{% trans "Locations: " %}</strong>
+{% trans "Locations: " %}
 {{ image.locations.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.fields.all %}
 <div>
-<strong>{% trans "Fields: " %}</strong>
+{% trans "Fields: " %}
 {{ image.fields.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.installations.all %}
 <div>
-<strong>{% trans "Installation & Vessels: " %}</strong>
+{% trans "Installation & Vessels: " %}
 {{ image.installations.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.people.all %}
 <div>
-<strong>{% trans "People: " %}</strong>
+{% trans "People: " %}
 {{ image.people.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.years.all %}
 <div>
-<strong>{% trans "Year: " %}</strong>
+{% trans "Year: " %}
 {{ image.years.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.hse.all %}
 <div>
-<strong>{% trans "HSE: " %}</strong>
+{% trans "HSE: " %}
 {{ image.hse.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.graphics.all %}
 <div>
-<strong>{% trans "Graphics: " %}</strong>
+{% trans "Graphics: " %}
 {{ image.graphics.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.communications.all %}
 <div>
-<strong>{% trans "Communications use only: " %}</strong>
+{% trans "Communications use only: " %}
 {{ image.communications.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.archives.all %}
 <div>
-<strong>{% trans "Archive: " %}</strong>
+{% trans "Archive: " %}
 {{ image.archives.all|join:"; " }}
 </div>
 {% endif %}
 
 <hr class="space">
 
-<div><strong>Ref. No.:</strong> {{ image.title }}</div>
+<div><strong>Ref. no.:</strong> {{ image.title }}</div>
 
 <hr class="space">
 
