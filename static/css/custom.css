@@ -301,6 +301,8 @@ form > table {
 }
 form td {
   padding: 0;
+  width: 25%;
+/*  border: solid 1px;*/
 }
 form td strong {
   color: #666666;
@@ -309,11 +311,11 @@ select {
   margin: 0 0 .5em 0;
 }
 /* select box widths */
-#id_locations, #id_hse { width: 255px; }
-#id_installations, #id_graphics { width: 255px; }
-#id_people, #id_years { width: 255px; }
-#id_communications, #id_archives { width: 255px; }
-#id_logos { width: 255px; }
+#id_locations, #id_hse { width: 240px; }
+#id_installations, #id_graphics { width: 240px; }
+#id_people, #id_years { width: 240px; }
+#id_communications, #id_archives { width: 240px; }
+#id_logos { width: 240px; }
 
 /* jquery ui tabs css */
 .ui-tabs .ui-tabs-hide {
