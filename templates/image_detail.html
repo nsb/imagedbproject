@@ -32,15 +32,8 @@
 
 {% if image.fields.all %}
 <div>
-{% trans "Fields: " %}
+{% trans "Fields and Installations: " %}
 {{ image.fields.all|join:"; " }}
-</div>
-{% endif %}
-
-{% if image.installations.all %}
-<div>
-{% trans "Installation & Vessels: " %}
-{{ image.installations.all|join:"; " }}
 </div>
 {% endif %}
 
@@ -48,13 +41,6 @@
 <div>
 {% trans "People: " %}
 {{ image.people.all|join:"; " }}
-</div>
-{% endif %}
-
-{% if image.years.all %}
-<div>
-{% trans "Year: " %}
-{{ image.years.all|join:"; " }}
 </div>
 {% endif %}
 
@@ -72,16 +58,23 @@
 </div>
 {% endif %}
 
+{% if image.years.all %}
+<div>
+{% trans "Year: " %}
+{{ image.years.all|join:"; " }}
+</div>
+{% endif %}
+
 {% if image.communications.all %}
 <div>
-{% trans "Communications use only: " %}
+{% trans "Communications (admin): " %}
 {{ image.communications.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.archives.all %}
 <div>
-{% trans "Archive: " %}
+{% trans "Archive (admin): " %}
 {{ image.archives.all|join:"; " }}
 </div>
 {% endif %}
