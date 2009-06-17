@@ -21,7 +21,7 @@
 {% for image in images.object_list %}<a href="{% url image-detail image.id %}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}" title="{{ image.categories }}{{ image.caption }}"></a>{% endfor %}
 </div>
 
-<div class="step-links">
+<div class="step-links clear">
   {% if images.has_previous %}
     <a class="step-button" href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="previousbutton" src="/static/img/prev.png" alt="{% trans "Previous" %}"></a>
   {% endif %}
