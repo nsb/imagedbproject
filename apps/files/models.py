@@ -78,7 +78,7 @@ class Image(ImageModel):
     dont_convert = ['medium', 'large']
 
     class Meta:
-        ordering = ['-date_added']
+        ordering = ['caption', '-date_added']
         get_latest_by = 'date_added'
         verbose_name = _("image")
         verbose_name_plural = _("images")
@@ -230,7 +230,7 @@ class EPS(models.Model):
         verbose_name=_('Logos'))
 
     class Meta:
-        ordering = ['-date_added']
+        ordering = ['caption', '-date_added']
         get_latest_by = 'date_added'
         verbose_name = _("EPS")
         verbose_name_plural = _("EPS")
