@@ -23,7 +23,7 @@ from django.conf import settings
 
 from photologue.models import ImageModel, PhotoSizeCache
 
-from categories.models import Location, Field, Installation, People, HSE, Graphics, Communications, Archive, Year, Logo
+from categories.models import Location, Installation, People, HSE, Graphics, Communications, Archive, Year, Logo
 from rounded_corners import round_image
 
 class Image(ImageModel):
@@ -39,16 +39,11 @@ class Image(ImageModel):
         null=True,
         blank=True,
         verbose_name=_('Locations'))
-    fields = models.ManyToManyField(
-        Field,
-        null=True,
-        blank=True,
-        verbose_name=_('Fields'))
     installations = models.ManyToManyField(
         Installation,
         null=True,
         blank=True,
-        verbose_name=_('Installations & Vessels'))
+        verbose_name=_('Fields and Installations'))
     people = models.ManyToManyField(
         People,
         null=True,
@@ -207,7 +202,6 @@ class Image(ImageModel):
 
     def categories(self):
         locations = ''.join(['%s; ' % location.name for location in self.locations.all()])
-        fields = ''.join(['%s; ' % field.name for field in self.fields.all()])
         installations = ' '.join(['%s; ' % installation.name for installation in self.installations.all()])
         people = ''.join(['%s; ' % people.name for people in self.people.all()])
         hse = ''.join(['%s; ' % hse.name for hse in self.hse.all()])
@@ -216,7 +210,7 @@ class Image(ImageModel):
         archives = ''.join(['%s; ' % archive.name for archive in self.archives.all()])
         years = ''.join(['%s; ' % year.name for year in self.years.all()])
 
-        return ''.join([locations, fields, installations, people, hse, graphics, communications, archives, years])
+        return ''.join([locations, installations, people, hse, graphics, communications, archives, years])
 
 class EPS(models.Model):
     cmyk = models.FileField(upload_to='eps_cmyk', verbose_name='CMYK', null=True, blank=True)

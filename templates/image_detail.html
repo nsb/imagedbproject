@@ -5,7 +5,7 @@
 
 {% block indented_content %}
 <div id="breadcrumbs">
-<a href="{% url image_front %}">{% trans "Reset" %}</a> &rsaquo; <a onClick="history.back();" href="#">Back</a>
+<a href="{% url image_front %}"><img id="reset" src="/static/img/resetA.png"></a> <a onClick="history.back();" href="#"><img id="back" src="/static/img/back.png"></a>
 </div>
 <ul id="photo_size" class="small quiet">
 <li><strong><img src="/static/img/download.gif" alt="{% trans "Download" %}"></strong></li>
@@ -21,74 +21,67 @@
   {% if image.caption %}<p class="caption">{{ image.caption }}</p>{% endif %}
 </div>
 <hr class="space">
-<h4>{% trans "Categories:" %}</h4>
+<p><strong>{% trans "Categories:" %}</strong></p>
 
 {% if image.locations.all %}
 <div>
-<strong>{% trans "Locations: " %}</strong>
+{% trans "Locations: " %}
 {{ image.locations.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.fields.all %}
 <div>
-<strong>{% trans "Fields: " %}</strong>
+{% trans "Fields and Installations: " %}
 {{ image.fields.all|join:"; " }}
-</div>
-{% endif %}
-
-{% if image.installations.all %}
-<div>
-<strong>{% trans "Installation & Vessels: " %}</strong>
-{{ image.installations.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.people.all %}
 <div>
-<strong>{% trans "People: " %}</strong>
+{% trans "People: " %}
 {{ image.people.all|join:"; " }}
-</div>
-{% endif %}
-
-{% if image.years.all %}
-<div>
-<strong>{% trans "Year: " %}</strong>
-{{ image.years.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.hse.all %}
 <div>
-<strong>{% trans "HSE: " %}</strong>
+{% trans "HSE: " %}
 {{ image.hse.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.graphics.all %}
 <div>
-<strong>{% trans "Graphics: " %}</strong>
+{% trans "Graphics: " %}
 {{ image.graphics.all|join:"; " }}
+</div>
+{% endif %}
+
+{% if image.years.all %}
+<div>
+{% trans "Year: " %}
+{{ image.years.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.communications.all %}
 <div>
-<strong>{% trans "Communications use only: " %}</strong>
+{% trans "Communications (admin): " %}
 {{ image.communications.all|join:"; " }}
 </div>
 {% endif %}
 
 {% if image.archives.all %}
 <div>
-<strong>{% trans "Archive: " %}</strong>
+{% trans "Archive (admin): " %}
 {{ image.archives.all|join:"; " }}
 </div>
 {% endif %}
 
 <hr class="space">
 
-<div><strong>Ref. No.:</strong> {{ image.title }}</div>
+<div><strong>Ref. no.:</strong> {{ image.title }}</div>
 
 <hr class="space">
 

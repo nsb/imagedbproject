@@ -12,18 +12,16 @@
 <table>
 {% include "form.html" %}
 </table>
-<div id="submitline"><input id="searchbutton" type="image" src="/static/img/Search.png" value="Search"> <a href="{% url image_front %}"><img id="resetlink" src="/static/img/reset.png"></a></div>
+<div id="submitline"><input id="searchbutton" type="image" src="/static/img/search.png" value="Search"> <a href="{% url image_front %}"><img id="resetlink" src="/static/img/reset.png"></a></div>
 </form>
 
 {% block image_list %}
 {% if images.object_list %}
 <div id="image_list">
-{% for image in images.object_list %}
-<a href="{% url image-detail image.id %}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}" title="{{ image.categories }}"></a>
-{% endfor %}
+{% for image in images.object_list %}<a href="{% url image-detail image.id %}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}" title="{{ image.categories }}{{ image.caption }}"></a>{% endfor %}
 </div>
 
-<div class="step-links">
+<div class="step-links clear">
   {% if images.has_previous %}
     <a class="step-button" href="{% url images images.previous_page_number %}{% if query %}?{{ query }}{% endif %}"><img id="previousbutton" src="/static/img/prev.png" alt="{% trans "Previous" %}"></a>
   {% endif %}

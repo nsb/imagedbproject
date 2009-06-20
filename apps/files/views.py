@@ -44,7 +44,7 @@ def images(request, page=1):
     if form.is_valid():
 
         lookup_args={}
-        qs = Image.objects.filter(is_public=True)
+        qs = Image.objects.filter(is_public=True).order_by('caption')
         for (key, value) in form.cleaned_data.items():
             if value:
                 if value == 'all':

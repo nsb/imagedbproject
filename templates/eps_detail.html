@@ -5,7 +5,7 @@
 
 {% block indented_content %}
 <div id="breadcrumbs">
-<a href="{% url eps_front %}">{% trans "Reset" %}</a> &rsaquo; <a onClick="history.back();" href="#">Back</a>
+<a href="{% url eps_front %}"><img id="reset" src="/static/img/resetA.png"></a> <a onClick="history.back();" href="#"><img id="back" src="/static/img/back.png"></a>
 </div>
 
 <div>
@@ -19,18 +19,18 @@
   {% if eps.caption %}<p>{{ eps.caption }}</p>{% endif %}
 </div>
 <hr class="space">
-<h4>{% trans "Categories:" %}</h4>
+<p><strong>{% trans "Categories:" %}<strong></p>
 
 {% if eps.logos.all %}
 <div>
-<strong>{% trans "Logos: " %}</strong>
+{% trans "Logos: " %}
 {{ eps.logos.all|join:"; " }}
 </div>
 {% endif %}
 
 <hr class="space">
 
-<div><strong>Ref. No.:</strong> {{ eps.title }}</div>
+<div><strong>Ref. no.:</strong> {{ eps.title }}</div>
 
 <hr class="space">
 

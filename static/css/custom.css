@@ -246,19 +246,29 @@ body.nonauth {
 }
 #image_list, #eps_list {
   margin-top: 15px;
-  width: 1240px;
+  width: 1200px;
+  padding: 0;
 }
 #eps_list {
   margin-top: 36px;
-  width: 1240px;
+  width: 1200px;
 }
-#image_list img, #eps_list img {
-  margin-right: 4px;
-  margin-bottom: 4px; 
+#image_list a, #eps_list a {
+  float: left;
+  display: inline;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+#image_list a img, #eps_list a img {
+  margin: 0;
+  padding: 0;
 }
 #image_list img {
-  width: 100px;
-  height: 100px;
+/*   width: 100px; */
+/*   height: 100px; */
 }
 #eps_detail {
   margin-top: 30px;
@@ -269,7 +279,7 @@ body.nonauth {
 .page {
   color: #a5a3a5;
 }
-.pages, .page > a, .curr {
+.page > a, .curr {
   padding: 0 .3em;
 }
 .page > a {
@@ -280,10 +290,15 @@ body.nonauth {
   text-decoration: underline;
   color: gray;
 }
+.step-links {
+  padding: 0;
+  margin: 5px 0;
+}
 .step-links .pages {
   position: relative;
   float: left;
-  margin-top: .4em;
+  margin: 0 .5em;
+  margin-top: .2em;
 }
 .caption {
   width: 600px;
@@ -293,6 +308,7 @@ body.nonauth {
 form > table {
   margin: .5em 0;
   margin-bottom: .7em;
+  padding: 0;
 }
 #submitline {
   padding: 0;
@@ -300,6 +316,7 @@ form > table {
 }
 form td {
   padding: 0;
+  width: 25%;
 }
 form td strong {
   color: #666666;
@@ -308,12 +325,11 @@ select {
   margin: 0 0 .5em 0;
 }
 /* select box widths */
-#id_locations, #id_hse { width: 200px; }
-#id_fields, #id_graphics { width: 220px; }
-#id_installations, #id_communications { width: 200px; }
-#id_people, #id_archives { width: 145px; }
-#id_years { width: 110px; }
-#id_logos { width: 200px; }
+#id_locations, #id_hse { width: 234px; }
+#id_installations, #id_graphics { width: 234px; }
+#id_people, #id_years { width: 234px; }
+#id_communications, #id_archives { width: 234px; }
+#id_logos { width: 234px; }
 
 /* jquery ui tabs css */
 .ui-tabs .ui-tabs-hide {

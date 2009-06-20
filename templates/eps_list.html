@@ -13,14 +13,14 @@
 <table>
 {% include "form.html" %}
 </table>
-<div id="submitline"><input id="searchbutton" type="image" src="/static/img/Search.png" value="Search"> <a href="{% url eps_front %}"><img id="resetlink" src="/static/img/reset.png"></a></div>
+<div id="submitline"><input id="searchbutton" type="image" src="/static/img/search.png" value="Search"> <a href="{% url eps_front %}"><img id="resetlink" src="/static/img/reset.png"></a></div>
 </form>
 
 {% block eps_list %}
 {% if eps.object_list %}
 <div id="eps_list">
 {% for eps in eps.object_list %}
-  <a href="{% url eps-detail eps.id %}"><img src="{{ eps.thumbnail_url }}" alt="{{ eps.title }}" title="{{ eps.categories }}"></a>
+  <a href="{% url eps-detail eps.id %}"><img src="{{ eps.thumbnail_url }}" alt="{{ eps.title }}" title="{{ eps.categories }}{{ eps.caption }}"></a>
 {% endfor %}
 </div>
 
