@@ -316,12 +316,10 @@ def bulk_caption(request, app_label, model_name):
     bulk edits of captions for both the Image and EPS model
     """
 
-    
     ids = request.GET[u'ids'].split(',')
     
     model = models.get_model(app_label, model_name)
     qs = model.objects.filter(id__in=ids)
-
     
     if request.method == 'POST':
         bulkcaption = request.POST[u'caption']
