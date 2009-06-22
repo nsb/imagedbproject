@@ -128,6 +128,28 @@ def image_detail(request, image_id):
                          object_id = image_id)
 
 @login_required
+def image_download_list(request):
+    """
+    Display images selected for download
+    a form for selecting image size
+    a clear folder button
+    
+    session variabel 
+    
+    komprimer i zip mappe
+    """
+    pass
+
+@login_required
+def image_download_list_mod():
+    """
+    handles the download list, adds and removes id's
+    then returns user
+    ajax
+    """
+    
+
+@login_required
 def send_image(request, image_id, size):
     """                                                                         
     Send a file through Django without loading the whole file into              
