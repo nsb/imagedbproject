@@ -96,7 +96,10 @@ class Image(ImageModel):
             # rename to jpg, to ensure webserver sends correct content type
             ext = '.jpg'
         return ''.join([base, '_', size, ext])
-
+    
+    #def download_folder(self):
+    #    pass
+        
     def create_size(self, photosize):
         if self.size_exists(photosize):
             return

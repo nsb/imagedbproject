@@ -141,13 +141,33 @@ def image_download_list(request):
     pass
 
 @login_required
-def image_download_list_mod():
+def image_download_list_mod(request):
     """
     handles the download list, adds and removes id's
     then returns user
     ajax
     """
     
+    img_all = request.POST.get('img_all', '').split(',')
+    selected = request.POST.getlist('img_down')
+    
+    download_list = request.session.get('image_download_list', [])
+    
+    for i in img_all:
+        try: 
+            download_list.remove(i)
+        except:
+            pass
+    
+    download_list.extend(selected)
+    
+    request.session['image_download_list'] = download_list
+    
+    return HttpResponse(request.session['image_download_list'])
+
+#@login_required
+#def image_download_list_ajaxtoggle(request):
+
 
 @login_required
 def send_image(request, image_id, size):
