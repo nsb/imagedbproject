@@ -30,10 +30,10 @@
 </div>
 {% endif %}
 
-{% if image.fields.all %}
+{% if image.installations.all %}
 <div>
 {% trans "Fields and Installations: " %}
-{{ image.fields.all|join:"; " }}
+{{ image.installations.all|join:"; " }}
 </div>
 {% endif %}
 
