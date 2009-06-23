@@ -6,7 +6,7 @@
 {% block indented_content %}
 
 <div id="sections">
-<a href="{% url image_front %}"><img id="images-section" src="/static/img/Images.png" alt="{% trans "Images" %}"></a> <a class="selected round" href="{% url eps_front %}"><img id="logos-section" src="/static/img/logos2.png" alt="{% trans "Logos" %}"></a>
+<a href="{% url image_front %}"><img id="images-section" src="/static/img/Images.png" alt="{% trans "Images" %}"></a> <a class="selected round" href="{% url eps_front %}"><img id="logos-section" src="/static/img/logos2.png" alt="{% trans "Logos" %}"></a> <a href="{% url image_downloadfolder_view %} ">Download Images</a>
 </div>
 
 <form class="round" method="get" action="{% url eps 1 %}">
