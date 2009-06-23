@@ -4,14 +4,14 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('files.views',
-
     (r'^$', 'image_front', {}, 'image_front'),
     (r'^images/page(?P<page>[0-9]+)/$', 'images', {}, 'images'),
     (r'^images/(?P<image_id>\d+)/$', 'image_detail', {}, 'image-detail'),
     (r'^images/(?P<image_id>\d+)/(?P<size>(small|medium|large|original))/$', 'send_image', {}, 'image-download'),
     (r'^images/downloadfolder/$', 'image_downloadfolder_view', {}, 'image_downloadfolder_view'),
     (r'^images/downloadfolder/update/$', 'image_downloadfolder_update', {}, "image_downloadfolder_update"),
-    (r'^images/downloadfolder/download/(?P<size>(small|medium|large|original))/$', 'image_downloadfolder_download', {}, 'image_downloadfolder_download'),
+    (r'^images/downloadfolder/download/$', 'image_downloadfolder_download', {}, 'image_downloadfolder_download'),
+    (r'^images/downloadfolder/clear/$', 'image_downloadfolder_clear', {}, 'image_downloadfolder_clear'),
     (r'^logos/$', 'eps_front', {}, 'eps_front'),
     (r'^logos/page(?P<page>[0-9]+)/$', 'eps', {}, 'eps'),
     (r'^logos/(?P<eps_id>\d+)/$', 'eps_detail', {}, 'eps-detail'),

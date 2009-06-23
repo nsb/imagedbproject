@@ -130,12 +130,7 @@ def image_detail(request, image_id):
 @login_required
 def image_downloadfolder_view(request, page=1):
     """
-    Display images selected for download
-    a form for selecting image size
-    a clear folder button
-    session variabel 
-    komprimer i zip mappe
-    
+    Display list of images selected for download
     """
     
     download_list = request.session.get('image_download_list', [])
@@ -190,17 +185,22 @@ def image_downloadfolder_view(request, page=1):
         'image_download_list.html', RequestContext(request, 
         {'images':images}))
     
-@login_required   
-def image_downloadfolder_download(request, size='medium'):
-    
+@login_required 
+@require_http_methods(["GET"])  
+def image_downloadfolder_download(request):
+    """
+    Compresses images from the download folder in a zip archive
+    and sends it. The FileWrapper will turn the file object into an           
+    iterator for chunks of 8KB.
+    """
+    size = request.GET.get('size', 'medium')
     download_list = request.session.get('image_download_list', [])
     qs = Image.objects.filter(id__in=download_list)
         
     temp = tempfile.TemporaryFile()
     archive = zipfile.ZipFile(temp, 'w', zipfile.ZIP_DEFLATED)
     
-    for image in qs:
-        
+    for image in qs:  
         filenames = \
         {'small':image.get_small_filename,
          'medium':image.get_medium_filename,
@@ -211,14 +211,14 @@ def image_downloadfolder_download(request, size='medium'):
             photosize = PhotoSizeCache().sizes.get(size)
             if photosize and not image.size_exists(photosize):
                 image.create_size(photosize)
-            
+        
         filename = filenames[size]()
         archive.write(filename)
-        
+       
     archive.close()
     wrapper = FileWrapper(temp)
     response = HttpResponse(wrapper, content_type='application/zip')
-    response['Content-Disposition'] = 'attachment; filename=test.zip'
+    response['Content-Disposition'] = 'attachment; filename=images.zip'
     response['Content-Length'] = temp.tell()
     temp.seek(0)
     return response 
@@ -243,6 +243,11 @@ def image_downloadfolder_update(request):
     download_list.extend(selected)
     request.session['image_download_list'] = download_list
     
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+@login_required
+def image_downloadfolder_clear(request):
+    request.session['image_download_list'] = []
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 #@login_required
