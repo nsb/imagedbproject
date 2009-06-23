@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
 
-import os, mimetypes
+import os, mimetypes, tempfile, zipfile
 
 from django.views.generic.list_detail import object_list, object_detail
 from django.contrib.auth.decorators import login_required
@@ -128,42 +128,122 @@ def image_detail(request, image_id):
                          object_id = image_id)
 
 @login_required
-def image_download_list(request):
+def image_downloadfolder_view(request, page=1):
     """
     Display images selected for download
     a form for selecting image size
     a clear folder button
-    
     session variabel 
-    
     komprimer i zip mappe
+    
     """
-    pass
+    
+    download_list = request.session.get('image_download_list', [])
+    qs = Image.objects.filter(id__in=download_list)
+    
+    # the rest should be abstracted and generic
+    
+    # filter communications and archives
+    if not request.user.is_staff:
+        for value in Communications.objects.values('name'):
+            qs = qs.exclude(communications__name=value['name'])
+        for value in Archive.objects.values('name'):
+            qs = qs.exclude(archives__name=value['name'])
+
+    image_paginator = Paginator(qs, getattr(settings, 'PAGINATE_BY', 25))
+
+    try:
+        images = image_paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        images = image_paginator.page(image_paginator.num_pages)
+
+    " Initialize variables "
+    in_leading_range = in_trailing_range = False
+    pages_outside_leading_range = pages_outside_trailing_range = range(0)
+
+    page = images
+
+    if (page.paginator.num_pages <= LEADING_PAGE_RANGE_DISPLAYED):
+        in_leading_range = in_trailing_range = True
+        page_numbers = page.paginator.page_range
+    elif (page.number <= LEADING_PAGE_RANGE):
+        in_leading_range = True
+        page_numbers = [n for n in range(1, LEADING_PAGE_RANGE_DISPLAYED + 1) if n > 0 and n <= page.paginator.num_pages]
+        pages_outside_leading_range = [n + page.paginator.num_pages for n in range(0, -NUM_PAGES_OUTSIDE_RANGE, -1)]
+    elif (page.number > page.paginator.num_pages - TRAILING_PAGE_RANGE):
+        in_trailing_range = True
+        page_numbers = [n for n in range(page.paginator.num_pages - TRAILING_PAGE_RANGE_DISPLAYED + 1, page.paginator.num_pages + 1) if n > 0 and n <= page.paginator.num_pages]
+        pages_outside_trailing_range = [n + 1 for n in range(0, NUM_PAGES_OUTSIDE_RANGE)]
+    else: 
+        page_numbers = [n for n in range(page.number - ADJACENT_PAGES, page.number + ADJACENT_PAGES + 1) if n > 0 and n <= page.paginator.num_pages]
+        pages_outside_leading_range = [n + page.paginator.num_pages for n in range(0, -NUM_PAGES_OUTSIDE_RANGE, -1)]
+        pages_outside_trailing_range = [n + 1 for n in range(0, NUM_PAGES_OUTSIDE_RANGE)]
+    context = {
+        "page_numbers": page_numbers,
+        "in_leading_range" : in_leading_range,
+        "in_trailing_range" : in_trailing_range,
+        "pages_outside_leading_range": pages_outside_leading_range,
+        "pages_outside_trailing_range": pages_outside_trailing_range
+    }
+
+    return render_to_response(
+        'image_download_list.html', RequestContext(request, 
+        {'images':images}))
+    
+@login_required   
+def image_downloadfolder_download(request, size='medium'):
+    
+    download_list = request.session.get('image_download_list', [])
+    qs = Image.objects.filter(id__in=download_list)
+        
+    temp = tempfile.TemporaryFile()
+    archive = zipfile.ZipFile(temp, 'w', zipfile.ZIP_DEFLATED)
+    
+    for image in qs:
+        
+        filenames = \
+        {'small':image.get_small_filename,
+         'medium':image.get_medium_filename,
+         'large':image.get_large_filename,
+         'original': lambda: image.image.path,}
+    
+        if not size in ['original']:
+            photosize = PhotoSizeCache().sizes.get(size)
+            if photosize and not image.size_exists(photosize):
+                image.create_size(photosize)
+            
+        filename = filenames[size]()
+        archive.write(filename)
+        
+    archive.close()
+    wrapper = FileWrapper(temp)
+    response = HttpResponse(wrapper, content_type='application/zip')
+    response['Content-Disposition'] = 'attachment; filename=test.zip'
+    response['Content-Length'] = temp.tell()
+    temp.seek(0)
+    return response 
 
 @login_required
-def image_download_list_mod(request):
+@require_http_methods(["POST"])
+def image_downloadfolder_update(request):
     """
-    handles the download list, adds and removes id's
-    then returns user
-    ajax
+    Updates the download folder. Removes all images in the selection view
+    from the session variable, then ads the images that have been ticked off
     """
     
     img_all = request.POST.get('img_all', '').split(',')
     selected = request.POST.getlist('img_down')
-    
     download_list = request.session.get('image_download_list', [])
-    
-    for i in img_all:
+    for img in img_all:
         try: 
-            download_list.remove(i)
+            download_list.remove(img)
         except:
-            pass
+            pass 
     
     download_list.extend(selected)
-    
     request.session['image_download_list'] = download_list
     
-    return HttpResponse(request.session['image_download_list'])
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 #@login_required
 #def image_download_list_ajaxtoggle(request):
