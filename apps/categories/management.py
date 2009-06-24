@@ -5,7 +5,7 @@
 
 from django.db.models import signals
 
-from models import Location, Field, Installation, People, HSE, Graphics, Communications, Archive, Year
+from models import Location, Installation, People, HSE, Graphics, Communications, Archive, Year
 import models
 
 def create_category_values(app, created_models, verbosity, **kwargs):
