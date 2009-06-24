@@ -44,11 +44,10 @@ def images(request, page=1):
     if form.is_valid():
 
         lookup_args={}
-        qs = Image.objects.filter(is_public=True).order_by('caption')
+        qs = Image.objects.filter(is_public=True).order_by('caption', '-date_added')
         for (key, value) in form.cleaned_data.items():
             if value:
                 if value == 'all':
-                    pass
                     # ugly hack to get content type, should be fixed
                     model = getattr(Image.objects.get(pk=1), key).model
 
