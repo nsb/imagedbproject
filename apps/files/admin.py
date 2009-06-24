@@ -23,7 +23,7 @@ def bulk_caption(modeladmin, request, queryset):
     return HttpResponseRedirect("bulk_caption/?ids=%s" % ",".join(selected))
 
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
+    list_display = ('title', 'image_filename', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
     list_filter = ['date_added', 'is_public', 'locations', 'installations', 'people', 'hse', 'graphics', 'communications', 'years', 'archives']
     list_per_page = 20
     save_on_top = True
