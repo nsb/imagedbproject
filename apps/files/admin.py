@@ -45,7 +45,7 @@ class ImageAdmin(admin.ModelAdmin):
         title = im.title.split('.')
         title[-3] = str(year.id)
         im.title = '.'.join(title)
-        im.save()
+        super(ImageModel, im).save()
 
     def set_1985(self, request, queryset):
         year = Year.objects.get(name='1985')
