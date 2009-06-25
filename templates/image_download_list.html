@@ -1,0 +1,23 @@
+{% extends "image_list.html" %}
+
+{% block image_search_form %}{% endblock %}
+
+{% block image_actions %}
+{% if images.object_list %}
+<a href="{% url image_downloadfolder_clear %} ">Clear folder</a> 
+
+<form action="{% url image_downloadfolder_download %}" method="get">
+
+<h2>Download</h2> Choose size:
+<select name="size">
+  <option value="small">small</option>
+  <option value="medium">medium</option>
+  <option value="large">large</option>
+  <option value="original">original</option>
+</select>
+
+<input type="submit" value="download">
+</form>
+{% endif %} 
+{% endblock %} 
+
