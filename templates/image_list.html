@@ -5,21 +5,35 @@
 
 {% block indented_content %}
 <div id="sections">
-<a class="selected round" href="{% url image_front %}"><img id="images-section" src="/static/img/Images2.png" alt="{% trans "Images" %}"></a> <a href="{% url eps_front %}"><img id="logos-section" src="/static/img/logos.png" alt="{% trans "Logos" %}"></a>
+<a class="selected round" href="{% url image_front %}"><img id="images-section" src="/static/img/Images2.png" alt="{% trans "Images" %}"></a> <a href="{% url eps_front %}"><img id="logos-section" src="/static/img/logos.png" alt="{% trans "Logos" %}"></a> <a href="{% url image_downloadfolder_view %} ">Download Images</a>
 </div>
 
+{% block image_search_form %}  
 <form class="round" method="get" action="{% url images 1 %}">
 <table>
 {% include "form.html" %}
 </table>
 <div id="submitline"><input id="searchbutton" type="image" src="/static/img/search.png" value="Search"> <a href="{% url image_front %}"><img id="resetlink" src="/static/img/reset.png"></a></div>
 </form>
+{% endblock image_search_form %} 
 
+<form action="{% url image_downloadfolder_update %}" method="post">
 {% block image_list %}
 {% if images.object_list %}
 <div id="image_list">
-{% for image in images.object_list %}<a href="{% url image-detail image.id %}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}" title="{{ image.categories }}{{ image.caption }}"></a>{% endfor %}
+{% for image in images.object_list %}
+    <div class="img" id="id_{{ image.id }} "><a href="{% url image-detail image.id %}">
+        <img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}"
+            title="{{ image.categories }}{{ image.caption }}"></a>
+        <input type="checkbox" name="img_down" value="{{ image.id }}" 
+            {% if image.checked_for_download %}checked="yes"{% endif %} />
+    </div>
+{% endfor %}
 </div>
+<input type="hidden" name="img_all" value="{% for image in images.object_list %}{{ image.id }},{% endfor %}">
+<input type="submit" value="update"/>
+</form>
+
 
 <div class="step-links clear">
   {% if images.has_previous %}
@@ -61,6 +75,8 @@
 {% trans "No images found." %}
 {% endif %}
 {% endblock image_list %}
+
+{% block image_actions %}  {% endblock %}
 
 
 {% endblock indented_content %}

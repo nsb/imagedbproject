@@ -253,7 +253,7 @@ body.nonauth {
   margin-top: 36px;
   width: 1200px;
 }
-#image_list a {
+#image_list div.img, #eps_list div.img {
   float: left;
   display: inline;
   height: 100px;
