@@ -14,8 +14,6 @@ function toggleImage(buttonElm, imgover, imgout) {
   });
 } 
 
-
-
 $(document).ready(function(){
 
   // $('body').supersleight();
