@@ -1,6 +1,6 @@
 {% extends "base_site.html" %}
 {% load i18n %}
-
+{% load image_extras %} 
 {% block title %}{{ block.super }} | {{ image.title }}{% endblock title %}
 
 {% block indented_content %}
@@ -20,7 +20,7 @@
 <form action="{% url image_downloadfolder_update %}" method="post">
   <img src="{{ image.get_display_url }}" alt="{{ image.title }}">
   <input type="checkbox" name="img_down" value="{{ image.id }}" 
-            {% if image.checked_for_download %}checked="yes"{% endif %} />
+            {% in_downloadfolder image.id request.session.image_download_list %} />
   {% if image.caption %}<p class="caption">{{ image.caption }}</p>{% endif %}
   <input type="hidden" name="img_all" value="">
   <input type="submit" value="update"/>

@@ -1,6 +1,6 @@
 {% extends "base_site.html" %}
 {% load i18n %}
-
+{% load image_extras %} 
 {% block section %}images{% endblock section %}
 
 {% block indented_content %}
@@ -26,8 +26,9 @@
         <img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}"
             title="{{ image.categories }}{{ image.caption }}"></a>
         <span class="checkbox"><input type="checkbox" name="img_down" value="{{ image.id }}" 
-            {% if image.checked_for_download %}checked="yes"{% endif %} /></span>
+            {% in_downloadfolder image.id request.session.image_download_list %} /></span> 
     </div>
+    
 {% endfor %}
 </div>
 <input type="hidden" name="img_all" value="{% for image in images.object_list %}{{ image.id }},{% endfor %}">
