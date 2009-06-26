@@ -234,6 +234,7 @@ def image_downloadfolder_update(request):
     img_all = request.POST.get('img_all', '').split(',')
     selected = request.POST.getlist('img_down')
     download_list = request.session.get('image_download_list', [])
+
     for img in img_all:
         try: 
             download_list.remove(img)
@@ -250,8 +251,11 @@ def image_downloadfolder_clear(request):
     request.session['image_download_list'] = []
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
-#@login_required
-#def image_download_list_ajaxtoggle(request):
+@login_required
+@require_http_methods(["POST"])
+def image_downloadfolder_toggle(request):
+    img = request.POST.get('img', '')
+    pass
 
 
 @login_required

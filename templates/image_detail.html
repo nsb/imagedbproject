@@ -22,7 +22,7 @@
   <input type="checkbox" name="img_down" value="{{ image.id }}" 
             {% in_downloadfolder image.id request.session.image_download_list %} />
   {% if image.caption %}<p class="caption">{{ image.caption }}</p>{% endif %}
-  <input type="hidden" name="img_all" value="">
+  <input type="hidden" name="img_all" value="{{ image.id }} ">
   <input type="submit" value="update"/>
 </form>
 </div>
