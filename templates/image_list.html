@@ -17,7 +17,7 @@
 </form>
 {% endblock image_search_form %} 
 
-<form action="{% url image_downloadfolder_update %}" method="post">
+<form id="downloadfolder_form" action="{% url image_downloadfolder_update %}" method="post">
 {% block image_list %}
 {% if images.object_list %}
 <div id="image_list">

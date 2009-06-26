@@ -12,11 +12,11 @@ urlpatterns = patterns('files.views',
     (r'^images/downloadfolder/update/$', 'image_downloadfolder_update', {}, "image_downloadfolder_update"),
     (r'^images/downloadfolder/download/$', 'image_downloadfolder_download', {}, 'image_downloadfolder_download'),
     (r'^images/downloadfolder/clear/$', 'image_downloadfolder_clear', {}, 'image_downloadfolder_clear'),
+    (r'^images/downloadfolder/toggle/$', 'image_downloadfolder_toggle', {}, 'image_downloadfolder_toggle'),
     (r'^logos/$', 'eps_front', {}, 'eps_front'),
     (r'^logos/page(?P<page>[0-9]+)/$', 'eps', {}, 'eps'),
     (r'^logos/(?P<eps_id>\d+)/$', 'eps_detail', {}, 'eps-detail'),
     (r'^logos/(?P<eps_id>\d+)/original/$', 'send_eps', {}, 'eps-download'),
     (r'^logos/(?P<eps_id>\d+)/cmyk/$', 'send_cmyk', {}, 'eps-cmyk-download'),
     (r'^logos/(?P<eps_id>\d+)/pantone/$', 'send_pantone', {}, 'eps-pantone-download'),
-    
 )
