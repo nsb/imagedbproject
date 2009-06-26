@@ -25,8 +25,8 @@
     <div class="img" id="id_{{ image.id }} "><a href="{% url image-detail image.id %}">
         <img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}"
             title="{{ image.categories }}{{ image.caption }}"></a>
-        <input type="checkbox" name="img_down" value="{{ image.id }}" 
-            {% if image.checked_for_download %}checked="yes"{% endif %} />
+        <span class="checkbox"><input type="checkbox" name="img_down" value="{{ image.id }}" 
+            {% if image.checked_for_download %}checked="yes"{% endif %} /></span>
     </div>
 {% endfor %}
 </div>

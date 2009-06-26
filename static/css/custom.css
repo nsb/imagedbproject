@@ -261,11 +261,16 @@ body.nonauth {
   padding: 0;
   margin-right: 5px;
   margin-bottom: 5px;
+  position:relative;
 }
 #image_list a img, #eps_list a img {
   margin: 0;
   padding: 0;
 }
+
+#image_list span.checkbox {position:absolute;
+    bottom: 2px; left: 74px;}
+    
 #image_list img {
 /*   width: 100px; */
 /*   height: 100px; */
