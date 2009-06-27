@@ -30,7 +30,7 @@ $(document).ready(function(){
         checkbox.removeClass('ajax');
         if($("body").hasClass("image_downloadfolder")){
           if(data.action == "removed"){
-            $("div#id_" + id).fadeOut();}
+            $("#img_" + id).fadeOut();}
           }
       }, "json");
   });
