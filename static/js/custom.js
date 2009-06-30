@@ -28,7 +28,7 @@ $(document).ready(function(){
         checkbox.removeClass('ajax');
         if($("body").hasClass("image_downloadfolder")){
           if(data.action == "removed"){
-            $("#img_" + id).fadeOut();}
+            $("div#id_" + id).fadeOut();}
           }
       }, "json");
   });
