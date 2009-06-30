@@ -17,7 +17,7 @@
 </li>
 </ul>
 <div>
-<form id="downloadfolder_form" action="{% url image_downloadfolder_update %}" method="post">
+<form action="{% url image_downloadfolder_update %}" method="post">
   <img src="{{ image.get_display_url }}" alt="{{ image.title }}">
   <input type="checkbox" name="img_down" value="{{ image.id }}" 
             {% in_downloadfolder image.id request.session.image_download_list %} />
