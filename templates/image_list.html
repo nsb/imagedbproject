@@ -1,6 +1,6 @@
 {% extends "base_site.html" %}
 {% load i18n %}
-
+{% load image_extras %} 
 {% block section %}images{% endblock section %}
 
 {% block indented_content %}
@@ -15,10 +15,19 @@
 <div id="submitline"><input id="searchbutton" type="image" src="/static/img/search.png" value="Search"> <a href="{% url image_front %}"><img id="resetlink" src="/static/img/reset.png"></a></div>
 </form>
 
+<form id="downloadfolder_form" action="{% url image_downloadfolder_update %}" method="post">
 {% block image_list %}
 {% if images.object_list %}
 <div id="image_list">
-{% for image in images.object_list %}<a href="{% url image-detail image.id %}"><img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}" title="{{ image.categories }}{{ image.caption }}"></a>{% endfor %}
+{% for image in images.object_list %}
+    <div class="img" id="img_{{ image.id }} "><a href="{% url image-detail image.id %}">
+        <img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}"
+            title="{{ image.categories }}{{ image.caption }}"></a>
+        <span class="checkbox"><input type="checkbox" name="img_down" value="{{ image.id }}" 
+            {% in_downloadfolder image.id request.session.image_download_list %} /></span> 
+    </div>
+    
+{% endfor %}
 </div>
 
 <div class="step-links clear">
