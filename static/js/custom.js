@@ -18,18 +18,13 @@ $(document).ready(function(){
 
   // $('body').supersleight();
   
+  
   $("#downloadfolder_form input[type=submit]").hide();
   $("#downloadfolder_form input[type=checkbox]").click(function(){
-    var checkbox = $(this);
-    var id = checkbox.attr('value');
-    checkbox.addClass('ajax');
-    $.post("/images/downloadfolder/toggle/", {img: id},
+    $(this).addClass('ajax');
+    $.post("/images/downloadfolder/toggle/", {img: $(this).attr('value')},
       function(data){
-        checkbox.removeClass('ajax');
-        if($("body").hasClass("image_downloadfolder")){
-          if(data.action == "removed"){
-            $("div#id_" + id).fadeOut();}
-          }
+        $(this).removeClass('ajax');
       }, "json");
   });
     
