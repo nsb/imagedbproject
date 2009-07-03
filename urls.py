@@ -55,6 +55,11 @@ urlpatterns = patterns('',
         {'template':'contact.html'},
         name='contact'),
 
+    url(r'^howto/$',
+        direct_to_template,
+        {'template':'howto.html'},
+        name='howto'),
+
     (r'^', include('files.urls')),
 )
 
