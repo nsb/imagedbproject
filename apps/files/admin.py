@@ -21,6 +21,7 @@ def bulk_caption(modeladmin, request, queryset):
     """
     selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
     return HttpResponseRedirect("bulk_caption/?ids=%s" % ",".join(selected))
+bulk_caption.short_description = 'image text'
 
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('title', 'image_filename', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
@@ -36,7 +37,7 @@ class ImageAdmin(admin.ModelAdmin):
             'fields': ('locations', 'installations', 'people', 'communications', 'hse', 'graphics', 'years', 'archives',)
         }),
         ('Options', {
-            'fields': ('caption', 'is_public',)
+            'fields': ('caption', 'notes', 'is_public',)
         }),
     )
 
