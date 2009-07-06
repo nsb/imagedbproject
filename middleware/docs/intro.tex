@@ -1,7 +1,7 @@
 This document describes the IP address redirection solution built
-for the \client. It fulfils a need to have users from a set of
+for the \client. The solution fulfils a need to have users from a set of
 registered IP addresses provided access to non-admin views
-without their having to log in. Administrative usrs from these IP
+without their having to log in. Administrative users from these IP
 addresses, namely anyone wishing to view a Django admin. page
 will need to log in as usual. For users from any unregistered IP
 addresses, the authentication process is as usual for Django,
@@ -9,7 +9,7 @@ namely access is allowed if the user is authenticated and has
 sufficient permissions for the view in question.
 
 The solution is implemented as Django middleware, also
-necessitating some changes to the URLs, and views for the Django
+necessitating some changes to the URLs and views for the Django
 project. Chapter~\ref{sec:installation} describes installation
 and usage, and should be all that is required for a user of the
 middleware. Chapter~\ref{sec:functioning} describes how the users

@@ -36,7 +36,13 @@ to use this middleware. All changes are actually made in {\tt
   \url{http://code.google.com/p/netaddr/wiki/WildcardExamples},
   and the complete API at
   \url{http://packages.python.org/netaddr/}. However, in the
-  interests of simplicity, these are not currently included.
+  interests of simplicity, these are not currently included. Anything
+  that is not in the list of registered IP addresses is considered to
+  be a non-registered IP address.
+\item\emph{IPv6 vs. IPv4: } \netaddr supports both IPv6 and IPv4
+addresses, using similar syntax for both. So, IPv6 addresses should
+also work out of the box. While some static testing has been done,
+I do not have access to a IPV6 network in order to do a live test.
 \item\emph{Templates for login pages: } There are separate login
   pages for users from registered, and unregistered IPs. These
   are configured through the variables SRJ\_TMPL\_LOGIN\_REG and
