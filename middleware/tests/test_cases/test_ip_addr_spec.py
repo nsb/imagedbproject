@@ -23,7 +23,7 @@ class TestIPAddressSpec(unittest.TestCase):
 #         INVALID_IP = '"192.168.1.256"'
 #         system( r"sed 's/\(^SRJ_IP_REG = \)\(.*\)/\1\[" + \
 #                     str( INVALID_IP ) + "]/' " + LOCAL_SETTINGS_FILE + \
-#                     " > tmp.$$ && cp tmp.$$ " + LOCAL_SETTINGS_FILE )
+#                     " > tmp.$$ && mv tmp.$$ " + LOCAL_SETTINGS_FILE )
 #         self.assertRaises( Exception, IPAddressMiddleware ) 
 
     def test02_valid_ip(self):

@@ -1,6 +1,6 @@
-DOC_DIR:=/home/gora/tex/memos
-CATEGORY:=memo
-TOP_DIR:= $(DOC_DIR)/cms_audit
+DOC_DIR:=../
+CATEGORY:=ip_addr_filter
+TOP_DIR:= $(DOC_DIR)/docs
 
 AUX_FILES=$(CATEGORY).aux $(CATEGORY).bbl $(CATEGORY).blg $(CATEGORY).dvi $(CATEGORY).log
 DOC_FILES:=$(CATEGORY).ps $(CATEGORY).pdf $(CATEGORY).rtf $(CATEGORY)/$(CATEGORY).html $(CATEGORY)_split/$(CATEGORY).html
