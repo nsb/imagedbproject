@@ -15,5 +15,5 @@ urlpatterns = patterns('files.views',
     (r'^logos/(?P<eps_id>\d+)/original/$', 'send_eps', {}, 'eps-download'),
     (r'^logos/(?P<eps_id>\d+)/cmyk/$', 'send_cmyk', {}, 'eps-cmyk-download'),
     (r'^logos/(?P<eps_id>\d+)/pantone/$', 'send_pantone', {}, 'eps-pantone-download'),
-    
+    (r'^login_reg/$', 'login_reg'),
 )

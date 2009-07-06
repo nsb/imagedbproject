@@ -94,7 +94,9 @@ class IPAddressMiddleware(object):
             return self._call_viewfunc( eval( 'django.contrib.auth.views.' + \
                                            viewfunc.__name__ ),
                                  request, (), {} )
-            
+        elif view.startswith('/login_reg'):
+            if not is_ip_reg:
+                return HttpResponseRedirect( '/login/' )
         elif view.startswith('/static/') or view.startswith('/media/'):
             # Simply serve static media, and Django admin. media
             return self._call_viewfunc( viewfunc, request, args, kwargs )

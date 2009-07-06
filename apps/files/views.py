@@ -462,3 +462,6 @@ def bulk_caption_reg(request, app_label, model_name):
             RequestContext(request, {'object_list': qs,
                 'title': 'Bulk update of captions',}))
 bulk_caption = staff_member_required( bulk_caption_reg )
+
+def login_reg(request):
+    return HttpResponseRedirect( getattr( request.REQUEST, 'next', '/' ) )
