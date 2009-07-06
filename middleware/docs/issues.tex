@@ -1,1 +1,49 @@
 \label{sec:issues}
+These issues have been noted earlier in email and Basecamp, and
+are provided here only for the sake of completeness.
+\begin{itemize}
+\item In app/files/views.py, for every login\_required view, the
+  \@login\_required decorator has been removed, the view function
+  name changed to view\_reg, and a login\_required version is
+  retained with the original view name.  The view\_reg functions
+  do not have configured URLs, and are hence not accessible. The
+  only exception is login\_reg, access to which is blocked from
+  non-registered IP addresses by the middleware.
+\item Users after logging in were supposed to be redirected to
+  '/home/'. This URL does not exist, so the redirection has been
+  made to '/'
+\item Users from registered IPs looking at non-admin views cannot
+  be authenticated (there is no user/password information). Hence
+  the views should not have specific information shown for
+  authenticated users.
+\item A user who has been authenticated from a registered
+  (unregistered) IP, and switches to an unregistered (registered)
+  IP is not required to authenticate again, and retains all
+  earlier privileges.
+\item The login template is now set in the middleware, using the
+  values in settings\_local.py. This means that any values passed
+  with 'template\_name' to the login view in urls.py will be
+  overriden.
+\item Currently, in urls.py
+  \begin{Verbatim}
+    (r'^admin/(.#)', include(admin.site.urls)),
+  \end{Verbatim}
+  is preferred for the admin. site configuration, instead of,
+  \begin{Verbatim}
+    (r'^admin/(.#)', admin.site.root),
+  \end{Verbatim}
+  Please see \url{http://docs.djangoproject.com/en/dev/ref/contrib/admin/#hooking-adminsite-instances-into-your-urlconf}. With the old style declaration, I am
+  forced to use
+  \begin{Verbatim}
+    reverse(admin.site.root, args=['']) 
+  \end{Verbatim}
+  to get the root of the admin. site URL. admin.site.root is deprecated
+  and will disappear in Django 1.3. Now, the admin. uses named URLs, so
+  that the usage should be
+  \begin{Verbatim}
+    reverse('admin\_index', args=[''])
+  \end{Verbatim}
+  However, this will work only with the above changes to urls.py.
+\item app.files.eps is not protected by \@login\_required. I am not sure why
+  this is the case, and have left it alone.
+\end{itemize}
