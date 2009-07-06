@@ -10,7 +10,11 @@ all: $(CATEGORY).pdf
 %.dvi: %.tex
 	@echo Running LaTex for the first time
 	latex $(CATEGORY) && echo "" && sleep 2
-	@echo Running LaTex for the second time to to fix references
+	@echo Running BibTex to find bibliographic entries
+	bibtex $(CATEGORY) && echo "" && sleep 2
+	@echo Running LaTex for the second time to fill in bibliographic entries
+	latex $(CATEGORY) && echo "" && sleep 2
+	@echo Running LaTex for the third time to fix references
 	latex $(CATEGORY)
 
 $(CATEGORY)/$(CATEGORY).html: $(CATEGORY).tex

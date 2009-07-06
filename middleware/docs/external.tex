@@ -1,0 +1,15 @@
+\label{sec:external}
+The middleware uses the \netaddr~\cite{url:netaddr} library to
+manipulate IP addresses. \netaddr was chosen after a careful
+examination of available Python IP libraries. The other strong
+contender was \ipaddr~\cite{url:ipaddr} which has been accepted
+into the standard library for Python versions 2.7 and 3.1
+onwards. The final choice of \netaddr was because of better
+functionality, more features, and especially the end-user
+friendly classes like IPRange class for IPAddress ranges, and the
+Wildcard class. We use only a tiny part of the functionality
+provided by \netaddr, and a conscious decision was made not to
+offer too many configuration options. However, if it is felt to
+be desirable, features like wildcards for IP addresses can be
+added. The current version of the library in use is 0.6.3.
+

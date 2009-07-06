@@ -1,0 +1,51 @@
+The following changes will need to be made to \settings in order
+to use this middleware. All changes are actually made in {\tt
+  settings\_local.py}:
+\begin{itemize}
+\item\emph{Settings for middleware classes: } The
+  IPAddressMiddleware resides in the file {\tt middleware.py},
+  and can be added to the MIDDLEWARE\_CLASSES variable in
+  \settings as 'middleware.IPAddressMiddleware'. The
+  IPAddressMiddleWare can be added any where in the list of
+  middleware classes. Thus, the MIDDLEWARE\_CLASSES variable could
+  be set like:
+  \begin{Verbatim}
+    MIDDLEWARE_CLASSES = (
+      'django.middleware.common.CommonMiddleware',
+      'django.contrib.sessions.middleware.SessionMiddleware',
+      'django.contrib.auth.middleware.AuthenticationMiddleware',
+      'middleware.IPAddressMiddleware',
+    )
+  \end{Verbatim}
+\item\emph{Specifying registered IPs: } This is given in the
+  variable SRJ\_IP\_REG as a list, where each entry can be either a
+  single IP address value specified as a string, or a sequence of
+  two values as strings, which specify the start and end of an IP
+  address range. Thus,
+  \begin{Verbatim}
+    SRJ_IP_REG = [
+        '192.168.10.1', '192.168.10.4', ['192.168.10.6', '192.168.10.24'],
+        '192.168.10.40'
+        ]
+  \end{Verbatim}
+  Enhancements are also possible, e.g., the individual values can
+  also themselves be ranges, e.g., '192.168.10.0/3'. For details,
+  see the examples in
+  \url{http://code.google.com/p/netaddr/wiki/IPv4Examples}. Still
+  further extensions are possible, e.g., see
+  \url{http://code.google.com/p/netaddr/wiki/WildcardExamples},
+  and the complete API at
+  \url{http://packages.python.org/netaddr/}. However, in the
+  interests of simplicity, these are not currently included.
+\item\emph{Templates for login pages: } There are separate login
+  pages for users from registered, and unregistered IPs. These
+  are configured through the variables SRJ\_TMPL\_LOGIN\_REG and
+  SRJ\_TMPL\_LOGIN\_UNREG, e.g.,
+  \begin{Verbatim}
+    SRJ_TMPL_LOGIN_REG = 'login_reg.html'
+    SRJ_TMPL_LOGIN_UNREG = 'login.html'
+  \end{Verbatim}
+  Please note that these are set in the middleware, and hence
+  specifying templates as {\tt template\_name} arguments to the
+  dictionary for the {\tt login} view will not work.
+\end{itemize}

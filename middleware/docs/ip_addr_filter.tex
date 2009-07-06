@@ -9,6 +9,7 @@
 \usepackage{color}      % Coloured text
 \usepackage{lastpage}   % For page N of M
 \usepackage{fancybox}   % For framing page, and picture
+\usepackage{fancyvrb}
 \usepackage{xspace}     % Optional space after end of a \newcommand
 \usepackage{multirow}   % Columns spanning multiple rows
 % -------- CHAPTER/SECTION COLOURS ---------
@@ -37,11 +38,17 @@
 \makeatother
 
 % -------- Client-specific setup -----------
+\newcommand{\client}{Ciboe image database\xspace}
+% Shorter form, if available, for use in footer
+\newcommand{\clientabbr}{Ciboe}
+\newcommand{\contact}{Mr.~Claus Ipsen\xspace}
 \newcommand{\revnum}{1.0\xspace}
 % Short name for footer
 \newcommand{\projname}{IP address filter doc.\xspace}
 \newcommand{\theyear}{2008\xspace}
 \newcommand{\settings}{{\tt settings.py}\xspace}
+\newcommand{\netaddr}{{\tt netaddr}\xspace}
+\newcommand{\ipaddr}{{\tt ipaddr}\xspace}
 % ------ Fancy Header Style Options --------
 \pagestyle{fancy}       % Sets fancy header and footer
 % ---------- Srijan style setup ------------
@@ -66,7 +73,7 @@
   %\lhead{\epsfig{figure=srijan-hdr.eps,height=20pt}}
   \lhead{\textcolor{ccol}{\Large SRIJAN}\newline
     \textcolor{scol}{\scriptsize TECHNOLOGIES}}
-  \lfoot{Project Name: \projname\\Document ver.: \revnum}
+  \lfoot{Name: \projname\\Document ver.: \revnum\\Customer: \clientabbr}
   \rfoot{Page \thepage\ of \pageref{LastPage}\\http://www.srijan.in\\Copyright 
 (C) \theyear\ Srijan Technologies, Pvt.~Ltd.}
   \cfoot{}
@@ -78,7 +85,7 @@
   %\lhead{\epsfig{figure=srijan-hdr.eps,height=20pt}}
   \lhead{\textcolor{ccol}{\Large SRIJAN}\newline
     \textcolor{scol}{\scriptsize TECHNOLOGIES}}
-  \lfoot{Project Name: \projname\\Document ver.: \revnum}
+  \lfoot{Project Name: \projname\\Document ver.: \revnum\\Customer: \clientabbr}
   \rfoot{Page \thepage\ of \pageref{LastPage}\\http://www.srijan.in\\Copyright 
 (C) \theyear\ Srijan Technologies, Pvt.~Ltd.}
   \cfoot{}
@@ -104,26 +111,28 @@
 \input{intro}
 
 \chapter{Installation and usage}
-%\input{installation}
+\input{installation}
+  \section{External dependencies}
+  \input{external}
   \section{Changes to \settings}
-  %\input{changes}
+  \input{changes}
   \section{Running}
   %\input{run}
 
 \chapter{Functioning of the middleware}
-%\input{functioning}
+\input{functioning}
   \section{Registered IP addresses}
   %\input{registered}
   \section{Unregistered IP addresses}
   %\input{unregistered}
 
-\chapter{Issues}
-%\input{issues}
-
 \chapter{Technical details}
-% \input{technical}
+\input{technical}
+
+\chapter{Issues}
+\input{issues}
 % ----------- END MAIN BODY -----------
 \bibliographystyle{plain}
-\bibliography{memo}
+\bibliography{ip_addr_filter}
 
 \end{document}
