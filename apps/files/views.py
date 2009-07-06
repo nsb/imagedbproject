@@ -28,17 +28,16 @@ LEADING_PAGE_RANGE = TRAILING_PAGE_RANGE = 8
 NUM_PAGES_OUTSIDE_RANGE = 2
 ADJACENT_PAGES = 4
 
-@login_required
 @require_http_methods(["GET"])
-def image_front(request, page=1):
+def image_front_reg(request, page=1):
 
     image_form = imagefilterform_factory(request)()
 
     return render_to_response('image_front.html', RequestContext(request, {'form':image_form,}))
+image_front = login_required( image_front_reg )
 
-@login_required
 @require_http_methods(["GET"])
-def images(request, page=1):
+def images_reg(request, page=1):
 
     form = imagefilterform_factory(request)(request.GET)
     if form.is_valid():
@@ -116,18 +115,18 @@ def images(request, page=1):
 
     else:
         return HttpResponseBadRequest(form.errors)
+images = login_required( images_reg )
 
-@login_required
 @require_http_methods(["GET"])
-def image_detail(request, image_id):
+def image_detail_reg(request, image_id):
     return object_detail(request,
                          queryset=Image.objects.filter(is_public=True),
                          template_name = 'image_detail.html',
                          template_object_name = 'image',
                          object_id = image_id)
+image_detail = login_required( image_detail_reg )
 
-@login_required
-def image_downloadfolder_view(request, page=1):
+def image_downloadfolder_view_reg(request, page=1):
     """
     Display list of images selected for download
     """
@@ -183,10 +182,10 @@ def image_downloadfolder_view(request, page=1):
     return render_to_response(
         'image_download_list.html', RequestContext(request, 
         {'images':images}))
+image_downloadfolder_view = login_required( image_downloadfolder_view_reg )
     
-@login_required 
 @require_http_methods(["GET"])  
-def image_downloadfolder_download(request):
+def image_downloadfolder_download_reg(request):
     """
     Compresses images from the download folder in a zip archive
     and sends it. The FileWrapper will turn the file object into an           
@@ -221,10 +220,10 @@ def image_downloadfolder_download(request):
     response['Content-Length'] = temp.tell()
     temp.seek(0)
     return response 
+image_downloadfolder_download = login_required( image_downloadfolder_download_reg )
 
-@login_required
 @require_http_methods(["POST"])
-def image_downloadfolder_update(request):
+def image_downloadfolder_update_reg(request):
     """
     Updates the download folder. Removes all images in the selection view
     from the session variable, then ads the images that have been ticked off
@@ -244,21 +243,20 @@ def image_downloadfolder_update(request):
     request.session['image_download_list'] = download_list
     
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+image_downloadfolder_update = login_required( image_downloadfolder_update_reg )
 
-@login_required
-def image_downloadfolder_clear(request):
+def image_downloadfolder_clear_reg(request):
     request.session['image_download_list'] = []
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+image_downloadfolder_clear = login_required( image_downloadfolder_clear_reg )
 
-@login_required
 @require_http_methods(["POST"])
-def image_downloadfolder_toggle(request):
+def image_downloadfolder_toggle_reg(request):
     img = request.POST.get('img', '')
     pass
+image_downloadfolder_toggle = login_required( image_downloadfolder_toggle_reg )
 
-
-@login_required
-def send_image(request, image_id, size):
+def send_image_reg(request, image_id, size):
     """                                                                         
     Send a file through Django without loading the whole file into              
     memory at once. The FileWrapper will turn the file object into an           
@@ -286,15 +284,15 @@ def send_image(request, image_id, size):
     response['Content-Length'] = os.path.getsize(filename.encode('utf8'))
     response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename.encode('utf8'))
     return response
+send_image = login_required( send_image_reg )
 
-@login_required
 @require_http_methods(["GET"])
-def eps_front(request, page=1):
+def eps_front_reg(request, page=1):
 
     eps_form = EPSFilterForm()
 
     return render_to_response('eps_front.html', RequestContext(request, {'form':eps_form,}))
-
+eps_front = login_required( eps_front_reg )
 
 def eps(request, page=1):
 
@@ -369,18 +367,16 @@ def eps(request, page=1):
     else:
         return HttpResponseBadRequest(form.errors)
 
-@login_required
 @require_http_methods(["GET"])
-def eps_detail(request, eps_id):
+def eps_detail_reg(request, eps_id):
     return object_detail(request,
                          queryset=EPS.objects.filter(is_public=True),
                          template_name = 'eps_detail.html',
                          template_object_name = 'eps',
                          object_id = eps_id)
+eps_detail = login_required( eps_detail_reg )
 
-
-@login_required
-def send_eps(request, eps_id):
+def send_eps_reg(request, eps_id):
     """                                                                         
     Send a file through Django without loading the whole file into              
     memory at once. The FileWrapper will turn the file object into an           
@@ -398,9 +394,9 @@ def send_eps(request, eps_id):
     response['Content-Length'] = os.path.getsize(filename.encode('utf8'))
     response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename.encode('utf8'))
     return response
+send_eps = login_required( send_eps_reg )
 
-@login_required
-def send_cmyk(request, eps_id):
+def send_cmyk_reg(request, eps_id):
     """                                                                         
     Send a file through Django without loading the whole file into              
     memory at once. The FileWrapper will turn the file object into an           
@@ -418,9 +414,9 @@ def send_cmyk(request, eps_id):
     response['Content-Length'] = os.path.getsize(filename.encode('utf8'))
     response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename.encode('utf8'))
     return response
+send_cmyk = login_required( send_cmyk_reg )
 
-@login_required
-def send_pantone(request, eps_id):
+def send_pantone_reg(request, eps_id):
     """                                                                         
     Send a file through Django without loading the whole file into              
     memory at once. The FileWrapper will turn the file object into an           
@@ -438,9 +434,9 @@ def send_pantone(request, eps_id):
     response['Content-Length'] = os.path.getsize(filename.encode('utf8'))
     response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename.encode('utf8'))
     return response
+send_pantone = login_required( send_pantone_reg )
 
-@staff_member_required
-def bulk_caption(request, app_label, model_name):
+def bulk_caption_reg(request, app_label, model_name):
     """
     Intermediate view for admin action that allows
     bulk edits of captions for both the Image and EPS model
@@ -465,5 +461,4 @@ def bulk_caption(request, app_label, model_name):
         return render_to_response('admin/bulk_caption.html', 
             RequestContext(request, {'object_list': qs,
                 'title': 'Bulk update of captions',}))
-
-
+bulk_caption = staff_member_required( bulk_caption_reg )

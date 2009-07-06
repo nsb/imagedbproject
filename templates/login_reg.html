@@ -1,0 +1,41 @@
+{% extends "base_front.html" %}
+
+{% block title %}Image database: registered{% endblock title %}
+{% block login %}{% endblock login %}
+
+{% block boxcontent %}
+  <div id="flashcontent"></div>
+
+  <form name="login" method="post" action="">
+    <input id="id_username" type="hidden" name="username" maxlength="30" />
+    <input type="hidden" name="password" id="id_password" />
+  </form>  
+
+{% endblock boxcontent %}
+
+{% block javascript %}
+	<!-- javascript to submit the form -->
+	<script>
+
+		/*
+			Collects the login details from Flash, sent using ExternalInterface.
+		*/
+		function submitForm( args )
+		{
+			var f = document.forms.login ;
+			f.username.value = args[0] ;
+			f.password.value = args[1] ;
+			f.submit() ;
+		}
+		
+	</script>
+
+<script src="/static/js/swfobject.js" type="text/javascript"></script>
+<script type="text/javascript">
+   var so = new SWFObject("/static/flash/maerskint.swf", "mærsk int.", "100%", "100%", "8", "#FFFFFF");
+   so.addParam("quality", "best");
+   so.addParam("scalemode", "noscale");
+   so.addParam("wmode", "transparent");
+   so.write("flashcontent");
+</script>
+{% endblock javascript %}
