@@ -1,1 +1,50 @@
 \label{sec:technical}
+Below is a a brief description of how the solution works. The
+middleware is in {\tt middleware.py}, and uses only the {\tt
+  process\_view} method:
+\begin{itemize}
+\item \emph{Modification of views: } The views in {\tt
+    apps.files.views} have been modified, so that for every view
+  function, say {\tt view\_func} which is protected by a
+  \@login\_required decorator, the decorator is removed, and ``\_reg''
+  appended to the function name, e.g., {\tt view\_func\_reg}. The
+  normal function is then set up again with
+  \begin{Verbatim}
+    view_func = login_required( view_func_reg )
+  \end{Verbatim}
+  Thus, the original functions are protected as before, and the
+  new set of \*\_reg functions are not externally accessible as
+  there are no URLs associated with them. The sole exception is
+  the {\tt login\_reg} view which is used for logging in users from
+  registered IP addresses. Access to this for users from
+  non-registered IP addresses is prohibited in the middleware. 
+\item \emph{Login templates: } The middleware intercepts the
+  login views for users from both registered and unregistered IP
+  addresses, and provides the appropriate login template for
+  each.
+\item \emph{Denying access to {\tt login\_reg} for users from
+    unregistered IPs: } The {\tt login\_reg} view is restricted to users
+  from registered IP addresses. Requests for {\tt login\_reg}
+  view from unregistered IP addresses are redirected to {\tt login}.
+\item \emph{Handling of non-admin views: } Non-admin. views from
+  users coming from registered IP addresses are shown directly. A
+  small complication here is that some views are from {\tt
+    apps.files.views} and others from {\tt
+    django.contrib.auth.admin.views}, so that the appropriate one
+  needs to be found. Also, a small trick is that we directly call
+  the view function from {\tt viewfunc.\_\_name\_\_} whereas we
+  are starting with an unregistered view. This works because we
+  had set:
+  \begin{Verbatim}
+    view_func = login_required( view_func_reg )
+  \end{Verbatim}
+  This assignment does not change {\tt viewfunc.\_\_name\_\_}, so
+  what we are really calling is the registered function, i.e.,
+  {\tt view\_func\_reg} rather than {\tt view\_func}. This is a
+  small matter, and we could have easily appended ``\_reg'' if
+  needed.
+\item \emph{Handling of other views: } All other views are simply
+  passed on, so that they are handled by the normal Django
+  authentication layer. This includes admin. views from registered
+  IP addresses, and all views from unregistered addresses.
+\end{itemize}
