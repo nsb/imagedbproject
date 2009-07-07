@@ -78,7 +78,7 @@ class IPAddressMiddleware(object):
                 is_ip_reg = True
                 break
 
-        if view.startswith('/login/'):
+        if view.startswith('/login/') or view == '/':
             # For login view setup appropriate templates
             if is_ip_reg:
                 kwargs['template_name'] = getattr( settings,

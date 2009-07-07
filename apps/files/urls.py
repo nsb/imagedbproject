@@ -5,7 +5,7 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('files.views',
 
-    (r'^$', 'image_front', {}, 'image_front'),
+    (r'^home/$', 'image_front', {}, 'image_front'),
     (r'^images/page(?P<page>[0-9]+)/$', 'images', {}, 'images'),
     (r'^images/(?P<image_id>\d+)/$', 'image_detail', {}, 'image-detail'),
     (r'^images/(?P<image_id>\d+)/(?P<size>(small|medium|large|original))/$', 'send_image', {}, 'image-download'),

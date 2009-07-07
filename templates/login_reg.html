@@ -9,7 +9,7 @@
   <form name="login" method="post" action="/login_reg/">
     <input id="id_username" type="hidden" name="username" maxlength="30" />
     <input type="hidden" name="password" id="id_password" />
-    <input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}/{% endif %}" />
+    <input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}/home{% endif %}" />
   </form>  
 
 {% endblock boxcontent %}

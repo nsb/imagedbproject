@@ -10,6 +10,8 @@
     <a href="{% url contact %}">{% trans "contact" %}</a> |
     <a href="{% url auth_logout %}">{% trans "logout" %}</a>
   {% else %}
+    <a href="/admin/">admin</a> |
+    <a href="{% url contact %}">{% trans "contact" %}</a> |
     {% block login %}<a href="{% url auth_login %}">{% trans "login" %}</a>{% endblock login %}
   {% endif %}
   </span>
