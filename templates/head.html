@@ -6,7 +6,7 @@
   <span id="user_box" class="small quiet">
   {% if user.is_authenticated %}
     {% trans "signed in as" %} <strong>{{ user.username }}</strong> |
-    {% if user.is_staff %}<a href="/admin/">admin</a> |{% endif %}
+    <a href="/admin/">admin</a> |
     <a href="{% url contact %}">{% trans "contact" %}</a> |
     <a href="{% url auth_logout %}">{% trans "logout" %}</a>
   {% else %}
