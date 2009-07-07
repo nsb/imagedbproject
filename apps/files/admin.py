@@ -336,6 +336,24 @@ class EPSAdmin(admin.ModelAdmin):
                 obj.title = new_title
                 obj.save()
 
+class PhotoSizeAdmin(admin.ModelAdmin):
+    list_display = ('name', 'width', 'height', 'crop', 'pre_cache', 'increment_count')
+    fieldsets = (
+        (None, {
+            'fields': ('width', 'height', 'quality')
+        }),
+        ('Options', {
+            'classes': ('collapse',),
+            'fields': ('upscale', 'crop', 'pre_cache', 'increment_count')
+        }),
+    )
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
 class UserAdmin(UserAdmin):
     list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff',)
     list_filter = ['is_staff', 'is_superuser',] 
@@ -365,3 +383,4 @@ admin.site.unregister(Site)
 admin.site.register(User, UserAdmin)
 admin.site.register(Image, ImageAdmin)
 admin.site.register(EPS, EPSAdmin)
+admin.site.register(PhotoSize, PhotoSizeAdmin)
