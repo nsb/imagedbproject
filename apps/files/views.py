@@ -294,7 +294,7 @@ def eps_front_reg(request, page=1):
     return render_to_response('eps_front.html', RequestContext(request, {'form':eps_form,}))
 eps_front = login_required( eps_front_reg )
 
-def eps(request, page=1):
+def eps_reg(request, page=1):
 
     form = EPSFilterForm(request.GET)
     if form.is_valid():
@@ -366,6 +366,7 @@ def eps(request, page=1):
 
     else:
         return HttpResponseBadRequest(form.errors)
+eps = login_required( eps_reg )
 
 @require_http_methods(["GET"])
 def eps_detail_reg(request, eps_id):
