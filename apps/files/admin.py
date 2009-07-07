@@ -339,12 +339,12 @@ class EPSAdmin(admin.ModelAdmin):
 
 class UserAdmin(UserAdmin):
     list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff',)
-    list_filter = ['is_staff',]
+    list_filter = ['is_staff', 'is_superuser',] 
     fieldsets = (
         (None, {
             'fields': ('username', 'password',)
         }),
-        ('Personal info (optional)', {
+        ('Personal info', {
             'fields': ('first_name', 'last_name', 'email',)
         }),
         ('Permissions', {
