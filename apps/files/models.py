@@ -28,8 +28,7 @@ from rounded_corners import round_image
 
 class Image(ImageModel):
     title = models.CharField(_('title'), max_length=100, unique=True)
-    caption = models.TextField(_('image text'), blank=True)
-    notes = models.TextField(_('admin comments'), blank=True, null=True)
+    caption = models.TextField(_('caption'), blank=True)
     date_added = models.DateTimeField(_('date added'), default=datetime.now, editable=False)
     is_public = models.BooleanField(
         _('is public'),

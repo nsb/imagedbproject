@@ -5,15 +5,12 @@ from django.contrib import admin
 
 from models import Location, Installation, People, HSE, Graphics, Communications, Archive, Year, Logo
 
-class CategoryModelAdmin(admin.ModelAdmin):
-    actions = None
-
-admin.site.register(Location, CategoryModelAdmin)
-admin.site.register(Installation, CategoryModelAdmin)
-admin.site.register(People, CategoryModelAdmin)
-admin.site.register(HSE, CategoryModelAdmin)
-admin.site.register(Graphics, CategoryModelAdmin)
-admin.site.register(Communications, CategoryModelAdmin)
-admin.site.register(Archive, CategoryModelAdmin)
-admin.site.register(Year, CategoryModelAdmin)
-admin.site.register(Logo, CategoryModelAdmin)
+admin.site.register(Location)
+admin.site.register(Installation)
+admin.site.register(People)
+admin.site.register(HSE)
+admin.site.register(Graphics)
+admin.site.register(Communications)
+admin.site.register(Archive)
+admin.site.register(Year)
+admin.site.register(Logo)
