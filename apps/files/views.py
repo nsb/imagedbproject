@@ -128,8 +128,6 @@ def image_detail(request, image_id):
                          object_id = image_id)
 
 @login_required
-<<<<<<< HEAD:apps/files/views.py
-=======
 def image_downloadfolder_view(request, page=1):
     """
     Display list of images selected for download
@@ -277,7 +275,6 @@ def image_downloadfolder_toggle(request):
 
 
 @login_required
->>>>>>> ff161db9ad24fb5cb5c3706bae393fd97e263f77:apps/files/views.py
 def send_image(request, image_id, size):
     """                                                                         
     Send a file through Django without loading the whole file into              
