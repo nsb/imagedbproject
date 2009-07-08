@@ -17,8 +17,14 @@
 </li>
 </ul>
 <div>
+<form action="{% url image_downloadfolder_update %}" method="post">
   <img src="{{ image.get_display_url }}" alt="{{ image.title }}">
+  <input type="checkbox" name="img_down" value="{{ image.id }}" 
+            {% in_downloadfolder image.id request.session.image_download_list %} />
   {% if image.caption %}<p class="caption">{{ image.caption }}</p>{% endif %}
+  <input type="hidden" name="img_all" value="{{ image.id }} ">
+  <input type="submit" value="update"/>
+</form>
 </div>
 <hr class="space">
 <p><strong>{% trans "Categories:" %}</strong></p>
