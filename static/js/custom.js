@@ -17,7 +17,17 @@ function toggleImage(buttonElm, imgover, imgout) {
 $(document).ready(function(){
 
   // $('body').supersleight();
-
+  
+  
+  $("#downloadfolder_form input[type=submit]").hide();
+  $("#downloadfolder_form input[type=checkbox]").click(function(){
+    $(this).addClass('ajax');
+    $.post("/images/downloadfolder/toggle/", {img: $(this).attr('value')},
+      function(data){
+        $(this).removeClass('ajax');
+      }, "json");
+  });
+    
   $("#rightbox").tabs({ selected: 3 });
   // try to hide tab items, except default
 
