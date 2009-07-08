@@ -15,7 +15,7 @@
 <div id="submitline"><input id="searchbutton" type="image" src="/static/img/search.png" value="Search"> <a href="{% url image_front %}"><img id="resetlink" src="/static/img/reset.png"></a></div>
 </form>
 
-<form action="{% url image_downloadfolder_update %}" method="post">
+<form id="downloadfolder_form" action="{% url image_downloadfolder_update %}" method="post">
 {% block image_list %}
 {% if images.object_list %}
 <div id="image_list">
