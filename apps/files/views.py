@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
 
-import os, mimetypes
+import os, mimetypes, tempfile, zipfile
 
 from django.views.generic.list_detail import object_list, object_detail
 from django.contrib.auth.decorators import login_required
@@ -212,7 +212,7 @@ def image_downloadfolder_download(request):
             if photosize and not image.size_exists(photosize):
                 image.create_size(photosize)
         
-        filename = filenames[size]()
+        filename = filenames[size]().encode('utf8')
         archive.write(filename)
        
     archive.close()

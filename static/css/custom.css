@@ -253,21 +253,13 @@ body.nonauth {
   margin-top: 36px;
   width: 1200px;
 }
-#image_list a {
+#image_list div.img, #eps_list div.img {
   float: left;
   display: inline;
   height: 100px;
-  margin: 0;
-  padding: 0;
-  margin-right: 5px;
-  margin-bottom: 5px;
+  margin: 0 5px 0 0;
+  padding: 0 0 5px 0;
   position:relative;
-}
-#eps_list a {
-  margin: 0;
-  padding: 0;
-  margin-right: 5px;
-  margin-bottom: 5px;
 }
 #image_list a img, #eps_list a img {
   margin: 0;
@@ -275,7 +267,7 @@ body.nonauth {
 }
 
 #image_list span.checkbox {position:absolute;
-    bottom: 2px; left: 74px;}
+    bottom: 7px; left: 74px;}
     
 #image_list img {
 /*   width: 100px; */
