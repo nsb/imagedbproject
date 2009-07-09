@@ -8,12 +8,14 @@
 <a class="selected round" href="{% url image_front %}"><img id="images-section" src="/static/img/Images2.png" alt="{% trans "Images" %}"></a> <a href="{% url eps_front %}"><img id="logos-section" src="/static/img/logos.png" alt="{% trans "Logos" %}"></a>
 </div>
 
+{% block image_search_form %} 
 <form class="round" method="get" action="{% url images 1 %}">
 <table>
 {% include "form.html" %}
 </table>
 <div id="submitline"><input id="searchbutton" type="image" src="/static/img/search.png" value="Search"> <a href="{% url image_front %}"><img id="resetlink" src="/static/img/reset.png"></a></div>
 </form>
+{% endblock image_search_form %} 
 
 <form id="downloadfolder_form" action="{% url image_downloadfolder_update %}" method="post">
 {% block image_list %}
