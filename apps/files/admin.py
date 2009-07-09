@@ -21,12 +21,13 @@ def bulk_caption(modeladmin, request, queryset):
     """
     selected = request.POST.getlist(admin.ACTION_CHECKBOX_NAME)
     return HttpResponseRedirect("bulk_caption/?ids=%s" % ",".join(selected))
+bulk_caption.short_description = 'Image text'
 
 class ImageAdmin(admin.ModelAdmin):
     list_display = ('title', 'image_filename', 'date_added', 'is_public', 'view_count', 'admin_thumbnail')
     list_filter = ['date_added', 'is_public', 'locations', 'installations', 'people', 'hse', 'graphics', 'communications', 'years', 'archives']
+    filter_horizontal = ('locations', 'installations', 'people', 'communications', 'hse', 'graphics', 'years', 'archives',)
     list_per_page = 20
-    save_on_top = True
     actions = [bulk_caption, 'set_1985', 'set_1986', 'set_1987', 'set_1988', 'set_1989', 'set_1990', 'set_1991', 'set_1992', 'set_1993', 'set_1994', 'set_1995', 'set_1996', 'set_1997', 'set_1998', 'set_1999', 'set_2000', 'set_2001', 'set_2002', 'set_2003', 'set_2004', 'set_2005', 'set_2006', 'set_2007', 'set_2008', 'set_2009',]
     fieldsets = (
         (None, {
@@ -36,7 +37,7 @@ class ImageAdmin(admin.ModelAdmin):
             'fields': ('locations', 'installations', 'people', 'communications', 'hse', 'graphics', 'years', 'archives',)
         }),
         ('Options', {
-            'fields': ('caption', 'is_public',)
+            'fields': ('caption', 'notes', 'is_public',)
         }),
     )
 
@@ -336,32 +337,14 @@ class EPSAdmin(admin.ModelAdmin):
                 obj.title = new_title
                 obj.save()
 
-class PhotoSizeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'width', 'height', 'crop', 'pre_cache', 'increment_count')
-    fieldsets = (
-        (None, {
-            'fields': ('width', 'height', 'quality')
-        }),
-        ('Options', {
-            'classes': ('collapse',),
-            'fields': ('upscale', 'crop', 'pre_cache', 'increment_count')
-        }),
-    )
-
-    def has_add_permission(self, request):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
-        return False
-
 class UserAdmin(UserAdmin):
     list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff',)
-    list_filter = ['is_staff', 'is_superuser',] 
+    list_filter = ['is_staff',] 
     fieldsets = (
         (None, {
             'fields': ('username', 'password',)
         }),
-        ('Personal info', {
+        ('Personal info (optional)', {
             'fields': ('first_name', 'last_name', 'email',)
         }),
         ('Permissions', {
@@ -383,4 +366,3 @@ admin.site.unregister(Site)
 admin.site.register(User, UserAdmin)
 admin.site.register(Image, ImageAdmin)
 admin.site.register(EPS, EPSAdmin)
-admin.site.register(PhotoSize, PhotoSizeAdmin)

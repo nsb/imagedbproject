@@ -46,14 +46,14 @@ class Graphics(Category):
 
 class Communications(Category):
     class Meta:
-        verbose_name = _("Communications")
-        verbose_name_plural = _("Communications")
+        verbose_name = _("Communications (admin)")
+        verbose_name_plural = _("Communications (admin)")
         ordering = ['name']
 
 class Archive(Category):
     class Meta:
-        verbose_name = _("Archive")
-        verbose_name_plural = _("Archive")
+        verbose_name = _("Archive (admin)")
+        verbose_name_plural = _("Archive (admin)")
         ordering = ['name']
 
 class Year(Category):

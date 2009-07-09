@@ -5,8 +5,11 @@ from django.contrib import admin
 
 from models import Location, Installation, People, HSE, Graphics, Communications, Archive, Year, Logo
 
-admin.site.register(Location)
-admin.site.register(Installation)
+class CategoryModelAdmin(admin.ModelAdmin):
+    actions = None
+
+admin.site.register(Location, CategoryModelAdmin)
+admin.site.register(Installation, CategoryModelAdmin)
 admin.site.register(People)
 admin.site.register(HSE)
 admin.site.register(Graphics)
