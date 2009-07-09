@@ -22,7 +22,7 @@
 {% if images.object_list %}
 <div id="image_list">
 {% for image in images.object_list %}
-    <div class="img" id="img_{{ image.id }} "><a href="{% url image-detail image.id %}">
+    <div class="img" id="img_{{ image.id }}"><a href="{% url image-detail image.id %}">
         <img src="{{ image.get_thumbnail_url }}" alt="{{ image.title }}"
             title="{{ image.categories }}{{ image.caption }}"></a>
         <span class="checkbox"><input type="checkbox" name="img_down" value="{{ image.id }}" 
