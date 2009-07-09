@@ -8,8 +8,7 @@
    http://code.google.com/p/netaddr/ , is used for handling IP addresses
 
    Currently tested with Django 1.1-beta-1 (SVN checkout on 2009-JUL-02,
-   and IPy 1:0.62-1. Live testing has only been done with IPv4 addresses.
-   Please see the unit tests for some pseudo-IPv6 tests.
+   and netaddr 0.6.3. Live testing has only been done with IPv4 addresses.
 
 """
 import netaddr
@@ -70,7 +69,18 @@ class IPAddressMiddleware(object):
 
     def process_view(self, request, viewfunc, args, kwargs):
         view = request.get_full_path()
-        incoming = request.META.get('REMOTE_ADDR')
+        # The incoming IP address is normally request.META.get('REMOTE_ADDR')
+        # except for hosting providers like webfactional.com, who use a
+        # a reverse proxy that sets REMOTE_ADDR to 127.0.0.1. For
+        # webfactional.com, use the following code, but if not behind a
+        # reverse proxy, REMOTE_ADDR should be used, as HTTP_X_FORWARDED_FOR
+        # can be spoofed. See comments in SetRemoteAddrFromForwardedFor()
+        # in django/middleware/http.py
+        #
+        # Uncomment the following line, and comment the next one to use
+        # REMOTE_ADDR.
+        # incoming = request.META.get('REMOTE_ADDR')
+        incoming = request.META['HTTP_X_FORWARDED_FOR'].split(",")[0].strip()
         is_ip_reg = False
         for ip in self.ip_reg:
             # Following covers single addresses, and all address ranges
