@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2008 - 2009, Niels Sandholt Busch <niels.busch@gmail.com>. All rights reserved.
 
-import os, mimetypes
+import os, mimetypes, tempfile, zipfile
 
 from django.views.generic.list_detail import object_list, object_detail
 from django.contrib.auth.decorators import login_required
