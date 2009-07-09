@@ -5,10 +5,10 @@
 
 {% block indented_content %}
 <div id="sections">
-<a class="selected round" href="{% url image_front %}"><img id="images-section" src="/static/img/Images2.png" alt="{% trans "Images" %}"></a> <a href="{% url eps_front %}"><img id="logos-section" src="/static/img/logos.png" alt="{% trans "Logos" %}"></a><a href="{% url image_downloadfolder_view %} ">Download Images</a>
+<a class="selected round" href="{% url image_front %}"><img id="images-section" src="/static/img/Images2.png" alt="{% trans "Images" %}"></a> <a href="{% url eps_front %}"><img id="logos-section" src="/static/img/logos.png" alt="{% trans "Logos" %}"></a> <a href="{% url image_downloadfolder_view %} ">Download Images</a>
 </div>
 
-{% block image_search_form %} 
+{% block image_search_form %}  
 <form class="round" method="get" action="{% url images 1 %}">
 <table>
 {% include "form.html" %}
@@ -31,6 +31,10 @@
     
 {% endfor %}
 </div>
+<input type="hidden" name="img_all" value="{% for image in images.object_list %}{{ image.id }},{% endfor %}">
+<input type="submit" value="update"/>
+</form>
+
 
 <div class="step-links clear">
   {% if images.has_previous %}
@@ -73,5 +77,8 @@
 {% endif %}
 {% endblock image_list %}
 
+{% block image_actions %}  {% endblock %}
+
 
 {% endblock indented_content %}
+
