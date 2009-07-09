@@ -14,3 +14,37 @@ DEFAULT_FROM_EMAIL = ''
 SERVER_EMAIL = ''
 
 DEBUG = False
+
+# Middleware classes: The IPAddressMiddleWare can be put anywhere.
+MIDDLEWARE_CLASSES = (
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'middleware.IPAddressMiddleware',
+)
+
+# Settings for IP address filtering. The set of registered IP addresses are
+# given as a list, with each entry being either a single value as a string,
+# or a sequence of two values as strings, which are the start and end of an
+# IP address range, e.g.,
+#   SRJ_IP_REG = ['192.168.10.1', '192.168.10.4', ['192.168.10.6', '192.168.10.2
+4'], '192.168.10.40' ]
+# Further enhancements are also possible, e.g., the individual values can
+# also themselves be ranges, e.g., '192.168.10.0/3'. For details, see the
+# examples in http://code.google.com/p/netaddr/wiki/IPv4Examples . Further
+# extensions are also possible, e.g., see
+# http://code.google.com/p/netaddr/wiki/WildcardExamples , and the complete
+# API at http://packages.python.org/netaddr/ . However, in the interests of
+# simplicity, these are not currently included
+#
+# Any addresses that are not registered above are considered to be
+# unregistered.
+#
+# Set the allowed IPs/IP ranges here
+SRJ_IP_REG = ['192.168.10.0/24', ['192.168.1.1', '192.168.1.10'], '127.0.0.1']
+
+# Template names for login from registered/unregistered IP addresses.
+# These are relative to the templates directory, e.g., these should be
+# under "templates/".
+SRJ_TMPL_LOGIN_REG = 'login_reg.html'
+SRJ_TMPL_LOGIN_UNREG = 'login.html'

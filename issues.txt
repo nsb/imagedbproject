@@ -1,0 +1,31 @@
+# In app/files/views.py, for every login_required view, the @login_required
+  decorator has been removed, the view function name changed to view_reg,
+  and a login_required version is retained with the original view name.
+  The view_reg functions do not have configured URLs, and are hence not
+  accessible. The only exception is login_reg, access to which is blocked
+  from non-registered IP addresses by the middleware.
+# Users after logging in were supposed to be redirected to '/home/'. This URL
+  does not exist, so the redirection has been made to '/'
+# Users from registered IPs looking at non-admin views cannot be
+  authenticated (there is no user/password information). Hence the views
+  should not have specific information shown for authenticated users.
+# A user who has been authenticated from a registered (unregistered) IP, and
+  switches to an unregistered (registered) IP is not required to
+  authenticate again, and retains all earlier privileges.
+# The login template is now set in the middleware, using the values in
+  settings_local.py. This means that any values passed with 'template_name'
+  to the login view in urls.py will be overriden.
+# Currently, in urls.py
+    (r'^admin/(.#)', include(admin.site.urls)),
+  is preferred for the admin. site configuration, instead of,
+    (r'^admin/(.#)', admin.site.root),
+  Please see http://docs.djangoproject.com/en/dev/ref/contrib/admin/#hooking-adminsite-instances-into-your-urlconf . With the old style declaration, I am
+  forced to use
+    reverse(admin.site.root, args=['']) 
+  to get the root of the admin. site URL. admin.site.root is deprecated
+  and will disappear in Django 1.3. Now, the admin. uses named URLs, so
+  that the usage should be
+    reverse('admin_index', args=[''])
+  However, this will work only with the above changes to urls.py.
+# app.files.eps is not protected by @login_required. I am not sure why
+  this is the case, and have left it alone.

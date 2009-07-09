@@ -1,0 +1,138 @@
+\documentclass[a4paper]{report}
+
+% ----------- LATEX2E PACKAGES -----------
+\usepackage{mathpazo}   % Palatino and matching math fonts
+\usepackage{url}        % Cite URLs
+\usepackage{fancyhdr}   % Fancy Header and Footer
+\usepackage{epsfig}     % Postscript figures
+\usepackage{citesort}   % Sorted citations
+\usepackage{color}      % Coloured text
+\usepackage{lastpage}   % For page N of M
+\usepackage{fancybox}   % For framing page, and picture
+\usepackage{fancyvrb}
+\usepackage{xspace}     % Optional space after end of a \newcommand
+\usepackage{multirow}   % Columns spanning multiple rows
+% -------- CHAPTER/SECTION COLOURS ---------
+\definecolor{ccol}{rgb}{0.976,0.655,0.024} % Chapter name colour
+\definecolor{scol}{rgb}{0,0.275,0.545} % Section/contents colour
+\makeatletter
+% Red box around section number
+%\renewcommand*\@seccntformat[1]{%
+%    \color{red}{\fbox{\color{black}\csname the#1\endcsname}}\quad%
+%}
+
+% Section name colour
+\let\LaTeX@startsection\@startsection
+\renewcommand{\@startsection}[6]{\LaTeX@startsection%
+{#1}{#2}{#3}{#4}{#5}{\raggedright\color{scol}#6}}
+
+% Chapter name colour
+\renewcommand{\@chapapp}{\color{ccol}\chaptername}
+
+% Table of contents title colour
+\renewcommand{\contentsname}{\color{scol}Contents}
+% Table of contents entry colour
+\let\LaTeX@addcontentsline\addcontentsline
+\renewcommand{\addcontentsline}[3]{\LaTeX@addcontentsline%
+{#1}{#2}{\color{scol}#3}}
+\makeatother
+
+% -------- Client-specific setup -----------
+\newcommand{\client}{Ciboe image database\xspace}
+% Shorter form, if available, for use in footer
+\newcommand{\clientabbr}{Ciboe}
+\newcommand{\contact}{Mr.~Claus Ipsen\xspace}
+\newcommand{\revnum}{1.0\xspace}
+% Short name for footer
+\newcommand{\projname}{IP address filter doc.\xspace}
+\newcommand{\theyear}{2008\xspace}
+\newcommand{\settings}{{\tt settings.py}\xspace}
+\newcommand{\netaddr}{{\tt netaddr}\xspace}
+\newcommand{\ipaddr}{{\tt ipaddr}\xspace}
+% ------ Fancy Header Style Options --------
+\pagestyle{fancy}       % Sets fancy header and footer
+% ---------- Srijan style setup ------------
+% Define header/footer
+% Defining header/footer inside \fancypagestyle needed for report class, not
+% for book.
+%\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{32pt}
+\renewcommand{\footrulewidth}{0.4pt}
+% Page frame, and background picture
+%% \fancypage{%
+%% \setlength{\fboxsep}{8pt}%
+%% \setlength{\shadowsize}{2pt}%
+%% \shadowbox}{}
+\fancyput(-0.3in,-9in){\epsfig{figure=srijan-logo.eps,height=100pt}}
+\fancypagestyle{plain}{%
+  \fancyfoot{}            % Delete current footer settings
+  \fancyhead{}
+  \rhead{}
+  \lhead{}
+  \chead{}
+  %\lhead{\epsfig{figure=srijan-hdr.eps,height=20pt}}
+  \lhead{\textcolor{ccol}{\Large SRIJAN}\newline
+    \textcolor{scol}{\scriptsize TECHNOLOGIES}}
+  \lfoot{Name: \projname\\Document ver.: \revnum\\Customer: \clientabbr}
+  \rfoot{Page \thepage\ of \pageref{LastPage}\\http://www.srijan.in\\Copyright 
+(C) \theyear\ Srijan Technologies, Pvt.~Ltd.}
+  \cfoot{}
+}
+  \fancyfoot{}            % Delete current footer settings
+  \fancyhead{}
+  \rhead{}
+  \chead{}
+  %\lhead{\epsfig{figure=srijan-hdr.eps,height=20pt}}
+  \lhead{\textcolor{ccol}{\Large SRIJAN}\newline
+    \textcolor{scol}{\scriptsize TECHNOLOGIES}}
+  \lfoot{Project Name: \projname\\Document ver.: \revnum\\Customer: \clientabbr}
+  \rfoot{Page \thepage\ of \pageref{LastPage}\\http://www.srijan.in\\Copyright 
+(C) \theyear\ Srijan Technologies, Pvt.~Ltd.}
+  \cfoot{}
+
+\begin{document}
+% ----------- BEGIN FRONT MATTER -----------
+% --------------- Title Page ---------------
+\begin{titlepage}
+  \title{Notes on the IP address-based redirection middleware}
+  \author{Srijan Technologies Pvt.~Ltd., India\\\url{http://www.srijan.in}}
+  \date{Document version: \revnum\\ \today}
+  \maketitle
+\end{titlepage}
+
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% ----------- BEGIN MAIN BODY -----------
+\chapter{Introduction}
+\input{intro}
+
+\chapter{Installation and usage}
+\input{installation}
+  \section{External dependencies}
+  \input{external}
+  \section{Changes to \settings}
+  \input{changes}
+  \section{Running}
+  \input{run}
+
+\chapter{Functioning of the middleware}
+\input{functioning}
+  \section{Registered IP addresses}
+  \input{registered}
+  \section{Unregistered IP addresses}
+  \input{unregistered}
+
+\chapter{Technical details}
+\input{technical}
+
+\chapter{Issues}
+\input{issues}
+% ----------- END MAIN BODY -----------
+\bibliographystyle{plain}
+\bibliography{ip_addr_filter}
+
+\end{document}
