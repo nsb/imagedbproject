@@ -351,4 +351,6 @@ select {
 }
 #contact, #howto {
   padding: 10px 0;
+  width: 689px;
+  margin: auto;
 }
