@@ -15,6 +15,7 @@ from django.db import models
 from django.conf import settings
 from django.template import RequestContext
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
+from django.utils import simplejson
 
 from photologue.models import PhotoSizeCache
 
@@ -253,8 +254,24 @@ def image_downloadfolder_clear(request):
 @login_required
 @require_http_methods(["POST"])
 def image_downloadfolder_toggle(request):
-    img = request.POST.get('img', '')
-    pass
+    response_dict = {}
+    img = str(request.POST.get('img', False))
+    response_dict.update({'id': img})
+    download_list = request.session.get('image_download_list', [])
+    
+    try:
+        download_list.index(img)
+        download_list.remove(img)
+        response_dict.update({'success': True, 'action': 'removed'})
+        
+    except:
+        download_list.append(img)
+        action = 'added'
+        response_dict.update({'success': True, 'action': 'added'})
+    
+    request.session['image_download_list'] = download_list
+    
+    return HttpResponse(simplejson.dumps(response_dict), mimetype='application/javascript')
 
 
 @login_required
