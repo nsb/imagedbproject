@@ -5,9 +5,16 @@
 
 {% block indented_content %}
 <div id="contact">
-<img src="/static/img/contact.png" usemap="#imagemap" border="0" alt="">
-<map id="imagemap">
-  <area href="mailto:anilla.plesner@maerskoil.com" shape="rect" coords="299,138,452,150" alt="Mail to Anilla Plesner, Communications">
-</map>
+<MAP NAME="contact">
+<AREA
+   HREF="mailto:anilla.plesner@maerskoil.com" ALT="Mail to Anilla Plesner, Communications" TITLE="Mail to Anilla Plesner, Communications"
+   SHAPE=RECT COORDS="299,138,452,150">
+</MAP>
+
+<IMG SRC="/static/img/contact.png"
+   BORDER=0
+   USEMAP="#contact">
 </div>
+
+
 {% endblock indented_content %}
