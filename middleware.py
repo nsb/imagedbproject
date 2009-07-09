@@ -110,6 +110,9 @@ class IPAddressMiddleware(object):
         elif view.startswith('/static/') or view.startswith('/media/'):
             # Simply serve static media, and Django admin. media
             return self._call_viewfunc( viewfunc, request, args, kwargs )
+        elif view == '/contact/' or view == '/howto/':
+            # direct_to_template views
+            return 
         else:
             # For all other views, if non-admin views are required, return
             # them for users from registered IPs.
