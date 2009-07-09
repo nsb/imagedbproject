@@ -64,12 +64,12 @@ class Image(ImageModel):
         Communications,
         null=True,
         blank=True,
-        verbose_name=_('Communications'))
+        verbose_name=_('Communications (admin)'))
     archives = models.ManyToManyField(
         Archive,
         null=True,
         blank=True,
-        verbose_name=_('archives'))
+        verbose_name=_('Archives (admin)'))
     years = models.ManyToManyField(
         Year,
         null=True,
