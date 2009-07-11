@@ -6,14 +6,14 @@
   <span id="user_box" class="small quiet">
   {% if user.is_authenticated %}
     {% trans "signed in as" %} <strong>{{ user.username }}</strong> |
-    <a href="/howto/">howto</a> |
+    {% if user.is_staff %}<a href="/admin/">{% trans "admin" %}</a> |{% endif %}
     <a href="{% url contact %}">{% trans "contact" %}</a> |
-    <a href="{% url howto %}">{% trans "howto" %}</a> |
+    <a href="/howto/">{% trans "howto" %}</a> |
     <a href="{% url auth_logout %}">{% trans "logout" %}</a>
   {% else %}
-    <a href="{% url contact %}">{% trans "contact" %}</a> |
-    <a href="/howto/">howto</a> |
-    {% block login %}<a href="{% url auth_login %}">{% trans "login" %}</a>{% endblock login %}
+    | <a href="{% url contact %}">{% trans "contact" %}</a> |
+    <a href="/howto/">{% trans "howto" %}</a> |
+    <a href="{% url auth_logout %}">{% trans "logout" %}</a>
   {% endif %}
   </span>
 </div>
